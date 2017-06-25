@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		C067E0081EFFE8EC00F830CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067E0071EFFE8EC00F830CB /* AppDelegate.swift */; };
-		C067E00A1EFFE8EC00F830CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067E0091EFFE8EC00F830CB /* ViewController.swift */; };
+		C067E00A1EFFE8EC00F830CB /* RecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067E0091EFFE8EC00F830CB /* RecordController.swift */; };
 		C067E00D1EFFE8EC00F830CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C067E00B1EFFE8EC00F830CB /* Main.storyboard */; };
 		C067E0101EFFE8EC00F830CB /* HBCRecord.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C067E00E1EFFE8EC00F830CB /* HBCRecord.xcdatamodeld */; };
 		C067E0121EFFE8EC00F830CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C067E0111EFFE8EC00F830CB /* Assets.xcassets */; };
 		C067E0151EFFE8EC00F830CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C067E0131EFFE8EC00F830CB /* LaunchScreen.storyboard */; };
 		C067E0201EFFE8EC00F830CB /* HBCRecordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067E01F1EFFE8EC00F830CB /* HBCRecordTests.swift */; };
+		C067E02D1F002AB500F830CB /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067E02C1F002AB500F830CB /* RecordCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +30,7 @@
 /* Begin PBXFileReference section */
 		C067E0041EFFE8EC00F830CB /* HBCRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBCRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C067E0071EFFE8EC00F830CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C067E0091EFFE8EC00F830CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C067E0091EFFE8EC00F830CB /* RecordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordController.swift; sourceTree = "<group>"; };
 		C067E00C1EFFE8EC00F830CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C067E00F1EFFE8EC00F830CB /* HBCRecord.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HBCRecord.xcdatamodel; sourceTree = "<group>"; };
 		C067E0111EFFE8EC00F830CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,6 +39,7 @@
 		C067E01B1EFFE8EC00F830CB /* HBCRecordTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HBCRecordTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C067E01F1EFFE8EC00F830CB /* HBCRecordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBCRecordTests.swift; sourceTree = "<group>"; };
 		C067E0211EFFE8EC00F830CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C067E02C1F002AB500F830CB /* RecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +81,9 @@
 		C067E0061EFFE8EC00F830CB /* HBCRecord */ = {
 			isa = PBXGroup;
 			children = (
+				C067E02B1F002A9A00F830CB /* View */,
+				C067E02A1EFFF4AB00F830CB /* Controller */,
 				C067E0071EFFE8EC00F830CB /* AppDelegate.swift */,
-				C067E0091EFFE8EC00F830CB /* ViewController.swift */,
 				C067E00B1EFFE8EC00F830CB /* Main.storyboard */,
 				C067E0111EFFE8EC00F830CB /* Assets.xcassets */,
 				C067E0131EFFE8EC00F830CB /* LaunchScreen.storyboard */,
@@ -97,6 +100,22 @@
 				C067E0211EFFE8EC00F830CB /* Info.plist */,
 			);
 			path = HBCRecordTests;
+			sourceTree = "<group>";
+		};
+		C067E02A1EFFF4AB00F830CB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C067E0091EFFE8EC00F830CB /* RecordController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		C067E02B1F002A9A00F830CB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C067E02C1F002AB500F830CB /* RecordCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,7 +224,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C067E0101EFFE8EC00F830CB /* HBCRecord.xcdatamodeld in Sources */,
-				C067E00A1EFFE8EC00F830CB /* ViewController.swift in Sources */,
+				C067E00A1EFFE8EC00F830CB /* RecordController.swift in Sources */,
+				C067E02D1F002AB500F830CB /* RecordCell.swift in Sources */,
 				C067E0081EFFE8EC00F830CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,6 +438,7 @@
 				C067E0261EFFE8EC00F830CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C067E0271EFFE8EC00F830CB /* Build configuration list for PBXNativeTarget "HBCRecordTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +447,7 @@
 				C067E0291EFFE8EC00F830CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
