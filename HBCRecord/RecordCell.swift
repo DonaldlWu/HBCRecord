@@ -24,49 +24,73 @@ class RecordCell: UICollectionViewCell {
         return image
     }()
     
-    let wordLabel: UILabel = {
+    let orderLabel: UILabel = {
         let label = UILabel()
-        label.text = "Test Test Test"
-        label.backgroundColor = .yellow
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .orange
+        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.textAlignment = .center
+        label.text = "四棒/投手"
         return label
     }()
     
-    let sentButton: UIButton = {
+    let recordText: UITextView = {
+        let text = UITextView()
+        text.textAlignment = .left
+        text.text = "一安 / 三振 / 保送 / 二安"
+        text.font = UIFont.boldSystemFont(ofSize: 14)
+        text.backgroundColor = .yellow
+        text.isScrollEnabled = false
+        text.translatesAutoresizingMaskIntoConstraints = false
+        return text
+    }()
+    
+    lazy var sentButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .purple
         button.layer.cornerRadius = 5
         button.layer.borderColor = UIColor.blue.cgColor
         button.layer.borderWidth = 2
-        button.setTitle("Sent", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitle("UPDATE", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        button.addTarget(self, action: #selector(sentRecord), for: .touchUpInside)
         return button
     }()
     
     func setupView() {
         backgroundColor = .yellow
         addSubview(profileImage)
-        addSubview(wordLabel)
+        addSubview(recordText)
         addSubview(sentButton)
+        addSubview(orderLabel)
         
-        profileImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        profileImage.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         profileImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12).isActive = true
         profileImage.heightAnchor.constraint(equalToConstant: 48).isActive = true
         profileImage.widthAnchor.constraint(equalToConstant: 48).isActive = true
-        
-        wordLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        wordLabel.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 12).isActive = true
-        wordLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        wordLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 12).isActive = true
         
         sentButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         sentButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12).isActive = true
         sentButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
         sentButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        
+        recordText.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 12).isActive = true
+        recordText.rightAnchor.constraint(equalTo: sentButton.leftAnchor, constant: -12).isActive = true
+        recordText.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        recordText.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        
+        orderLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor).isActive = true
+        orderLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        orderLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        orderLabel.rightAnchor.constraint(equalTo: recordText.leftAnchor).isActive = true
+        
     }
     
-
+    func sentRecord(cellNumber: Int) {
+        print("Hit Button")
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
