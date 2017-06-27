@@ -84,10 +84,9 @@ class RecordCell: UICollectionViewCell {
         orderLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         orderLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         orderLabel.rightAnchor.constraint(equalTo: recordText.leftAnchor).isActive = true
-        
     }
     
-    func sentRecord(cellNumber: Int) {
+    func sentRecord() {
         print("Hit Button")
     }
     
