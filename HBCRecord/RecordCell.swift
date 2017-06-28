@@ -54,7 +54,6 @@ class RecordCell: UICollectionViewCell {
         button.layer.borderWidth = 2
         button.setTitle("UPDATE", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
-        button.addTarget(self, action: #selector(sentRecord), for: .touchUpInside)
         return button
     }()
     
@@ -84,10 +83,6 @@ class RecordCell: UICollectionViewCell {
         orderLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         orderLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         orderLabel.rightAnchor.constraint(equalTo: recordText.leftAnchor).isActive = true
-    }
-    
-    func sentRecord() {
-        print("Hit Button")
     }
     
     required init?(coder aDecoder: NSCoder) {
