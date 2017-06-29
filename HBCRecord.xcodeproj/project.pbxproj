@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0145DE51F02A2B8005651B3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0145DE41F02A2B8005651B3 /* Player.swift */; };
 		C067E0081EFFE8EC00F830CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067E0071EFFE8EC00F830CB /* AppDelegate.swift */; };
 		C067E00A1EFFE8EC00F830CB /* RecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067E0091EFFE8EC00F830CB /* RecordController.swift */; };
 		C067E00D1EFFE8EC00F830CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C067E00B1EFFE8EC00F830CB /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C0145DE41F02A2B8005651B3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		C067E0041EFFE8EC00F830CB /* HBCRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBCRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C067E0071EFFE8EC00F830CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C067E0091EFFE8EC00F830CB /* RecordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordController.swift; sourceTree = "<group>"; };
@@ -60,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C0145DE31F02A2A0005651B3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C0145DE41F02A2B8005651B3 /* Player.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		C067DFFB1EFFE8EC00F830CB = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +91,7 @@
 		C067E0061EFFE8EC00F830CB /* HBCRecord */ = {
 			isa = PBXGroup;
 			children = (
+				C0145DE31F02A2A0005651B3 /* Model */,
 				C067E02B1F002A9A00F830CB /* View */,
 				C067E02A1EFFF4AB00F830CB /* Controller */,
 				C067E0071EFFE8EC00F830CB /* AppDelegate.swift */,
@@ -226,6 +237,7 @@
 				C067E0101EFFE8EC00F830CB /* HBCRecord.xcdatamodeld in Sources */,
 				C067E00A1EFFE8EC00F830CB /* RecordController.swift in Sources */,
 				C067E02D1F002AB500F830CB /* RecordCell.swift in Sources */,
+				C0145DE51F02A2B8005651B3 /* Player.swift in Sources */,
 				C067E0081EFFE8EC00F830CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

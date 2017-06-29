@@ -9,9 +9,9 @@
 import UIKit
 
 struct Player {
-    let name: String
-    let order: String
-    let position: String
-    let recordArray: Array<String>
-    let profileImage: UIImage
+    var name: String
+    var order: String
+    var position: String
+    var recordArray: Array<String>
+    var profileImage: UIImage
 }

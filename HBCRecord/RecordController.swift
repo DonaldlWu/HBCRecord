@@ -23,7 +23,7 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     
     let cellId = "CellId"
     
-    let players: [Player] = {
+    lazy var players: [Player] = {
         let player1 = Player(name: "Yohoho", order: "一棒", position: "中外", recordArray: recordArray0, profileImage: #imageLiteral(resourceName: "pied piper"))
         let player2 = Player(name: "Yohoho", order: "二棒", position: "二壘", recordArray: recordArray1, profileImage: #imageLiteral(resourceName: "pied piper"))
         let player3 = Player(name: "Yohoho", order: "三棒", position: "游擊", recordArray: recordArray2, profileImage: #imageLiteral(resourceName: "pied piper"))
@@ -40,6 +40,7 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         collectionView?.backgroundColor = .green
         collectionView?.register(RecordCell.self, forCellWithReuseIdentifier: cellId)
         self.setNeedsStatusBarAppearanceUpdate()
@@ -83,27 +84,26 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
         print("Hit Button\(sender.tag)")
         switch sender.tag {
         case 0:
-            recordArray0.append("New Record1")
+            players[0].recordArray.append("new")
         case 1:
-            recordArray1.append("New Record1")
+            players[1].recordArray.append("record")
         case 2:
-            recordArray2.append("New Record2")
+            players[2].recordArray.append("has")
         case 3:
-            recordArray3.append("New Record3")
+            players[3].recordArray.append("been")
         case 4:
-            recordArray4.append("New Record4")
+            players[4].recordArray.append("add")
         case 5:
-            recordArray5.append("New Record5")
+            players[5].recordArray.append("into")
         case 6:
-            recordArray6.append("New Record6")
+            players[6].recordArray.append("collectionView")
         case 7:
-            recordArray7.append("New Record7")
+            players[7].recordArray.append("cell")
         case 8:
-            recordArray8.append("New Record8")
+            players[8].recordArray.append("new")
         default:
             return
         }
-        
         DispatchQueue.main.async {
             self.collectionView?.reloadData()
         }
