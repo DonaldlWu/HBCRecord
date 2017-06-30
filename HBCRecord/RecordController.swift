@@ -80,33 +80,35 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     func sentRecord(sender: UIButton) {
-        
-        print("Hit Button\(sender.tag)")
-        switch sender.tag {
-        case 0:
-            players[0].recordArray.append("new")
-        case 1:
-            players[1].recordArray.append("record")
-        case 2:
-            players[2].recordArray.append("has")
-        case 3:
-            players[3].recordArray.append("been")
-        case 4:
-            players[4].recordArray.append("add")
-        case 5:
-            players[5].recordArray.append("into")
-        case 6:
-            players[6].recordArray.append("collectionView")
-        case 7:
-            players[7].recordArray.append("cell")
-        case 8:
-            players[8].recordArray.append("new")
-        default:
-            return
-        }
-        DispatchQueue.main.async {
-            self.collectionView?.reloadData()
-        }
+        let controller = RecordPickerController()
+        present(controller, animated: true, completion: nil)
+      
+//        print("Hit Button\(sender.tag)")
+//        switch sender.tag {
+//        case 0:
+//            players[0].recordArray.append("new")
+//        case 1:
+//            players[1].recordArray.append("record")
+//        case 2:
+//            players[2].recordArray.append("has")
+//        case 3:
+//            players[3].recordArray.append("been")
+//        case 4:
+//            players[4].recordArray.append("add")
+//        case 5:
+//            players[5].recordArray.append("into")
+//        case 6:
+//            players[6].recordArray.append("collectionView")
+//        case 7:
+//            players[7].recordArray.append("cell")
+//        case 8:
+//            players[8].recordArray.append("new")
+//        default:
+//            return
+//        }
+//        DispatchQueue.main.async {
+//            self.collectionView?.reloadData()
+//        }
         
     }
     
