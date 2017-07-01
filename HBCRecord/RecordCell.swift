@@ -57,11 +57,24 @@ class RecordCell: UICollectionViewCell {
         return button
     }()
     
+    lazy var undoButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .orange
+        button.layer.cornerRadius = 5
+        button.layer.borderColor = UIColor.blue.cgColor
+        button.layer.borderWidth = 2
+        button.setTitle("UNDO", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        return button
+    }()
+    
     func setupView() {
         backgroundColor = .yellow
         addSubview(profileImage)
         addSubview(recordText)
         addSubview(sentButton)
+        addSubview(undoButton)
         addSubview(orderLabel)
         
         profileImage.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -69,10 +82,15 @@ class RecordCell: UICollectionViewCell {
         profileImage.heightAnchor.constraint(equalToConstant: 48).isActive = true
         profileImage.widthAnchor.constraint(equalToConstant: 48).isActive = true
         
-        sentButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        sentButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -18).isActive = true
         sentButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12).isActive = true
         sentButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
         sentButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        
+        undoButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 18).isActive = true
+        undoButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12).isActive = true
+        undoButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        undoButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
         
         recordText.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 12).isActive = true
         recordText.rightAnchor.constraint(equalTo: sentButton.leftAnchor, constant: -12).isActive = true
