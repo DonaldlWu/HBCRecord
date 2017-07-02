@@ -14,7 +14,7 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     
     lazy var players: [Player] = {
         let player1 = Player(name: "Yohoho", order: "一棒", position: "中外", recordArray: recordArray0, profileImage: #imageLiteral(resourceName: "pied piper"))
-        let player2 = Player(name: "Yohoho", order: "二棒", position: "二壘", recordArray: recordArray1, profileImage: #imageLiteral(resourceName: "pied piper"))
+        let player2 = Player(name: "abujohobanban", order: "二棒", position: "二壘", recordArray: recordArray1, profileImage: #imageLiteral(resourceName: "pied piper"))
         let player3 = Player(name: "Yohoho", order: "三棒", position: "游擊", recordArray: recordArray2, profileImage: #imageLiteral(resourceName: "pied piper"))
         let player4 = Player(name: "Yohoho", order: "四棒", position: "一壘", recordArray: recordArray3, profileImage: #imageLiteral(resourceName: "pied piper"))
         let player5 = Player(name: "Yohoho", order: "五棒", position: "三壘", recordArray: recordArray4, profileImage: #imageLiteral(resourceName: "pied piper"))
@@ -65,6 +65,7 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
         cell?.sentButton.addTarget(self, action: #selector(sentRecord(sender:)), for: .touchUpInside)
         cell?.undoButton.addTarget(self, action: #selector(uudoRecord(sender:)), for: .touchUpInside)
         cell?.profileImage.image = player.profileImage
+        cell?.nameLabel.text = player.name
         cell?.orderLabel.text = player.order + " - " + player.position
 //        let recordString = player.recordArray.flatMap { $0.characters }
 //        cell?.recordText.text = String(recordString)

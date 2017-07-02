@@ -29,8 +29,20 @@ class RecordCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .orange
         label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
         label.text = "四棒/投手"
+        return label
+    }()
+    
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .orange
+        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        label.text = "Yohoho"
         return label
     }()
     
@@ -76,11 +88,12 @@ class RecordCell: UICollectionViewCell {
         addSubview(sentButton)
         addSubview(undoButton)
         addSubview(orderLabel)
+        addSubview(nameLabel)
         
         profileImage.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         profileImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12).isActive = true
-        profileImage.heightAnchor.constraint(equalToConstant: 48).isActive = true
-        profileImage.widthAnchor.constraint(equalToConstant: 48).isActive = true
+        profileImage.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        profileImage.widthAnchor.constraint(equalToConstant: 64).isActive = true
         
         sentButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -18).isActive = true
         sentButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12).isActive = true
@@ -94,13 +107,18 @@ class RecordCell: UICollectionViewCell {
         
         recordText.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 12).isActive = true
         recordText.rightAnchor.constraint(equalTo: sentButton.leftAnchor, constant: -12).isActive = true
-        recordText.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        recordText.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 12).isActive = true
         recordText.heightAnchor.constraint(equalToConstant: 32).isActive = true
         
         orderLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor).isActive = true
         orderLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        orderLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        orderLabel.rightAnchor.constraint(equalTo: recordText.leftAnchor).isActive = true
+        orderLabel.leftAnchor.constraint(equalTo: profileImage.leftAnchor).isActive = true
+        orderLabel.rightAnchor.constraint(equalTo: profileImage.rightAnchor).isActive = true
+        
+        nameLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        nameLabel.leftAnchor.constraint(equalTo: recordText.leftAnchor).isActive = true
+        nameLabel.bottomAnchor.constraint(equalTo: recordText.topAnchor).isActive = true
+        nameLabel.widthAnchor.constraint(equalToConstant: 84).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

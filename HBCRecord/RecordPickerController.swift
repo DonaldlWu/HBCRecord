@@ -11,7 +11,7 @@ import UIKit
 class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     let recordtypeArray = ["H", "BB", "E", "K", "SF"]
-    let dataArrayDescription = [["H", "2B", "3B", "HR"], ["BB", "HBP"], ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9"], ["K", "K"], ["SF", "SH"]]
+    let recordDetialArray = [["H", "2B", "3B", "HR"], ["BB", "HBP"], ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9"], ["K", "K"], ["SF", "SH"]]
     
     var recordPickerView: UIPickerView!
     var tempRecord: String = "H"
@@ -112,8 +112,8 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
             return recordtypeArray.count
         
         }
-        print(dataArrayDescription[recordPickerView.selectedRow(inComponent: 0)].count)
-        return dataArrayDescription[recordPickerView.selectedRow(inComponent: 0)].count
+        print(recordDetialArray[recordPickerView.selectedRow(inComponent: 0)].count)
+        return recordDetialArray[recordPickerView.selectedRow(inComponent: 0)].count
         
     }
     
@@ -125,7 +125,7 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         }
         
-        return dataArrayDescription[recordPickerView.selectedRow(inComponent: 0)][row]
+        return recordDetialArray[recordPickerView.selectedRow(inComponent: 0)][row]
     
     }
     
@@ -134,13 +134,13 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
         if component == 0 {
         
             recordPickerView.reloadComponent(1)
-            print(dataArrayDescription[row][0])
-            tempRecord = dataArrayDescription[row][0]
+            print(recordDetialArray[row][0])
+            tempRecord = recordDetialArray[row][0]
         
         } else if component == 1 {
             
-            print(dataArrayDescription[recordPickerView.selectedRow(inComponent: 0)][row])
-            tempRecord = dataArrayDescription[recordPickerView.selectedRow(inComponent: 0)][row]
+            print(recordDetialArray[recordPickerView.selectedRow(inComponent: 0)][row])
+            tempRecord = recordDetialArray[recordPickerView.selectedRow(inComponent: 0)][row]
             
         }
         
