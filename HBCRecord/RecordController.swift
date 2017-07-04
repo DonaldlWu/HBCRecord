@@ -29,7 +29,10 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let backButton = UIBarButtonItem(title: "BACK",
+                                            style: .plain, target: self, action: #selector(RecordController.backAction))
+        navigationItem.leftBarButtonItem = backButton
+        
         collectionView?.backgroundColor = .green
         collectionView?.register(RecordCell.self, forCellWithReuseIdentifier: cellId)
         self.setNeedsStatusBarAppearanceUpdate()
@@ -38,6 +41,11 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
         self.refreshControl.attributedTitle = NSAttributedString(string: "Reloading")
         self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         collectionView!.addSubview(refreshControl)
+    }
+    
+    func backAction() -> Void {
+        let controller = HomeController()
+        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     
     func refresh(sender:AnyObject)

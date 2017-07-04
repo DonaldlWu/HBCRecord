@@ -17,6 +17,7 @@
 		C067E0201EFFE8EC00F830CB /* HBCRecordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067E01F1EFFE8EC00F830CB /* HBCRecordTests.swift */; };
 		C067E02D1F002AB500F830CB /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067E02C1F002AB500F830CB /* RecordCell.swift */; };
 		C0F19E4F1F0661FC00E97041 /* RecordPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F19E4E1F0661FC00E97041 /* RecordPickerController.swift */; };
+		C0F19E511F098C6000E97041 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F19E501F098C6000E97041 /* HomeController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		C067E0211EFFE8EC00F830CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C067E02C1F002AB500F830CB /* RecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
 		C0F19E4E1F0661FC00E97041 /* RecordPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordPickerController.swift; sourceTree = "<group>"; };
+		C0F19E501F098C6000E97041 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			children = (
 				C067E0091EFFE8EC00F830CB /* RecordController.swift */,
 				C0F19E4E1F0661FC00E97041 /* RecordPickerController.swift */,
+				C0F19E501F098C6000E97041 /* HomeController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 			files = (
 				C0F19E4F1F0661FC00E97041 /* RecordPickerController.swift in Sources */,
 				C067E0101EFFE8EC00F830CB /* HBCRecord.xcdatamodeld in Sources */,
+				C0F19E511F098C6000E97041 /* HomeController.swift in Sources */,
 				C067E00A1EFFE8EC00F830CB /* RecordController.swift in Sources */,
 				C067E02D1F002AB500F830CB /* RecordCell.swift in Sources */,
 				C0145DE51F02A2B8005651B3 /* Player.swift in Sources */,
