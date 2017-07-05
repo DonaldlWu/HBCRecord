@@ -8,38 +8,65 @@
 
 import UIKit
 
-class HomeController: UIViewController {
+class HomeController: UITableViewController {
+    
+    let cellId = "cellId"
     
     override var prefersStatusBarHidden: Bool {
         return false
     }
     
-    let startButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Start", for: .normal)
-        button.layer.borderColor = UIColor.red.cgColor
-        button.layer.borderWidth = 2
-        button.addTarget(self, action: #selector(toRecordController), for: .touchUpInside)
-        return button
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("LandScape StatusBarHidden default value is \(prefersStatusBarHidden)")
-        
-        view.backgroundColor = .cyan
-        view.addSubview(startButton)
-        
-        startButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -12).isActive = true
-        startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        startButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
-        startButton.widthAnchor.constraint(equalToConstant: 96).isActive = true
+        let newTeamButton = UIBarButtonItem(title: "New Team",
+                                         style: .plain, target: self, action: #selector(toSetNewTeamController))
+        navigationItem.rightBarButtonItem = newTeamButton
+
     }
     
-    func toRecordController() {
-        let controller = RecordController(collectionViewLayout: UICollectionViewFlowLayout())
+    func toSetNewTeamController() {
+        let alertController = UIAlertController(title: "Add New Team", message: "", preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "OK", style: .default, handler: {
+            alert -> Void in
+            
+            let firstTextField = alertController.textFields![0] as UITextField
+
+            let controller = SetNewTeamController()
+            controller.teamTitle = firstTextField.text!
+            self.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {
+            (action : UIAlertAction!) -> Void in
+        })
+        
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Team Name"
+        }
+        
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
+        
+        cell.textLabel?.text = "TEAM LIST HERE"
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = SetNewTeamController()
+        controller.teamTitle = "Exit Team Name\(indexPath.row)"
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     

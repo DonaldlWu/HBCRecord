@@ -30,7 +30,7 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     override func viewDidLoad() {
         super.viewDidLoad()
         let backButton = UIBarButtonItem(title: "BACK",
-                                            style: .plain, target: self, action: #selector(RecordController.backAction))
+                                            style: .done, target: self, action: #selector(RecordController.backAction))
         navigationItem.leftBarButtonItem = backButton
         
         collectionView?.backgroundColor = .green

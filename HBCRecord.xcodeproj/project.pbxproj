@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C0145DE51F02A2B8005651B3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0145DE41F02A2B8005651B3 /* Player.swift */; };
+		C065352A1F0D079200BCC12F /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06535291F0D079200BCC12F /* Team.swift */; };
+		C065352C1F0D08C600BCC12F /* SetNewTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C065352B1F0D08C600BCC12F /* SetNewTeamController.swift */; };
 		C067E0081EFFE8EC00F830CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067E0071EFFE8EC00F830CB /* AppDelegate.swift */; };
 		C067E00A1EFFE8EC00F830CB /* RecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067E0091EFFE8EC00F830CB /* RecordController.swift */; };
 		C067E00D1EFFE8EC00F830CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C067E00B1EFFE8EC00F830CB /* Main.storyboard */; };
@@ -32,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		C0145DE41F02A2B8005651B3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		C06535291F0D079200BCC12F /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		C065352B1F0D08C600BCC12F /* SetNewTeamController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNewTeamController.swift; sourceTree = "<group>"; };
 		C067E0041EFFE8EC00F830CB /* HBCRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBCRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C067E0071EFFE8EC00F830CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C067E0091EFFE8EC00F830CB /* RecordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordController.swift; sourceTree = "<group>"; };
@@ -70,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				C0145DE41F02A2B8005651B3 /* Player.swift */,
+				C06535291F0D079200BCC12F /* Team.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 				C067E0091EFFE8EC00F830CB /* RecordController.swift */,
 				C0F19E4E1F0661FC00E97041 /* RecordPickerController.swift */,
 				C0F19E501F098C6000E97041 /* HomeController.swift */,
+				C065352B1F0D08C600BCC12F /* SetNewTeamController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -244,8 +250,10 @@
 				C067E0101EFFE8EC00F830CB /* HBCRecord.xcdatamodeld in Sources */,
 				C0F19E511F098C6000E97041 /* HomeController.swift in Sources */,
 				C067E00A1EFFE8EC00F830CB /* RecordController.swift in Sources */,
+				C065352A1F0D079200BCC12F /* Team.swift in Sources */,
 				C067E02D1F002AB500F830CB /* RecordCell.swift in Sources */,
 				C0145DE51F02A2B8005651B3 /* Player.swift in Sources */,
+				C065352C1F0D08C600BCC12F /* SetNewTeamController.swift in Sources */,
 				C067E0081EFFE8EC00F830CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
