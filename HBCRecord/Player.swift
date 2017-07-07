@@ -8,15 +8,15 @@
 
 import UIKit
 
-var recordArray0 = ["一安", "三振", "保送", "二安"]
-var recordArray1 = ["一安", "三振", "保送", "二安"]
-var recordArray2 = ["一安", "三振", "保送", "二安"]
-var recordArray3 = ["一安", "三振", "保送", "二安"]
-var recordArray4 = ["一安", "三振", "保送", "二安"]
-var recordArray5 = ["一安", "三振", "保送", "二安"]
-var recordArray6 = ["一安", "三振", "保送", "二安"]
-var recordArray7 = ["一安", "三振", "保送", "二安"]
-var recordArray8 = ["一安", "三振", "保送", "二安"]
+var recordArray0:Array<String> = []
+var recordArray1:Array<String> = []
+var recordArray2:Array<String> = []
+var recordArray3:Array<String> = []
+var recordArray4:Array<String> = []
+var recordArray5:Array<String> = []
+var recordArray6:Array<String> = []
+var recordArray7:Array<String> = []
+var recordArray8:Array<String> = []
 
 struct Player {
     var name: String

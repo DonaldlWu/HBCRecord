@@ -8,33 +8,67 @@
 
 import UIKit
 
-class SetNewTeamController: UITableViewController {
+class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let cellId = "cellId"
     var teamTitle: String?
+    private var tableView: UITableView!
     
     override var prefersStatusBarHidden: Bool {
         return false
     }
     
+    lazy var startButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .purple
+        button.layer.cornerRadius = 5
+        button.layer.borderColor = UIColor.blue.cgColor
+        button.layer.borderWidth = 2
+        button.setTitle("START", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        button.addTarget(self, action: #selector(toRecordController), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         
-        self.navigationItem.title = teamTitle
-        
-        let backButton = UIBarButtonItem(title: "BACK",
-                                         style: .done, target: self, action: #selector(backHome))
+        let backButton = UIBarButtonItem(title: "BACK", style: .done, target: self, action: #selector(backHome))
+        let addButton = UIBarButtonItem(title: "ADD MEMBER", style: .plain, target: self, action: #selector(toAddMemberController))
+        navigationItem.title = teamTitle
         navigationItem.leftBarButtonItem = backButton
+        navigationItem.rightBarButtonItem = addButton
         
-        let startButton = UIBarButtonItem(title: "START",
-                                         style: .plain, target: self, action: #selector(toRecordController))
-        navigationItem.rightBarButtonItem = startButton
+        tableView = UITableView()
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.dataSource = self
+        tableView.delegate = self
         
+        view.addSubview(tableView)
+        view.addSubview(startButton)
         
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -72).isActive = true
+        
+        startButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 12).isActive = true
+        startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        startButton.widthAnchor.constraint(equalToConstant: 72).isActive = true
+        startButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
+
     }
     
     func backHome() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func toAddMemberController() {
+        let controller = AddMemberController()
+        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     
     func toRecordController() {
@@ -42,14 +76,21 @@ class SetNewTeamController: UITableViewController {
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: cellId)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: cellId)
         cell.textLabel?.text = "MEMBER HERE"
         return cell
     }
-    
+
 }
+
+    
+
