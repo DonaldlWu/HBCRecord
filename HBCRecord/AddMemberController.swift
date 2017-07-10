@@ -16,18 +16,21 @@ class AddMemberController: UIViewController {
         return false
     }
     
-    let profileImage: UIImageView = {
+    lazy var profileImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = #imageLiteral(resourceName: "pied piper")
         image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = 5
         image.layer.masksToBounds = true
+        image.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleChangeImage)))
+        image.isUserInteractionEnabled = true
         return image
     }()
     
     let positionSegmentedControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["P", "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF"])
+        sc.selectedSegmentIndex = 0
         sc.translatesAutoresizingMaskIntoConstraints = false
         return sc
     }()
@@ -69,7 +72,7 @@ class AddMemberController: UIViewController {
         profileImage.heightAnchor.constraint(equalToConstant: 130).isActive = true
         profileImage.widthAnchor.constraint(equalToConstant: 130).isActive = true
         
-        positionSegmentedControl.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 12).isActive = true
+        positionSegmentedControl.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 32).isActive = true
         positionSegmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         positionSegmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
         positionSegmentedControl.heightAnchor.constraint(equalToConstant: 24).isActive = true
@@ -113,6 +116,11 @@ class AddMemberController: UIViewController {
                 self.view.frame.origin.y += keyboardSize.height
             }
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
     
 }
