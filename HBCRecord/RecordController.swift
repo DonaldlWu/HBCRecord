@@ -29,6 +29,7 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(didRotation), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         let backButton = UIBarButtonItem(title: "BACK",
                                             style: .done, target: self, action: #selector(RecordController.backAction))
         navigationItem.leftBarButtonItem = backButton
@@ -41,6 +42,10 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
         self.refreshControl.attributedTitle = NSAttributedString(string: "Reloading")
         self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         collectionView!.addSubview(refreshControl)
+    }
+    
+    func didRotation() {
+        collectionView?.reloadData()
     }
     
     func backAction() -> Void {
@@ -150,6 +155,11 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
 
 }
