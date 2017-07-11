@@ -69,10 +69,10 @@ class AddMemberController: UIViewController {
         
         profileImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 64).isActive = true
         profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImage.heightAnchor.constraint(equalToConstant: 130).isActive = true
-        profileImage.widthAnchor.constraint(equalToConstant: 130).isActive = true
+        profileImage.heightAnchor.constraint(equalToConstant: 110).isActive = true
+        profileImage.widthAnchor.constraint(equalToConstant: 110).isActive = true
         
-        positionSegmentedControl.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 32).isActive = true
+        positionSegmentedControl.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 28).isActive = true
         positionSegmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         positionSegmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
         positionSegmentedControl.heightAnchor.constraint(equalToConstant: 24).isActive = true
@@ -81,12 +81,12 @@ class AddMemberController: UIViewController {
         nameText.topAnchor.constraint(equalTo: positionSegmentedControl.bottomAnchor, constant: 12).isActive = true
         nameText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nameText.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
-        nameText.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        nameText.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        registerButton.topAnchor.constraint(equalTo: nameText.bottomAnchor, constant: 12).isActive = true
+        registerButton.topAnchor.constraint(equalTo: nameText.bottomAnchor, constant: 8).isActive = true
         registerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         registerButton.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
-        registerButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        registerButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
     }
     
@@ -103,17 +103,21 @@ class AddMemberController: UIViewController {
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
+        if UIDevice.current.orientation != .portrait {
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0{
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
             }
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
+        if UIDevice.current.orientation != .portrait {
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y != 0{
+                    self.view.frame.origin.y += keyboardSize.height
+                }
             }
         }
     }
