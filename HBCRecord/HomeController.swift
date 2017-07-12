@@ -21,7 +21,15 @@ class HomeController: UITableViewController {
         let newTeamButton = UIBarButtonItem(title: "New Team",
                                          style: .plain, target: self, action: #selector(toSetNewTeamController))
         navigationItem.rightBarButtonItem = newTeamButton
-
+        
+        let logoutButton = UIBarButtonItem(title: "Logout",
+                                           style: .plain, target: self, action: #selector(handleLogout))
+        navigationItem.leftBarButtonItem = logoutButton
+    }
+    
+    func handleLogout() {
+        let loginController = LoginController()
+        present(loginController, animated: true, completion: nil)
     }
     
     func toSetNewTeamController() {
@@ -31,10 +39,15 @@ class HomeController: UITableViewController {
             alert -> Void in
             
             let firstTextField = alertController.textFields![0] as UITextField
-
             let controller = SetNewTeamController()
-            controller.teamTitle = firstTextField.text!
-            self.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+            
+            if firstTextField.text! != "" {
+                controller.teamTitle = firstTextField.text!
+                self.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+            } else {
+                return
+            }
+            
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {

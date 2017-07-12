@@ -10,6 +10,7 @@
 		132FE70A297A0ECFC5781A90 /* Pods_HBCRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E85E358BDADAC9FCDBB47067 /* Pods_HBCRecord.framework */; };
 		3F0817A52039B51F42C9D0E6 /* Pods_HBCRecordTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A4346733731E769C020E27 /* Pods_HBCRecordTests.framework */; };
 		C0145DE51F02A2B8005651B3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0145DE41F02A2B8005651B3 /* Player.swift */; };
+		C0541EA21F16175B00FD50E2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA11F16175B00FD50E2 /* LoginController.swift */; };
 		C05735F31F0E81A400F61848 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C05735F21F0E81A400F61848 /* GoogleService-Info.plist */; };
 		C065352A1F0D079200BCC12F /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06535291F0D079200BCC12F /* Team.swift */; };
 		C065352C1F0D08C600BCC12F /* SetNewTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C065352B1F0D08C600BCC12F /* SetNewTeamController.swift */; };
@@ -42,6 +43,7 @@
 		4B1EF1B40D9FE7748F64AB0E /* Pods-HBCRecord.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBCRecord.release.xcconfig"; path = "Pods/Target Support Files/Pods-HBCRecord/Pods-HBCRecord.release.xcconfig"; sourceTree = "<group>"; };
 		655FD671920D82C37CB7B274 /* Pods-HBCRecord.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBCRecord.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HBCRecord/Pods-HBCRecord.debug.xcconfig"; sourceTree = "<group>"; };
 		C0145DE41F02A2B8005651B3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		C0541EA11F16175B00FD50E2 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		C05735F21F0E81A400F61848 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C06535291F0D079200BCC12F /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		C065352B1F0D08C600BCC12F /* SetNewTeamController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNewTeamController.swift; sourceTree = "<group>"; };
@@ -156,11 +158,12 @@
 			isa = PBXGroup;
 			children = (
 				C07FEE831F13CAE200663B6C /* Extension */,
-				C067E0091EFFE8EC00F830CB /* RecordController.swift */,
-				C0F19E4E1F0661FC00E97041 /* RecordPickerController.swift */,
+				C0541EA11F16175B00FD50E2 /* LoginController.swift */,
 				C0F19E501F098C6000E97041 /* HomeController.swift */,
+				C067E0091EFFE8EC00F830CB /* RecordController.swift */,
 				C065352B1F0D08C600BCC12F /* SetNewTeamController.swift */,
 				C08DF5381F10F40600D658B8 /* AddMemberController.swift */,
+				C0F19E4E1F0661FC00E97041 /* RecordPickerController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C07FEE851F13CB1E00663B6C /* AddMemberHandler.swift in Sources */,
+				C0541EA21F16175B00FD50E2 /* LoginController.swift in Sources */,
 				C0F19E4F1F0661FC00E97041 /* RecordPickerController.swift in Sources */,
 				C067E0101EFFE8EC00F830CB /* HBCRecord.xcdatamodeld in Sources */,
 				C0F19E511F098C6000E97041 /* HomeController.swift in Sources */,

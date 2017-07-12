@@ -28,7 +28,7 @@ class AddMemberController: UIViewController {
         return image
     }()
     
-    let positionSegmentedControl: UISegmentedControl = {
+    var positionSegmentedControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["P", "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF"])
         sc.selectedSegmentIndex = 0
         sc.translatesAutoresizingMaskIntoConstraints = false
@@ -55,8 +55,7 @@ class AddMemberController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(AddMemberController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(AddMemberController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         view.backgroundColor = .white
         
         let backButton = UIBarButtonItem(title: "BACK", style: .done, target: self, action: #selector(backHome))
@@ -90,6 +89,11 @@ class AddMemberController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        NotificationCenter.default.addObserver(self, selector: #selector(changekeyboardSizeValue), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+    }
+    
     func registerNewPlayer() {
         self.dismiss(animated: true, completion: nil)
     }
@@ -102,21 +106,13 @@ class AddMemberController: UIViewController {
         view.endEditing(true)
     }
     
-    func keyboardWillShow(notification: NSNotification) {
+    func changekeyboardSizeValue(notification: NSNotification) {
         if UIDevice.current.orientation != .portrait {
             if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                if self.view.frame.origin.y == 0{
-                    self.view.frame.origin.y -= keyboardSize.height
-                }
-            }
-        }
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        if UIDevice.current.orientation != .portrait {
-            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                if self.view.frame.origin.y != 0{
+                if self.view.frame.origin.y != 0 {
                     self.view.frame.origin.y += keyboardSize.height
+                } else {
+                    self.view.frame.origin.y -= keyboardSize.height
                 }
             }
         }
