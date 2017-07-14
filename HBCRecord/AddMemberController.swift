@@ -38,7 +38,7 @@ class AddMemberController: UIViewController {
     let nameText: UITextField = {
         let text = UITextField()
         text.translatesAutoresizingMaskIntoConstraints = false
-        text.placeholder = "Input Name"
+        text.placeholder = "Name"
         text.layer.borderColor = UIColor.cyan.cgColor
         text.layer.borderWidth = 1
         return text
@@ -80,7 +80,7 @@ class AddMemberController: UIViewController {
         nameText.topAnchor.constraint(equalTo: positionSegmentedControl.bottomAnchor, constant: 12).isActive = true
         nameText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nameText.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
-        nameText.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        nameText.heightAnchor.constraint(equalToConstant: 32).isActive = true
         
         registerButton.topAnchor.constraint(equalTo: nameText.bottomAnchor, constant: 8).isActive = true
         registerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true

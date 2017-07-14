@@ -11,6 +11,9 @@ import Firebase
 
 class LoginController: AddMemberController {
     
+    var profileImageTopAnchor: NSLayoutConstraint?
+    var emailTopAnchor: NSLayoutConstraint?
+    
     let loginSegmentedControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["Login", "Register"])
         sc.selectedSegmentIndex = 0
@@ -80,29 +83,53 @@ class LoginController: AddMemberController {
     func handleChangeButtonTitle() {
         if loginSegmentedControl.selectedSegmentIndex == 0 {
             loginButton.setTitle("Login", for: .normal)
+            nameText.isHidden = true
+            profileImageTopAnchor?.constant = 64
+            emailTopAnchor?.constant = 8
         } else {
             loginButton.setTitle("Register", for: .normal)
+            nameText.isHidden = false
+            profileImageTopAnchor?.constant = 32
+            emailTopAnchor?.constant = 48
+            view.layoutIfNeeded()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        profileImage.removeFromSuperview()
+        profileImage.removeConstraints(profileImage.constraints)
         positionSegmentedControl.removeFromSuperview()
         nameText.removeFromSuperview()
         registerButton.removeFromSuperview()
         
+        view.addSubview(profileImage)
         view.addSubview(loginSegmentedControl)
+        view.addSubview(nameText)
         view.addSubview(emailText)
         view.addSubview(passwordText)
         view.addSubview(loginButton)
+        nameText.isHidden = true
         
-        loginSegmentedControl.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 12).isActive = true
+        profileImageTopAnchor = profileImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 64)
+        profileImageTopAnchor?.isActive = true
+        profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        profileImage.heightAnchor.constraint(equalToConstant: 110).isActive = true
+        profileImage.widthAnchor.constraint(equalToConstant: 110).isActive = true
+        
+        loginSegmentedControl.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 8).isActive = true
         loginSegmentedControl.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 22).isActive = true
         loginSegmentedControl.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -22).isActive = true
         loginSegmentedControl.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
-        emailText.topAnchor.constraint(equalTo: loginSegmentedControl.bottomAnchor, constant: 8).isActive = true
+        nameText.topAnchor.constraint(equalTo: loginSegmentedControl.bottomAnchor, constant: 8).isActive = true
+        nameText.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 22).isActive = true
+        nameText.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -22).isActive = true
+
+        
+        emailTopAnchor = emailText.topAnchor.constraint(equalTo: loginSegmentedControl.bottomAnchor, constant: 8)
+        emailTopAnchor?.isActive = true
         emailText.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 22).isActive = true
         emailText.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -22).isActive = true
         emailText.heightAnchor.constraint(equalToConstant: 32).isActive = true
