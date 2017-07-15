@@ -8,7 +8,8 @@
 
 import UIKit
 
-class Team {
+class Team: NSObject {
+    var uid: String?
     var teamName: String?
-    var teamMark: UIImageView?
+    //var teamMark: UIImageView?
 }
