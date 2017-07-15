@@ -91,7 +91,8 @@ class AddMemberController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        NotificationCenter.default.addObserver(self, selector: #selector(changekeyboardSizeValue), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(changekeyboardSizeValue), name: NSNotification.Name.UIKeyboardDidChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
     
     func registerNewPlayer() {
@@ -115,6 +116,12 @@ class AddMemberController: UIViewController {
                     self.view.frame.origin.y -= keyboardSize.height
                 }
             }
+        }
+    }
+    
+    func keyboardDidHide(notification: NSNotification) {
+        if UIDevice.current.orientation != .portrait {
+            self.view.frame.origin.y = 0
         }
     }
     

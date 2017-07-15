@@ -46,13 +46,32 @@ class LoginController: AddMemberController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Login", for: .normal)
         button.backgroundColor = .cyan
-        button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleLoginRegister), for: .touchUpInside)
         return button
     }()
     
-    func handleRegister() {
+    func handleLogin() {
         guard let email = emailText.text, let password = passwordText.text else {
-            print("Input Error")
+            return
+        }
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+            if error != nil {
+                return
+            }
+            self.dismiss(animated: true, completion: nil)
+        })
+    }
+    
+    func handleLoginRegister() {
+        if loginSegmentedControl.selectedSegmentIndex == 0 {
+            handleLogin()
+        } else {
+            handleRegister()
+        }
+    }
+    
+    func handleRegister() {
+        guard let email = emailText.text, let password = passwordText.text, let name = nameText.text else {
             return
         }
         
@@ -63,9 +82,13 @@ class LoginController: AddMemberController {
                 return
             }
             
+            guard let uid = user?.uid else {
+                return
+            }
+            
             let ref = FIRDatabase.database().reference(fromURL: "https://hbcrecord-5a3d4.firebaseio.com/")
-            let userReference = ref.child("User")
-            let accountValue = ["email": email]
+            let userReference = ref.child("User").child(uid)
+            let accountValue = ["email": email, "name": name]
             userReference.updateChildValues(accountValue, withCompletionBlock: { (err, ref) in
                 
                 if err != nil {
@@ -74,6 +97,7 @@ class LoginController: AddMemberController {
                 }
                 
                 print("New user saved success")
+                self.dismiss(animated: true, completion: nil)
                 
             })
             

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeController: UITableViewController {
     
@@ -18,16 +19,36 @@ class HomeController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let newTeamButton = UIBarButtonItem(title: "New Team",
-                                         style: .plain, target: self, action: #selector(toSetNewTeamController))
+        let newTeamButton = UIBarButtonItem(title: "New Team", style: .plain, target: self, action: #selector(toSetNewTeamController))
         navigationItem.rightBarButtonItem = newTeamButton
         
-        let logoutButton = UIBarButtonItem(title: "Logout",
-                                           style: .plain, target: self, action: #selector(handleLogout))
+        let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.leftBarButtonItem = logoutButton
+        checkUserIsLogin()
+    }
+    
+    func checkUserIsLogin() {
+        if FIRAuth.auth()?.currentUser?.uid == nil {
+            perform(#selector(handleLogout), with: nil, afterDelay: 0)
+        } else {
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            FIRDatabase.database().reference().child("User").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+                print(snapshot)
+                if let dictionary = snapshot.value as? [String: Any] {
+                    self.navigationItem.title = dictionary["name"] as? String
+                }
+            }, withCancel: nil)
+        }
     }
     
     func handleLogout() {
+        
+        do {
+            try FIRAuth.auth()?.signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+        
         let loginController = LoginController()
         present(loginController, animated: true, completion: nil)
     }
