@@ -31,14 +31,20 @@ class HomeController: UITableViewController {
         if FIRAuth.auth()?.currentUser?.uid == nil {
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         } else {
-            let uid = FIRAuth.auth()?.currentUser?.uid
-            FIRDatabase.database().reference().child("User").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-                print(snapshot)
-                if let dictionary = snapshot.value as? [String: Any] {
-                    self.navigationItem.title = dictionary["name"] as? String
-                }
-            }, withCancel: nil)
+            fetchUserSetNavBarTitle()
         }
+    }
+    
+    func fetchUserSetNavBarTitle() {
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else {
+            return
+        }
+        FIRDatabase.database().reference().child("User").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            print(snapshot)
+            if let dictionary = snapshot.value as? [String: Any] {
+                self.navigationItem.title = dictionary["name"] as? String
+            }
+        }, withCancel: nil)
     }
     
     func handleLogout() {
@@ -50,6 +56,7 @@ class HomeController: UITableViewController {
         }
         
         let loginController = LoginController()
+        loginController.homeController = self
         present(loginController, animated: true, completion: nil)
     }
     

@@ -11,6 +11,7 @@ import Firebase
 
 class LoginController: AddMemberController {
     
+    var homeController: HomeController?
     var profileImageTopAnchor: NSLayoutConstraint?
     var emailTopAnchor: NSLayoutConstraint?
     
@@ -58,6 +59,7 @@ class LoginController: AddMemberController {
             if error != nil {
                 return
             }
+            self.homeController?.fetchUserSetNavBarTitle()
             self.dismiss(animated: true, completion: nil)
         })
     }
@@ -96,7 +98,7 @@ class LoginController: AddMemberController {
                     return
                 }
                 
-                print("New user saved success")
+                self.homeController?.navigationItem.title = accountValue["name"]
                 self.dismiss(animated: true, completion: nil)
                 
             })
