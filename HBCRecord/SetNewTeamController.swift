@@ -63,7 +63,8 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func backHome() {
-        self.dismiss(animated: true, completion: nil)
+        let controller = HomeController()
+        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     
     func toAddMemberController() {

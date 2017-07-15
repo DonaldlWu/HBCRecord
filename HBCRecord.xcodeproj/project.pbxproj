@@ -12,6 +12,7 @@
 		C0145DE51F02A2B8005651B3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0145DE41F02A2B8005651B3 /* Player.swift */; };
 		C0541EA21F16175B00FD50E2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA11F16175B00FD50E2 /* LoginController.swift */; };
 		C0541EA41F19C18500FD50E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA31F19C18500FD50E2 /* User.swift */; };
+		C0541EA61F1A944800FD50E2 /* TeamImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA51F1A944800FD50E2 /* TeamImageController.swift */; };
 		C05735F31F0E81A400F61848 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C05735F21F0E81A400F61848 /* GoogleService-Info.plist */; };
 		C065352A1F0D079200BCC12F /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06535291F0D079200BCC12F /* Team.swift */; };
 		C065352C1F0D08C600BCC12F /* SetNewTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C065352B1F0D08C600BCC12F /* SetNewTeamController.swift */; };
@@ -46,6 +47,7 @@
 		C0145DE41F02A2B8005651B3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		C0541EA11F16175B00FD50E2 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		C0541EA31F19C18500FD50E2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C0541EA51F1A944800FD50E2 /* TeamImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamImageController.swift; sourceTree = "<group>"; };
 		C05735F21F0E81A400F61848 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C06535291F0D079200BCC12F /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		C065352B1F0D08C600BCC12F /* SetNewTeamController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNewTeamController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				C065352B1F0D08C600BCC12F /* SetNewTeamController.swift */,
 				C08DF5381F10F40600D658B8 /* AddMemberController.swift */,
 				C0F19E4E1F0661FC00E97041 /* RecordPickerController.swift */,
+				C0541EA51F1A944800FD50E2 /* TeamImageController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				C07FEE851F13CB1E00663B6C /* AddMemberHandler.swift in Sources */,
 				C0541EA21F16175B00FD50E2 /* LoginController.swift in Sources */,
 				C0F19E4F1F0661FC00E97041 /* RecordPickerController.swift in Sources */,
+				C0541EA61F1A944800FD50E2 /* TeamImageController.swift in Sources */,
 				C067E0101EFFE8EC00F830CB /* HBCRecord.xcdatamodeld in Sources */,
 				C0F19E511F098C6000E97041 /* HomeController.swift in Sources */,
 				C08DF5391F10F40600D658B8 /* AddMemberController.swift in Sources */,

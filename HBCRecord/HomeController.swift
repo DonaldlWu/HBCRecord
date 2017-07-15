@@ -89,15 +89,13 @@ class HomeController: UITableViewController {
             
             let firstTextField = alertController.textFields![0] as UITextField
             let controller = SetNewTeamController()
+            let imageSeloctorController = TeamImageController()
             
             if firstTextField.text! != "" {
                 controller.teamTitle = firstTextField.text!
-                let uid = self.user.uid
-                let ref = FIRDatabase.database().reference().child("Team")
-                let teamRef = ref.childByAutoId()
-                let value: [AnyHashable: Any] = ["TeamName": firstTextField.text!, "uid": uid as Any]
-                teamRef.updateChildValues(value)
-                self.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+                imageSeloctorController.uid = self.user.uid
+                imageSeloctorController.teamName = firstTextField.text!
+                self.present(UINavigationController(rootViewController: imageSeloctorController), animated: true, completion: nil)
             } else {
                 return
             }
