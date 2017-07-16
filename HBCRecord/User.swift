@@ -11,5 +11,14 @@ import UIKit
 class User: NSObject {
     var name: String?
     var email: String?
+    var profileImageURL: String?
     var uid: String?
+    
+    func clearAll() {
+        name?.removeAll()
+        email?.removeAll()
+        profileImageURL?.removeAll()
+        uid?.removeAll()
+    }
+    
 }

@@ -13,6 +13,7 @@
 		C0541EA21F16175B00FD50E2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA11F16175B00FD50E2 /* LoginController.swift */; };
 		C0541EA41F19C18500FD50E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA31F19C18500FD50E2 /* User.swift */; };
 		C0541EA61F1A944800FD50E2 /* TeamImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA51F1A944800FD50E2 /* TeamImageController.swift */; };
+		C0541EA91F1ACD8300FD50E2 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA81F1ACD8300FD50E2 /* UIImageViewExtensions.swift */; };
 		C05735F31F0E81A400F61848 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C05735F21F0E81A400F61848 /* GoogleService-Info.plist */; };
 		C065352A1F0D079200BCC12F /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06535291F0D079200BCC12F /* Team.swift */; };
 		C065352C1F0D08C600BCC12F /* SetNewTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C065352B1F0D08C600BCC12F /* SetNewTeamController.swift */; };
@@ -48,6 +49,7 @@
 		C0541EA11F16175B00FD50E2 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		C0541EA31F19C18500FD50E2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C0541EA51F1A944800FD50E2 /* TeamImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamImageController.swift; sourceTree = "<group>"; };
+		C0541EA81F1ACD8300FD50E2 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		C05735F21F0E81A400F61848 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C06535291F0D079200BCC12F /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		C065352B1F0D08C600BCC12F /* SetNewTeamController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNewTeamController.swift; sourceTree = "<group>"; };
@@ -106,11 +108,20 @@
 		C0145DE31F02A2A0005651B3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C0541EA71F1ACD5A00FD50E2 /* Extension */,
 				C0145DE41F02A2B8005651B3 /* Player.swift */,
 				C06535291F0D079200BCC12F /* Team.swift */,
 				C0541EA31F19C18500FD50E2 /* User.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		C0541EA71F1ACD5A00FD50E2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C0541EA81F1ACD8300FD50E2 /* UIImageViewExtensions.swift */,
+			);
+			name = Extension;
 			sourceTree = "<group>";
 		};
 		C067DFFB1EFFE8EC00F830CB = {
@@ -162,7 +173,7 @@
 		C067E02A1EFFF4AB00F830CB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C07FEE831F13CAE200663B6C /* Extension */,
+				C07FEE831F13CAE200663B6C /* Handler */,
 				C0541EA11F16175B00FD50E2 /* LoginController.swift */,
 				C0F19E501F098C6000E97041 /* HomeController.swift */,
 				C067E0091EFFE8EC00F830CB /* RecordController.swift */,
@@ -182,12 +193,12 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		C07FEE831F13CAE200663B6C /* Extension */ = {
+		C07FEE831F13CAE200663B6C /* Handler */ = {
 			isa = PBXGroup;
 			children = (
 				C07FEE841F13CB1E00663B6C /* AddMemberHandler.swift */,
 			);
-			name = Extension;
+			name = Handler;
 			sourceTree = "<group>";
 		};
 		C8FC50E346069171320B416A /* Frameworks */ = {
@@ -417,6 +428,7 @@
 				C067E02D1F002AB500F830CB /* RecordCell.swift in Sources */,
 				C0145DE51F02A2B8005651B3 /* Player.swift in Sources */,
 				C065352C1F0D08C600BCC12F /* SetNewTeamController.swift in Sources */,
+				C0541EA91F1ACD8300FD50E2 /* UIImageViewExtensions.swift in Sources */,
 				C067E0081EFFE8EC00F830CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

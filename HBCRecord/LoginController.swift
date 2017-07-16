@@ -87,21 +87,35 @@ class LoginController: AddMemberController {
             guard let uid = user?.uid else {
                 return
             }
+            let imageName = NSUUID().uuidString
+            let storageRef = FIRStorage.storage().reference().child("userProfile_images").child("\(imageName).jpg")
+            if let uploadImage = UIImageJPEGRepresentation(self.profileImage.image!, 0.1) {
+                storageRef.put(uploadImage, metadata: nil, completion: { (metadata, error) in
+                    if error != nil {
+                        print(error!)
+                        return
+                    }
+                    if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
+                        let accountValue = ["email": email, "name": name, "userProfileImageURL": profileImageUrl]
+                        self.registerUserIntoDatabaseWithUID(uid: uid, accountValue: accountValue)
+                    }
+                })
+            }
+        })
+    }
+    
+    private func registerUserIntoDatabaseWithUID(uid: String, accountValue: [String: Any] ) {
+        let ref = FIRDatabase.database().reference(fromURL: "https://hbcrecord-5a3d4.firebaseio.com/")
+        let userReference = ref.child("User").child(uid)
+        userReference.updateChildValues(accountValue, withCompletionBlock: { (err, ref) in
             
-            let ref = FIRDatabase.database().reference(fromURL: "https://hbcrecord-5a3d4.firebaseio.com/")
-            let userReference = ref.child("User").child(uid)
-            let accountValue = ["email": email, "name": name]
-            userReference.updateChildValues(accountValue, withCompletionBlock: { (err, ref) in
-                
-                if err != nil {
-                    print(err!)
-                    return
-                }
-                
-                self.homeController?.navigationItem.title = accountValue["name"]
-                self.dismiss(animated: true, completion: nil)
-                
-            })
+            if err != nil {
+                print(err!)
+                return
+            }
+            
+            self.homeController?.navigationItem.title = accountValue["name"] as? String
+            self.dismiss(animated: true, completion: nil)
             
         })
     }
