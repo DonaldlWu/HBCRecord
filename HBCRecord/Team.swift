@@ -11,5 +11,5 @@ import UIKit
 class Team: NSObject {
     var uid: String?
     var teamName: String?
-    //var teamMark: UIImageView?
+    var teamProfileImageURL: String?
 }

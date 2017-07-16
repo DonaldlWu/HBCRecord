@@ -11,7 +11,7 @@ import Firebase
 
 class TeamImageController: AddMemberController {
     
-    var uid: String?
+    var user = User()
     var teamName: String?
     
     let addButton: UIButton = {
@@ -26,9 +26,23 @@ class TeamImageController: AddMemberController {
     func handleAddNewTeam() {
         let ref = FIRDatabase.database().reference().child("Team")
         let teamRef = ref.childByAutoId()
-        let value: [AnyHashable: Any] = ["TeamName": self.teamName as Any, "uid": self.uid as Any]
-        teamRef.updateChildValues(value)
         let controller = SetNewTeamController()
+        controller.teamTitle = teamName
+        
+        let imageName = NSUUID().uuidString
+        let storageRef = FIRStorage.storage().reference().child("teamProfile_images").child("\(imageName).jpg")
+        if let uploadImage = UIImageJPEGRepresentation(self.profileImage.image!, 0.1) {
+            storageRef.put(uploadImage, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                if let profileImageURL = metadata?.downloadURL()?.absoluteString {
+                    let value: [AnyHashable: Any] = ["TeamName": self.teamName as Any, "uid": self.user.uid as Any, "teamProfileImageURL": profileImageURL]
+                    teamRef.updateChildValues(value)
+                }
+            })
+        }
         self.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     

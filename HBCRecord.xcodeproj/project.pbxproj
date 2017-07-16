@@ -10,6 +10,7 @@
 		132FE70A297A0ECFC5781A90 /* Pods_HBCRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E85E358BDADAC9FCDBB47067 /* Pods_HBCRecord.framework */; };
 		3F0817A52039B51F42C9D0E6 /* Pods_HBCRecordTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A4346733731E769C020E27 /* Pods_HBCRecordTests.framework */; };
 		C0145DE51F02A2B8005651B3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0145DE41F02A2B8005651B3 /* Player.swift */; };
+		C0449ADF1F1C03490014F48E /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0449ADE1F1C03490014F48E /* TeamCell.swift */; };
 		C0541EA21F16175B00FD50E2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA11F16175B00FD50E2 /* LoginController.swift */; };
 		C0541EA41F19C18500FD50E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA31F19C18500FD50E2 /* User.swift */; };
 		C0541EA61F1A944800FD50E2 /* TeamImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA51F1A944800FD50E2 /* TeamImageController.swift */; };
@@ -46,6 +47,7 @@
 		4B1EF1B40D9FE7748F64AB0E /* Pods-HBCRecord.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBCRecord.release.xcconfig"; path = "Pods/Target Support Files/Pods-HBCRecord/Pods-HBCRecord.release.xcconfig"; sourceTree = "<group>"; };
 		655FD671920D82C37CB7B274 /* Pods-HBCRecord.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBCRecord.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HBCRecord/Pods-HBCRecord.debug.xcconfig"; sourceTree = "<group>"; };
 		C0145DE41F02A2B8005651B3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		C0449ADE1F1C03490014F48E /* TeamCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
 		C0541EA11F16175B00FD50E2 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		C0541EA31F19C18500FD50E2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C0541EA51F1A944800FD50E2 /* TeamImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamImageController.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				C067E02C1F002AB500F830CB /* RecordCell.swift */,
+				C0449ADE1F1C03490014F48E /* TeamCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0449ADF1F1C03490014F48E /* TeamCell.swift in Sources */,
 				C0541EA41F19C18500FD50E2 /* User.swift in Sources */,
 				C07FEE851F13CB1E00663B6C /* AddMemberHandler.swift in Sources */,
 				C0541EA21F16175B00FD50E2 /* LoginController.swift in Sources */,

@@ -21,6 +21,7 @@ class HomeController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(TeamCell.self, forCellReuseIdentifier: cellId)
         let newTeamButton = UIBarButtonItem(title: "New Team", style: .plain, target: self, action: #selector(toSetNewTeamController))
         navigationItem.rightBarButtonItem = newTeamButton
         
@@ -140,7 +141,7 @@ class HomeController: UITableViewController {
             
             if firstTextField.text! != "" {
                 controller.teamTitle = firstTextField.text!
-                imageSeloctorController.uid = self.user.uid
+                imageSeloctorController.user = self.user
                 imageSeloctorController.teamName = firstTextField.text!
                 self.present(UINavigationController(rootViewController: imageSeloctorController), animated: true, completion: nil)
             } else {
@@ -169,11 +170,12 @@ class HomeController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TeamCell
         
-        cell.textLabel?.text = teams[indexPath.row].teamName
-        cell.imageView?.image = #imageLiteral(resourceName: "pied piper")
-        
+        cell.teamLabel.text = teams[indexPath.row].teamName
+        if let teamProfileImageURL = teams[indexPath.row].teamProfileImageURL {
+            cell.profileImageView.loadImageUsingCashWithUrlString(urlString: teamProfileImageURL)
+        }
         return cell
     }
     
@@ -181,6 +183,10 @@ class HomeController: UITableViewController {
         let controller = SetNewTeamController()
         controller.teamTitle = teams[indexPath.row].teamName
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
     }
     
 }
