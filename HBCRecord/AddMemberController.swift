@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class AddMemberController: UIViewController {
     
     let positionArray = ["P", "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF"]
+    var team = Team()
     
     override var prefersStatusBarHidden: Bool {
         return false
@@ -76,7 +78,6 @@ class AddMemberController: UIViewController {
         positionSegmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
         positionSegmentedControl.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
-        
         nameText.topAnchor.constraint(equalTo: positionSegmentedControl.bottomAnchor, constant: 12).isActive = true
         nameText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nameText.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
@@ -96,6 +97,24 @@ class AddMemberController: UIViewController {
     }
     
     func registerNewPlayer() {
+        
+        let ref = FIRDatabase.database().reference().child("Member")
+        let memberRef = ref.childByAutoId()
+        
+        let imageName = NSUUID().uuidString
+        let storageRef = FIRStorage.storage().reference().child("playerProfile_images").child("\(imageName).jpg")
+        if let uploadImage = UIImageJPEGRepresentation(self.profileImage.image!, 0.1) {
+            storageRef.put(uploadImage, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                if let profileImageURL = metadata?.downloadURL()?.absoluteString {
+                    let value: [AnyHashable: Any] = ["memberName": self.nameText.text as Any, "position": self.positionArray[self.positionSegmentedControl.selectedSegmentIndex], "tid": self.team.tid as Any, "mamberProfileImageURL": profileImageURL]
+                    memberRef.updateChildValues(value)
+                }
+            })
+        }
         self.dismiss(animated: true, completion: nil)
     }
     

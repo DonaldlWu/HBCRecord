@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let cellId = "cellId"
     var teamTitle: String?
+    var team = Team()
+    var members = [Member]()
     private var tableView: UITableView!
     
     override var prefersStatusBarHidden: Bool {
@@ -34,10 +37,11 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        print(self.team)
         
         let backButton = UIBarButtonItem(title: "BACK", style: .done, target: self, action: #selector(backHome))
         let addButton = UIBarButtonItem(title: "ADD", style: .plain, target: self, action: #selector(toAddMemberController))
-        navigationItem.title = teamTitle
+        navigationItem.title = self.team.teamName
         navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = addButton
         
@@ -60,7 +64,25 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
         startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         startButton.widthAnchor.constraint(equalToConstant: 72).isActive = true
         startButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        
+        fetchMember()
 
+    }
+    
+    func fetchMember() {
+        FIRDatabase.database().reference().child("Member").observe(.childAdded, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let member = Member()
+                member.setValuesForKeys(dictionary)
+                if member.tid == self.team.tid {
+                    self.members.append(member)
+                }
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }, withCancel: nil)
     }
     
     func backHome() {
@@ -70,6 +92,7 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func toAddMemberController() {
         let controller = AddMemberController()
+        controller.team = self.team
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     
@@ -83,12 +106,15 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return members.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MemberCell
-        cell.nameLabel.text = "MEMBER HERE"
+        cell.nameLabel.text = members[indexPath.row].memberName
+        if let memberProfileImageURL = members[indexPath.row].mamberProfileImageURL {
+            cell.profileImageView.loadImageUsingCashWithUrlString(urlString: memberProfileImageURL)
+        }
         cell.AVGLabel.text = "AVG: .350"
         cell.OBPLabel.text = "OBP: .447"
         cell.SLGLabel.text = "SLG: .458"

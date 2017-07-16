@@ -34,7 +34,10 @@ class HomeController: UITableViewController {
         FIRDatabase.database().reference().child("Team").observe(.childAdded, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let team = Team()
-                team.setValuesForKeys(dictionary)
+                team.tid = snapshot.key
+                team.uid = dictionary["uid"] as? String
+                team.teamName = dictionary["TeamName"] as? String
+                team.teamProfileImageURL = dictionary["teamProfileImageURL"] as? String
                 if team.uid == self.user.uid {
                     self.teams.append(team)
                 }
@@ -49,6 +52,7 @@ class HomeController: UITableViewController {
     
     func checkUserIsLogin() {
         if FIRAuth.auth()?.currentUser?.uid == nil {
+            print(self.user.uid as Any)
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         } else {
             fetchUserSetNavBarTitle()
@@ -140,7 +144,7 @@ class HomeController: UITableViewController {
             let imageSeloctorController = TeamImageController()
             
             if firstTextField.text! != "" {
-                controller.teamTitle = firstTextField.text!
+                controller.team.teamName = firstTextField.text!
                 imageSeloctorController.user = self.user
                 imageSeloctorController.teamName = firstTextField.text!
                 self.present(UINavigationController(rootViewController: imageSeloctorController), animated: true, completion: nil)
@@ -181,7 +185,7 @@ class HomeController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let controller = SetNewTeamController()
-        controller.teamTitle = teams[indexPath.row].teamName
+        controller.team = teams[indexPath.row]
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     

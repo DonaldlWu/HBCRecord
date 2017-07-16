@@ -24,7 +24,6 @@ class MemberCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textAlignment = .left
-        label.backgroundColor = .orange
         return label
     }()
     

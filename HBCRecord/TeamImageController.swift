@@ -26,8 +26,9 @@ class TeamImageController: AddMemberController {
     func handleAddNewTeam() {
         let ref = FIRDatabase.database().reference().child("Team")
         let teamRef = ref.childByAutoId()
+        let tid = teamRef.key
         let controller = SetNewTeamController()
-        controller.teamTitle = teamName
+        controller.team.teamName = teamName
         
         let imageName = NSUUID().uuidString
         let storageRef = FIRStorage.storage().reference().child("teamProfile_images").child("\(imageName).jpg")
@@ -38,7 +39,7 @@ class TeamImageController: AddMemberController {
                     return
                 }
                 if let profileImageURL = metadata?.downloadURL()?.absoluteString {
-                    let value: [AnyHashable: Any] = ["TeamName": self.teamName as Any, "uid": self.user.uid as Any, "teamProfileImageURL": profileImageURL]
+                    let value: [AnyHashable: Any] = ["TeamName": self.teamName as Any, "uid": self.user.uid as Any, "teamProfileImageURL": profileImageURL, "tid": tid]
                     teamRef.updateChildValues(value)
                 }
             })

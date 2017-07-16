@@ -9,6 +9,7 @@
 import UIKit
 
 class Team: NSObject {
+    var tid: String?
     var uid: String?
     var teamName: String?
     var teamProfileImageURL: String?

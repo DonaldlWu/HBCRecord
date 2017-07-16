@@ -114,7 +114,8 @@ class LoginController: AddMemberController {
                 return
             }
             
-            self.homeController?.navigationItem.title = accountValue["name"] as? String
+//            self.homeController?.navigationItem.title = accountValue["name"] as? String
+            self.homeController?.fetchUserSetNavBarTitle()
             self.dismiss(animated: true, completion: nil)
             
         })

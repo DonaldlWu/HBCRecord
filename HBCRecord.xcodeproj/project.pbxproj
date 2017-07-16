@@ -12,6 +12,7 @@
 		C0145DE51F02A2B8005651B3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0145DE41F02A2B8005651B3 /* Player.swift */; };
 		C0449ADF1F1C03490014F48E /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0449ADE1F1C03490014F48E /* TeamCell.swift */; };
 		C0449AE11F1C047A0014F48E /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0449AE01F1C047A0014F48E /* MemberCell.swift */; };
+		C0449AE31F1C144B0014F48E /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0449AE21F1C144B0014F48E /* Member.swift */; };
 		C0541EA21F16175B00FD50E2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA11F16175B00FD50E2 /* LoginController.swift */; };
 		C0541EA41F19C18500FD50E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA31F19C18500FD50E2 /* User.swift */; };
 		C0541EA61F1A944800FD50E2 /* TeamImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA51F1A944800FD50E2 /* TeamImageController.swift */; };
@@ -50,6 +51,7 @@
 		C0145DE41F02A2B8005651B3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		C0449ADE1F1C03490014F48E /* TeamCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
 		C0449AE01F1C047A0014F48E /* MemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
+		C0449AE21F1C144B0014F48E /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		C0541EA11F16175B00FD50E2 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		C0541EA31F19C18500FD50E2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C0541EA51F1A944800FD50E2 /* TeamImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamImageController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				C0145DE41F02A2B8005651B3 /* Player.swift */,
 				C06535291F0D079200BCC12F /* Team.swift */,
 				C0541EA31F19C18500FD50E2 /* User.swift */,
+				C0449AE21F1C144B0014F48E /* Member.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				C067E00A1EFFE8EC00F830CB /* RecordController.swift in Sources */,
 				C065352A1F0D079200BCC12F /* Team.swift in Sources */,
 				C067E02D1F002AB500F830CB /* RecordCell.swift in Sources */,
+				C0449AE31F1C144B0014F48E /* Member.swift in Sources */,
 				C0145DE51F02A2B8005651B3 /* Player.swift in Sources */,
 				C065352C1F0D08C600BCC12F /* SetNewTeamController.swift in Sources */,
 				C0541EA91F1ACD8300FD50E2 /* UIImageViewExtensions.swift in Sources */,
