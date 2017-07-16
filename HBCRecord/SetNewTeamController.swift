@@ -36,7 +36,7 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
         view.backgroundColor = .white
         
         let backButton = UIBarButtonItem(title: "BACK", style: .done, target: self, action: #selector(backHome))
-        let addButton = UIBarButtonItem(title: "ADD MEMBER", style: .plain, target: self, action: #selector(toAddMemberController))
+        let addButton = UIBarButtonItem(title: "ADD", style: .plain, target: self, action: #selector(toAddMemberController))
         navigationItem.title = teamTitle
         navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = addButton
@@ -50,6 +50,7 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
         view.addSubview(tableView)
         view.addSubview(startButton)
         
+        tableView.register(MemberCell.self, forCellReuseIdentifier: cellId)
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -86,9 +87,20 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: cellId)
-        cell.textLabel?.text = "MEMBER HERE"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MemberCell
+        cell.nameLabel.text = "MEMBER HERE"
+        cell.AVGLabel.text = "AVG: .350"
+        cell.OBPLabel.text = "OBP: .447"
+        cell.SLGLabel.text = "SLG: .458"
+        cell.OPSLabel.text = "OPS: .819"
+        if indexPath.row == 3 {
+            cell.backgroundColor = .red
+        }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
     }
 
 }
