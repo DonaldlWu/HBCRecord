@@ -19,10 +19,18 @@ class MemberCell: UITableViewCell {
         return image
     }()
     
+    let numberLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }()
+    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textAlignment = .left
         return label
     }()
@@ -62,16 +70,22 @@ class MemberCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         addSubview(profileImageView)
+        addSubview(numberLabel)
         addSubview(nameLabel)
         addSubview(AVGLabel)
         addSubview(OBPLabel)
         addSubview(SLGLabel)
         addSubview(OPSLabel)
         
-        profileImageView.centerXAnchor.constraint(equalTo: self.leftAnchor, constant: 38).isActive = true
-        profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12).isActive = true
+        profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -12).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 72).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 72).isActive = true
+        
+        numberLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 8).isActive = true
+        numberLabel.centerXAnchor.constraint(equalTo: profileImageView.centerXAnchor).isActive = true
+        numberLabel.widthAnchor.constraint(equalToConstant: 72).isActive = true
+        numberLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
         nameLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12).isActive = true

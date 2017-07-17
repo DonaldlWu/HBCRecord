@@ -143,6 +143,7 @@ class LoginController: AddMemberController {
         profileImage.removeConstraints(profileImage.constraints)
         positionSegmentedControl.removeFromSuperview()
         nameText.removeFromSuperview()
+        numberText.removeFromSuperview()
         registerButton.removeFromSuperview()
         
         view.addSubview(profileImage)

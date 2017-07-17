@@ -21,7 +21,7 @@ class TeamCell: UITableViewCell {
     let teamLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textAlignment = .center
         return label
     }()
@@ -33,8 +33,8 @@ class TeamCell: UITableViewCell {
         
         profileImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -12).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 72).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 72).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         teamLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 8).isActive = true
         teamLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true

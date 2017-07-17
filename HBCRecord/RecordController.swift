@@ -93,7 +93,6 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     func uudoRecord(sender: UIButton) {
-        print("Hit Button\(sender.tag)")
         switch sender.tag {
         case 0:
             if recordArray0.count > 0 {

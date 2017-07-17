@@ -21,6 +21,7 @@ class HomeController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.register(TeamCell.self, forCellReuseIdentifier: cellId)
         let newTeamButton = UIBarButtonItem(title: "New Team", style: .plain, target: self, action: #selector(toSetNewTeamController))
         navigationItem.rightBarButtonItem = newTeamButton
@@ -45,14 +46,12 @@ class HomeController: UITableViewController {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                print(team.teamName as Any, team.uid as Any)
             }
         }, withCancel: nil)
     }
     
     func checkUserIsLogin() {
         if FIRAuth.auth()?.currentUser?.uid == nil {
-            print(self.user.uid as Any)
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         } else {
             fetchUserSetNavBarTitle()
@@ -64,7 +63,6 @@ class HomeController: UITableViewController {
             return
         }
         FIRDatabase.database().reference().child("User").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            print(snapshot)
             if let  dictionary = snapshot.value as? [String: Any] {
                 // because uid is not in dictionary, so we can't directly update user's data by setValesForKeys, it will crash
                 // self.user.setValuesForKeys(dictionary)
@@ -190,7 +188,7 @@ class HomeController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 250
     }
     
 }

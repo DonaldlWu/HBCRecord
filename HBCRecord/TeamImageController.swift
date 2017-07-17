@@ -51,6 +51,7 @@ class TeamImageController: AddMemberController {
         super.viewDidLoad()
         profileImage.removeFromSuperview()
         profileImage.removeConstraints(profileImage.constraints)
+        numberText.removeFromSuperview()
         positionSegmentedControl.removeFromSuperview()
         nameText.removeFromSuperview()
         registerButton.removeFromSuperview()

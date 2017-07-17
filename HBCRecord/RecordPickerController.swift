@@ -107,24 +107,17 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     
-        if component == 0 {
-            
+        if component == 0 {            
             return recordtypeArray.count
-        
         }
-        print(recordDetialArray[recordPickerView.selectedRow(inComponent: 0)].count)
         return recordDetialArray[recordPickerView.selectedRow(inComponent: 0)].count
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if component == 0 {
-            
             return recordtypeArray[row]
-        
         }
-        
         return recordDetialArray[recordPickerView.selectedRow(inComponent: 0)][row]
     
     }
@@ -132,23 +125,11 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         if component == 0 {
-        
             recordPickerView.reloadComponent(1)
-            print(recordDetialArray[row][0])
             tempRecord = recordDetialArray[row][0]
-        
         } else if component == 1 {
-            
-            print(recordDetialArray[recordPickerView.selectedRow(inComponent: 0)][row])
             tempRecord = recordDetialArray[recordPickerView.selectedRow(inComponent: 0)][row]
-            
         }
-        
-        print("-------------------")
-        print(row)
-        print(component)
-        print("-------------------")
-        
     }
     
 }

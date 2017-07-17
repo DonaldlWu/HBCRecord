@@ -13,12 +13,5 @@ class Member: NSObject {
     var position: String?
     var mamberProfileImageURL: String?
     var tid: String?
-    
-    func clearAll() {
-        memberName?.removeAll()
-        position?.removeAll()
-        mamberProfileImageURL?.removeAll()
-        tid?.removeAll()
-    }
-    
+    var memberNumber: String?
 }

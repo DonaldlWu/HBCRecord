@@ -37,7 +37,6 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        print(self.team)
         
         let backButton = UIBarButtonItem(title: "BACK", style: .done, target: self, action: #selector(backHome))
         let addButton = UIBarButtonItem(title: "ADD", style: .plain, target: self, action: #selector(toAddMemberController))
@@ -79,6 +78,9 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
                 
                 DispatchQueue.main.async {
+                    self.members.sort(by: { (first: Member , second: Member) -> Bool in
+                        Int(first.memberNumber!)! < Int(second.memberNumber!)!
+                    })
                     self.tableView.reloadData()
                 }
             }
@@ -115,13 +117,11 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
         if let memberProfileImageURL = members[indexPath.row].mamberProfileImageURL {
             cell.profileImageView.loadImageUsingCashWithUrlString(urlString: memberProfileImageURL)
         }
+        cell.numberLabel.text = members[indexPath.row].memberNumber
         cell.AVGLabel.text = "AVG: .350"
         cell.OBPLabel.text = "OBP: .447"
         cell.SLGLabel.text = "SLG: .458"
         cell.OPSLabel.text = "OPS: .819"
-        if indexPath.row == 3 {
-            cell.backgroundColor = .red
-        }
         return cell
     }
     

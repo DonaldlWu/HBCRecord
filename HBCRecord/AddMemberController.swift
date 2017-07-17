@@ -46,6 +46,17 @@ class AddMemberController: UIViewController {
         return text
     }()
     
+    let numberText: UITextField = {
+        let text = UITextField()
+        text.translatesAutoresizingMaskIntoConstraints = false
+        text.placeholder = "No"
+        text.textAlignment = .center
+        text.keyboardType = .numberPad
+        text.layer.borderColor = UIColor.cyan.cgColor
+        text.layer.borderWidth = 5
+        return text
+    }()
+    
     let registerButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -64,6 +75,7 @@ class AddMemberController: UIViewController {
         navigationItem.leftBarButtonItem = backButton
         
         view.addSubview(profileImage)
+        view.addSubview(numberText)
         view.addSubview(positionSegmentedControl)
         view.addSubview(nameText)
         view.addSubview(registerButton)
@@ -73,6 +85,11 @@ class AddMemberController: UIViewController {
         profileImage.heightAnchor.constraint(equalToConstant: 110).isActive = true
         profileImage.widthAnchor.constraint(equalToConstant: 110).isActive = true
         
+        numberText.topAnchor.constraint(equalTo: profileImage.bottomAnchor).isActive = true
+        numberText.bottomAnchor.constraint(equalTo: positionSegmentedControl.topAnchor).isActive = true
+        numberText.widthAnchor.constraint(equalToConstant: 48).isActive = true
+        numberText.centerXAnchor.constraint(equalTo: profileImage.centerXAnchor).isActive = true
+
         positionSegmentedControl.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 28).isActive = true
         positionSegmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         positionSegmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
@@ -109,8 +126,9 @@ class AddMemberController: UIViewController {
                     print(error!)
                     return
                 }
+                
                 if let profileImageURL = metadata?.downloadURL()?.absoluteString {
-                    let value: [AnyHashable: Any] = ["memberName": self.nameText.text as Any, "position": self.positionArray[self.positionSegmentedControl.selectedSegmentIndex], "tid": self.team.tid as Any, "mamberProfileImageURL": profileImageURL]
+                    let value: [AnyHashable: Any] = ["memberName": self.nameText.text as Any, "position": self.positionArray[self.positionSegmentedControl.selectedSegmentIndex], "memberNumber": self.numberText.text as Any, "tid": self.team.tid as Any, "mamberProfileImageURL": profileImageURL]
                     memberRef.updateChildValues(value)
                 }
             })
