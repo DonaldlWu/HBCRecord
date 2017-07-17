@@ -67,6 +67,17 @@ class MemberCell: UITableViewCell {
         return label
     }()
     
+    lazy var lineupSelectButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.text = ""
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(.black, for: .normal)
+        button.layer.borderWidth = 3
+        button.layer.borderColor = UIColor.cyan.cgColor
+        button.layer.cornerRadius = 5
+        return button
+    }()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         addSubview(profileImageView)
@@ -76,6 +87,7 @@ class MemberCell: UITableViewCell {
         addSubview(OBPLabel)
         addSubview(SLGLabel)
         addSubview(OPSLabel)
+        addSubview(lineupSelectButton)
         
         profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12).isActive = true
         profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -12).isActive = true
@@ -111,6 +123,12 @@ class MemberCell: UITableViewCell {
         OPSLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12).isActive = true
         OPSLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
         OPSLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true
+    
+        lineupSelectButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12).isActive = true
+        lineupSelectButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        lineupSelectButton.widthAnchor.constraint(equalToConstant: 72).isActive = true
+        lineupSelectButton.heightAnchor.constraint(equalToConstant: 72).isActive = true
+    
     }
     
     required init?(coder aDecoder: NSCoder) {

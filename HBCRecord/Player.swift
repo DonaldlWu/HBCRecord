@@ -19,9 +19,9 @@ var recordArray7:Array<String> = []
 var recordArray8:Array<String> = []
 
 struct Player {
-    var name: String
-    var order: String
-    var position: String
-    var recordArray: Array<String>
-    var profileImage: UIImage
+    var name: String?
+    var order: String?
+    var position: String?
+    var recordArray: Array<String?>
+    var profileImage: String?
 }

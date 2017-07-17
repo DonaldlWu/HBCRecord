@@ -27,7 +27,6 @@ class RecordCell: UICollectionViewCell {
     let orderLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .orange
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
@@ -38,11 +37,12 @@ class RecordCell: UICollectionViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .orange
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.text = "Yohoho"
+        label.layer.borderColor = UIColor.cyan.cgColor
+        label.layer.borderWidth = 3
         return label
     }()
     
@@ -51,7 +51,8 @@ class RecordCell: UICollectionViewCell {
         text.textAlignment = .left
         text.text = "一安 / 三振 / 保送 / 二安"
         text.font = UIFont.boldSystemFont(ofSize: 14)
-        text.backgroundColor = .yellow
+        text.layer.borderColor = UIColor.cyan.cgColor
+        text.layer.borderWidth = 3
         text.isScrollEnabled = false
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
@@ -82,7 +83,6 @@ class RecordCell: UICollectionViewCell {
     }()
     
     func setupView() {
-        backgroundColor = .yellow
         addSubview(profileImage)
         addSubview(recordText)
         addSubview(sentButton)

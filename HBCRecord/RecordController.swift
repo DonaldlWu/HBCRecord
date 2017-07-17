@@ -11,17 +11,18 @@ import UIKit
 class RecordController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "CellId"
+    var lineUp = [Member]()
     
     lazy var players: [Player] = {
-        let player1 = Player(name: "Yohoho", order: "一棒", position: "中外", recordArray: recordArray0, profileImage: #imageLiteral(resourceName: "pied piper"))
-        let player2 = Player(name: "abujohobanban", order: "二棒", position: "二壘", recordArray: recordArray1, profileImage: #imageLiteral(resourceName: "pied piper"))
-        let player3 = Player(name: "Yohoho", order: "三棒", position: "游擊", recordArray: recordArray2, profileImage: #imageLiteral(resourceName: "pied piper"))
-        let player4 = Player(name: "Yohoho", order: "四棒", position: "一壘", recordArray: recordArray3, profileImage: #imageLiteral(resourceName: "pied piper"))
-        let player5 = Player(name: "Yohoho", order: "五棒", position: "三壘", recordArray: recordArray4, profileImage: #imageLiteral(resourceName: "pied piper"))
-        let player6 = Player(name: "Yohoho", order: "六棒", position: "捕手", recordArray: recordArray5, profileImage: #imageLiteral(resourceName: "pied piper"))
-        let player7 = Player(name: "Yohoho", order: "七棒", position: "DH", recordArray: recordArray6, profileImage: #imageLiteral(resourceName: "pied piper"))
-        let player8 = Player(name: "Yohoho", order: "八棒", position: "右外", recordArray: recordArray7, profileImage: #imageLiteral(resourceName: "pied piper"))
-        let player9 = Player(name: "Yohoho", order: "九棒", position: "左外", recordArray: recordArray8, profileImage: #imageLiteral(resourceName: "pied piper"))
+        let player1 = Player(name: "\((self.lineUp[0].memberName)!)", order: "一棒", position: "中外", recordArray: recordArray0, profileImage: "\((self.lineUp[0].mamberProfileImageURL)!)")
+        let player2 = Player(name: "\((self.lineUp[1].memberName)!)", order: "二棒", position: "二壘", recordArray: recordArray1, profileImage: "\((self.lineUp[1].mamberProfileImageURL)!)")
+        let player3 = Player(name: "\((self.lineUp[2].memberName)!)", order: "三棒", position: "游擊", recordArray: recordArray2, profileImage: "\((self.lineUp[2].mamberProfileImageURL)!)")
+        let player4 = Player(name: "\((self.lineUp[3].memberName)!)", order: "四棒", position: "一壘", recordArray: recordArray3, profileImage: "\((self.lineUp[3].mamberProfileImageURL)!)")
+        let player5 = Player(name: "\((self.lineUp[4].memberName)!)", order: "五棒", position: "三壘", recordArray: recordArray4, profileImage: "\((self.lineUp[4].mamberProfileImageURL)!)")
+        let player6 = Player(name: "\((self.lineUp[5].memberName)!)", order: "六棒", position: "捕手", recordArray: recordArray5, profileImage: "\((self.lineUp[5].mamberProfileImageURL)!)")
+        let player7 = Player(name: "\((self.lineUp[6].memberName)!)", order: "七棒", position: "DH", recordArray: recordArray6, profileImage: "\((self.lineUp[6].mamberProfileImageURL)!)")
+        let player8 = Player(name: "\((self.lineUp[7].memberName)!)", order: "八棒", position: "右外", recordArray: recordArray7, profileImage: "\((self.lineUp[7].mamberProfileImageURL)!)")
+        let player9 = Player(name: "\((self.lineUp[8].memberName)!)", order: "九棒", position: "左外", recordArray: recordArray8, profileImage: "\((self.lineUp[8].mamberProfileImageURL)!)")
         return [player1, player2, player3, player4, player5, player6, player7, player8, player9]
     }()
     
@@ -34,7 +35,7 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
                                             style: .done, target: self, action: #selector(RecordController.backAction))
         navigationItem.leftBarButtonItem = backButton
         
-        collectionView?.backgroundColor = .green
+        collectionView?.backgroundColor = .white
         collectionView?.register(RecordCell.self, forCellWithReuseIdentifier: cellId)
         self.setNeedsStatusBarAppearanceUpdate()
         
@@ -72,14 +73,15 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? RecordCell
         let player = players[indexPath.item]
-        cell?.backgroundColor = .blue
         cell?.sentButton.tag = indexPath.item
         cell?.undoButton.tag = indexPath.item
         cell?.sentButton.addTarget(self, action: #selector(sentRecord(sender:)), for: .touchUpInside)
         cell?.undoButton.addTarget(self, action: #selector(uudoRecord(sender:)), for: .touchUpInside)
-        cell?.profileImage.image = player.profileImage
+        if let playerProfileImage = player.profileImage {
+            cell?.profileImage.loadImageUsingCashWithUrlString(urlString: playerProfileImage)
+        }
         cell?.nameLabel.text = player.name
-        cell?.orderLabel.text = player.order + " - " + player.position
+        cell?.orderLabel.text = player.order! + " - " + player.position!
 //        let recordString = player.recordArray.flatMap { $0.characters }
 //        cell?.recordText.text = String(recordString)
         cell?.recordText.text = String(describing: player.recordArray)

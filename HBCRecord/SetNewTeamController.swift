@@ -15,6 +15,7 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
     var teamTitle: String?
     var team = Team()
     var members = [Member]()
+    var lineUp = [Member]()
     var refreshControl:UIRefreshControl!
     private var tableView: UITableView!
     
@@ -64,12 +65,15 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
         button.setTitle("START", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
         button.addTarget(self, action: #selector(toRecordController), for: .touchUpInside)
+        let controller = RecordController()
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        startButton.isEnabled = false
+        startButton.backgroundColor = .gray
         
         let backButton = UIBarButtonItem(title: "BACK", style: .done, target: self, action: #selector(backHome))
         let addButton = UIBarButtonItem(title: "ADD", style: .plain, target: self, action: #selector(toAddMemberController))
@@ -80,6 +84,8 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.allowsMultipleSelection = true
+        tableView.allowsMultipleSelectionDuringEditing = true
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -135,6 +141,7 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func toRecordController() {
         let controller = RecordController(collectionViewLayout: UICollectionViewFlowLayout())
+        controller.lineUp = self.lineUp
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     
@@ -152,6 +159,7 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
         if let memberProfileImageURL = members[indexPath.row].mamberProfileImageURL {
             cell.profileImageView.loadImageUsingCashWithUrlString(urlString: memberProfileImageURL)
         }
+        cell.lineupSelectButton.setTitle(members[indexPath.row].position, for: .normal)
         cell.numberLabel.text = members[indexPath.row].memberNumber
         cell.AVGLabel.text = "AVG: .350"
         cell.OBPLabel.text = "OBP: .447"
@@ -159,6 +167,25 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.OPSLabel.text = "OPS: .819"
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.lineUp.append(members[indexPath.row])
+        members[indexPath.row].position = "TEST"
+        let indexPath = IndexPath(item: indexPath.row, section: 0)
+        DispatchQueue.main.async {
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+        
+        if lineUp.count == 9 {
+            startButton.isEnabled = true
+            startButton.backgroundColor = .purple
+        } else {
+            startButton.isEnabled = false
+            startButton.backgroundColor = .gray
+        }
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120

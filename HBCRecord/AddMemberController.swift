@@ -114,26 +114,26 @@ class AddMemberController: UIViewController {
     }
     
     func registerNewPlayer() {
-        
-        let ref = FIRDatabase.database().reference().child("Member")
-        let memberRef = ref.childByAutoId()
-        
-        let imageName = NSUUID().uuidString
-        let storageRef = FIRStorage.storage().reference().child("playerProfile_images").child("\(imageName).jpg")
-        if let uploadImage = UIImageJPEGRepresentation(self.profileImage.image!, 0.1) {
-            storageRef.put(uploadImage, metadata: nil, completion: { (metadata, error) in
-                if error != nil {
-                    print(error!)
-                    return
-                }
-                
-                if let profileImageURL = metadata?.downloadURL()?.absoluteString {
-                    let value: [AnyHashable: Any] = ["memberName": self.nameText.text as Any, "position": self.positionArray[self.positionSegmentedControl.selectedSegmentIndex], "memberNumber": self.numberText.text as Any, "tid": self.team.tid as Any, "mamberProfileImageURL": profileImageURL]
-                    memberRef.updateChildValues(value)
-                }
-            })
+        if nameText.text != "" && numberText.text != "" {
+            let ref = FIRDatabase.database().reference().child("Member")
+            let memberRef = ref.childByAutoId()
+            let imageName = NSUUID().uuidString
+            let storageRef = FIRStorage.storage().reference().child("playerProfile_images").child("\(imageName).jpg")
+            if let uploadImage = UIImageJPEGRepresentation(self.profileImage.image!, 0.1) {
+                storageRef.put(uploadImage, metadata: nil, completion: { (metadata, error) in
+                    if error != nil {
+                        print(error!)
+                        return
+                    }
+                    
+                    if let profileImageURL = metadata?.downloadURL()?.absoluteString {
+                        let value: [AnyHashable: Any] = ["memberName": self.nameText.text as Any, "position": self.positionArray[self.positionSegmentedControl.selectedSegmentIndex], "memberNumber": self.numberText.text as Any, "tid": self.team.tid as Any, "mamberProfileImageURL": profileImageURL]
+                        memberRef.updateChildValues(value)
+                    }
+                })
+            }
+            self.dismiss(animated: true, completion: nil)
         }
-        self.dismiss(animated: true, completion: nil)
     }
     
     func backHome() {
