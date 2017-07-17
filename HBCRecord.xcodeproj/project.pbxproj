@@ -183,11 +183,11 @@
 				C07FEE831F13CAE200663B6C /* Handler */,
 				C0541EA11F16175B00FD50E2 /* LoginController.swift */,
 				C0F19E501F098C6000E97041 /* HomeController.swift */,
-				C067E0091EFFE8EC00F830CB /* RecordController.swift */,
 				C065352B1F0D08C600BCC12F /* SetNewTeamController.swift */,
 				C08DF5381F10F40600D658B8 /* AddMemberController.swift */,
 				C0F19E4E1F0661FC00E97041 /* RecordPickerController.swift */,
 				C0541EA51F1A944800FD50E2 /* TeamImageController.swift */,
+				C067E0091EFFE8EC00F830CB /* RecordController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

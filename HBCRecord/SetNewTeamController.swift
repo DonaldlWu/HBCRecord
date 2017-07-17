@@ -15,10 +15,43 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
     var teamTitle: String?
     var team = Team()
     var members = [Member]()
+    var refreshControl:UIRefreshControl!
     private var tableView: UITableView!
     
     override var prefersStatusBarHidden: Bool {
         return false
+    }
+    
+    func refresh(sender:AnyObject)
+    {
+        
+        let alertController = UIAlertController(title: "Sort By", message: "", preferredStyle: .actionSheet)
+        
+        let numberSort = UIAlertAction(title: "Number", style: .default, handler: {
+            alert -> Void in
+            DispatchQueue.main.async {
+                self.members.sort(by: { (first: Member , second: Member) -> Bool in
+                    Int(first.memberNumber!)! < Int(second.memberNumber!)!
+                })
+                self.tableView?.reloadData()
+            }
+            self.refreshControl.endRefreshing()
+        })
+        
+        let testSort = UIAlertAction(title: "unNumber", style: .default, handler: {
+            alert -> Void in
+            DispatchQueue.main.async {
+                self.members.sort(by: { (first: Member , second: Member) -> Bool in
+                    Int(first.memberNumber!)! > Int(second.memberNumber!)!
+                })
+                self.tableView?.reloadData()
+            }
+            self.refreshControl.endRefreshing()
+        })
+        
+        alertController.addAction(numberSort)
+        alertController.addAction(testSort)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     lazy var startButton: UIButton = {
@@ -53,6 +86,11 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
         view.addSubview(tableView)
         view.addSubview(startButton)
         
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Reloading")
+        self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView!.addSubview(refreshControl)
+        
         tableView.register(MemberCell.self, forCellReuseIdentifier: cellId)
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
@@ -78,9 +116,6 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
                 
                 DispatchQueue.main.async {
-                    self.members.sort(by: { (first: Member , second: Member) -> Bool in
-                        Int(first.memberNumber!)! < Int(second.memberNumber!)!
-                    })
                     self.tableView.reloadData()
                 }
             }
