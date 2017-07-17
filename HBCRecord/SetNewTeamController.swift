@@ -160,6 +160,8 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.profileImageView.loadImageUsingCashWithUrlString(urlString: memberProfileImageURL)
         }
         cell.lineupSelectButton.setTitle(members[indexPath.row].position, for: .normal)
+        cell.lineupSelectButton.tag = indexPath.row
+        cell.lineupSelectButton.addTarget(self, action: #selector(linupSet(sender:)), for: .touchUpInside)
         cell.numberLabel.text = members[indexPath.row].memberNumber
         cell.AVGLabel.text = "AVG: .350"
         cell.OBPLabel.text = "OBP: .447"
@@ -168,13 +170,34 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
+    func linupSet(sender: UIButton) {
+        
+        let positionArray = ["P", "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF"]
+        let alertController = UIAlertController(title: "Position", message: "", preferredStyle: .actionSheet)
+        
+        for position in positionArray {
+            let position = UIAlertAction(title: position, style: .default, handler: {
+                alert -> Void in
+                self.members[sender.tag].position = position
+                let indexPath = IndexPath(item: sender.tag, section: 0)
+                DispatchQueue.main.async {
+                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                }
+            })
+            alertController.addAction(position)
+        }
+        
+        let cancelButtonAction = UIAlertAction(title: "cancel", style: UIAlertActionStyle.cancel) {
+            action in
+        }
+        
+        alertController.addAction(cancelButtonAction)
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.lineUp.append(members[indexPath.row])
-        members[indexPath.row].position = "TEST"
-        let indexPath = IndexPath(item: indexPath.row, section: 0)
-        DispatchQueue.main.async {
-            self.tableView.reloadRows(at: [indexPath], with: .automatic)
-        }
         
         if lineUp.count == 9 {
             startButton.isEnabled = true
