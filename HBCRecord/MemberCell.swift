@@ -12,7 +12,7 @@ class MemberCell: UITableViewCell {
     
     let profileImageView: UIImageView = {
         let image = UIImageView()
-        image.image = #imageLiteral(resourceName: "pied piper")
+        image.image = #imageLiteral(resourceName: "HBC")
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = 35
         image.layer.masksToBounds = true
@@ -75,7 +75,21 @@ class MemberCell: UITableViewCell {
         button.layer.borderWidth = 3
         button.layer.borderColor = UIColor.cyan.cgColor
         button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
         return button
+    }()
+    
+    lazy var lineupLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .green
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.layer.cornerRadius = 24
+        label.layer.masksToBounds = true
+        label.text = ""
+        return label
     }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -88,6 +102,8 @@ class MemberCell: UITableViewCell {
         addSubview(SLGLabel)
         addSubview(OPSLabel)
         addSubview(lineupSelectButton)
+        addSubview(lineupLabel)
+        lineupLabel.isHidden = true
         
         profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 12).isActive = true
         profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -12).isActive = true
@@ -128,6 +144,11 @@ class MemberCell: UITableViewCell {
         lineupSelectButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         lineupSelectButton.widthAnchor.constraint(equalToConstant: 72).isActive = true
         lineupSelectButton.heightAnchor.constraint(equalToConstant: 72).isActive = true
+        
+        lineupLabel.rightAnchor.constraint(equalTo: lineupSelectButton.leftAnchor, constant: -12).isActive = true
+        lineupLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        lineupLabel.widthAnchor.constraint(equalToConstant: 48).isActive = true
+        lineupLabel.heightAnchor.constraint(equalToConstant: 48).isActive = true
     
     }
     

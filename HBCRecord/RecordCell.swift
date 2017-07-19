@@ -17,7 +17,7 @@ class RecordCell: UICollectionViewCell {
     let profileImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = #imageLiteral(resourceName: "pied piper")
+        image.image = #imageLiteral(resourceName: "HBC")
         image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = 5
         image.layer.masksToBounds = true
