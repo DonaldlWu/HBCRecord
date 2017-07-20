@@ -1,5 +1,5 @@
 //
-//  SetNewTeamController.swift
+//  MemberController.swift
 //  HBCRecord
 //
 //  Created by 吳得人 on 2017/7/5.
@@ -9,14 +9,14 @@
 import UIKit
 import Firebase
 
-class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let orderArray = ["一棒", "二棒", "三棒", "四棒", "五棒", "六棒", "七棒", "八棒", "九棒"]
     var players = [Player]()
-    let cellId = "cellId"
+    var members = [Member]()
     var teamTitle: String?
     var team = Team()
-    var members = [Member]()
+    let cellId = "cellId"
     var refreshControl:UIRefreshControl!
     private var tableView: UITableView!
     
@@ -200,20 +200,31 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
         for order in orderNumberArray {
             let order = UIAlertAction(title: orderArray[Int(order)!], style: .default, handler: {
                 alert -> Void in
-                if self.players.count == 8 {
-                    self.startButton.isEnabled = true
-                } else if self.players.count < 8 {
-                    self.startButton.isEnabled = false
-                }
-                var player = tempPlayer
-                player.order = order
-                self.players.append(player)
-                self.members[indexPath.row].lineup = true
-                self.members[indexPath.row].order = order
                 
-                DispatchQueue.main.async {
-                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                if self.players.count == 9 {
+                    self.startButton.isEnabled = true
+                    self.startButton.backgroundColor = .cyan
+                } else {
+                    self.startButton.isEnabled = false
+                    self.startButton.backgroundColor = .gray
+                    var addPlayer = tempPlayer
+                    addPlayer.order = order
+                    self.recoderAssign(order: Int(order)!, addPlayer: addPlayer)
+                    self.members[indexPath.row].lineup = true
+                    self.members[indexPath.row].order = order
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                        if self.players.count == 9 {
+                            self.startButton.isEnabled = true
+                            self.startButton.backgroundColor = .cyan
+                        } else {
+                            self.startButton.isEnabled = false
+                            self.startButton.backgroundColor = .gray
+                        }
+                    }
                 }
+                
             })
             alertController.addAction(order)
         }
@@ -281,8 +292,35 @@ class SetNewTeamController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func toRecordController() {
         let controller = RecordController(collectionViewLayout: UICollectionViewFlowLayout())
-        //controller.lineUp = ???
+        controller.players = self.players
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+    }
+    
+    func recoderAssign(order: Int, addPlayer: Player) {
+        var player = addPlayer
+        switch order {
+        case 0:
+            player.recordArray = recordArray0
+        case 1:
+            player.recordArray = recordArray1
+        case 2:
+            player.recordArray = recordArray2
+        case 3:
+            player.recordArray = recordArray3
+        case 4:
+            player.recordArray = recordArray4
+        case 5:
+            player.recordArray = recordArray5
+        case 6:
+            player.recordArray = recordArray6
+        case 7:
+            player.recordArray = recordArray7
+        case 8:
+            player.recordArray = recordArray8
+        default:
+            return
+        }
+        self.players.append(player)
     }
     
 }

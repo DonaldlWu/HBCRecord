@@ -27,7 +27,7 @@ class TeamImageController: AddMemberController {
         let ref = FIRDatabase.database().reference().child("Team")
         let teamRef = ref.childByAutoId()
         let tid = teamRef.key
-        let controller = SetNewTeamController()
+        let controller = MemberController()
         controller.team.teamName = teamName
         
         let imageName = NSUUID().uuidString

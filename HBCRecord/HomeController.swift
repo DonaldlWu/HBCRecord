@@ -23,7 +23,7 @@ class HomeController: UITableViewController {
         super.viewDidLoad()
         
         tableView.register(TeamCell.self, forCellReuseIdentifier: cellId)
-        let newTeamButton = UIBarButtonItem(title: "New Team", style: .plain, target: self, action: #selector(toSetNewTeamController))
+        let newTeamButton = UIBarButtonItem(title: "New Team", style: .plain, target: self, action: #selector(toMemberController))
         navigationItem.rightBarButtonItem = newTeamButton
         
         let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
@@ -131,14 +131,14 @@ class HomeController: UITableViewController {
         present(loginController, animated: true, completion: nil)
     }
     
-    func toSetNewTeamController() {
+    func toMemberController() {
         let alertController = UIAlertController(title: "Add New Team", message: "", preferredStyle: .alert)
         
         let saveAction = UIAlertAction(title: "OK", style: .default, handler: {
             alert -> Void in
             
             let firstTextField = alertController.textFields![0] as UITextField
-            let controller = SetNewTeamController()
+            let controller = MemberController()
             let imageSeloctorController = TeamImageController()
             
             if firstTextField.text! != "" {
@@ -182,7 +182,7 @@ class HomeController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = SetNewTeamController()
+        let controller = MemberController()
         controller.team = teams[indexPath.row]
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }

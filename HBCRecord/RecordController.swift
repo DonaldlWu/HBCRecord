@@ -11,21 +11,8 @@ import UIKit
 class RecordController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "CellId"
-    var lineUp = [Member]()
-    
-    lazy var players: [Player] = {
-        let player1 = Player(name: "\((self.lineUp[0].memberName)!)", order: "一棒", position: "中外", recordArray: recordArray0, profileImage: "\((self.lineUp[0].mamberProfileImageURL)!)")
-        let player2 = Player(name: "\((self.lineUp[1].memberName)!)", order: "二棒", position: "二壘", recordArray: recordArray1, profileImage: "\((self.lineUp[1].mamberProfileImageURL)!)")
-        let player3 = Player(name: "\((self.lineUp[2].memberName)!)", order: "三棒", position: "游擊", recordArray: recordArray2, profileImage: "\((self.lineUp[2].mamberProfileImageURL)!)")
-        let player4 = Player(name: "\((self.lineUp[3].memberName)!)", order: "四棒", position: "一壘", recordArray: recordArray3, profileImage: "\((self.lineUp[3].mamberProfileImageURL)!)")
-        let player5 = Player(name: "\((self.lineUp[4].memberName)!)", order: "五棒", position: "三壘", recordArray: recordArray4, profileImage: "\((self.lineUp[4].mamberProfileImageURL)!)")
-        let player6 = Player(name: "\((self.lineUp[5].memberName)!)", order: "六棒", position: "捕手", recordArray: recordArray5, profileImage: "\((self.lineUp[5].mamberProfileImageURL)!)")
-        let player7 = Player(name: "\((self.lineUp[6].memberName)!)", order: "七棒", position: "DH", recordArray: recordArray6, profileImage: "\((self.lineUp[6].mamberProfileImageURL)!)")
-        let player8 = Player(name: "\((self.lineUp[7].memberName)!)", order: "八棒", position: "右外", recordArray: recordArray7, profileImage: "\((self.lineUp[7].mamberProfileImageURL)!)")
-        let player9 = Player(name: "\((self.lineUp[8].memberName)!)", order: "九棒", position: "左外", recordArray: recordArray8, profileImage: "\((self.lineUp[8].mamberProfileImageURL)!)")
-        return [player1, player2, player3, player4, player5, player6, player7, player8, player9]
-    }()
-    
+    var players = [Player]()
+
     var refreshControl:UIRefreshControl!
     
     override func viewDidLoad() {
