@@ -17,6 +17,9 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let button = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveData))
+        navigationItem.rightBarButtonItem = button
+        
         NotificationCenter.default.addObserver(self, selector: #selector(didRotation), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
         collectionView?.backgroundColor = .white
@@ -27,6 +30,10 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
         self.refreshControl.attributedTitle = NSAttributedString(string: "Reloading")
         self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         collectionView!.addSubview(refreshControl)
+    }
+    
+    func saveData() {
+        print("SAVE")
     }
     
     func didRotation() {

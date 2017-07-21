@@ -70,7 +70,7 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     func sendRecordBack() {
-        let controller = RecordController(collectionViewLayout: UICollectionViewFlowLayout())
+        let controller = GameTabBarController()
         switch rowInRecordArray {
         case 0:
             self.players[0].recordArray.append(tempRecord)
@@ -95,7 +95,7 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
         controller.players = self.players
         controller.modalPresentationStyle = .overFullScreen
-        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        present(UINavigationController(rootViewController: controller), animated: false, completion: nil)
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

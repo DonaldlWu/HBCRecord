@@ -311,11 +311,6 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return 120
     }
     
-    func backHome() {
-        let controller = HomeController()
-        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-    }
-    
     func toAddMemberController() {
         let controller = AddMemberController()
         controller.team = self.team
@@ -323,9 +318,10 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func toRecordController() {
-        let controller = RecordController(collectionViewLayout: UICollectionViewFlowLayout())
+        let controller = GameTabBarController()
         controller.players = self.players
-        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        //present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        present(controller, animated: true, completion: nil)
     }
     
     func recoderAssign(order: Int, addPlayer: Player) {

@@ -54,9 +54,14 @@ class HomeController: UITableViewController {
     func checkUserIsLogin() {
         if FIRAuth.auth()?.currentUser?.uid == nil {
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
+            self.checkIsGaming()
         } else {
             fetchUserSetNavBarTitle()
         }
+    }
+    
+    func checkIsGaming() {
+        
     }
     
     func fetchUserSetNavBarTitle() {

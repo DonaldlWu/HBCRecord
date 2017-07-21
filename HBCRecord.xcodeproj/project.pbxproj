@@ -30,6 +30,8 @@
 		C067E02D1F002AB500F830CB /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067E02C1F002AB500F830CB /* RecordCell.swift */; };
 		C07FEE851F13CB1E00663B6C /* AddMemberHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FEE841F13CB1E00663B6C /* AddMemberHandler.swift */; };
 		C08DF5391F10F40600D658B8 /* AddMemberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08DF5381F10F40600D658B8 /* AddMemberController.swift */; };
+		C0B451351F2232900073B9F5 /* GameTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B451341F2232900073B9F5 /* GameTabBarController.swift */; };
+		C0B451371F2234AF0073B9F5 /* GameStateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B451361F2234AF0073B9F5 /* GameStateController.swift */; };
 		C0F19E4F1F0661FC00E97041 /* RecordPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F19E4E1F0661FC00E97041 /* RecordPickerController.swift */; };
 		C0F19E511F098C6000E97041 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F19E501F098C6000E97041 /* HomeController.swift */; };
 /* End PBXBuildFile section */
@@ -73,6 +75,8 @@
 		C067E02C1F002AB500F830CB /* RecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
 		C07FEE841F13CB1E00663B6C /* AddMemberHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberHandler.swift; sourceTree = "<group>"; };
 		C08DF5381F10F40600D658B8 /* AddMemberController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberController.swift; sourceTree = "<group>"; };
+		C0B451341F2232900073B9F5 /* GameTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTabBarController.swift; sourceTree = "<group>"; };
+		C0B451361F2234AF0073B9F5 /* GameStateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStateController.swift; sourceTree = "<group>"; };
 		C0F19E4E1F0661FC00E97041 /* RecordPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordPickerController.swift; sourceTree = "<group>"; };
 		C0F19E501F098C6000E97041 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		C3CFB2946E9C347DC98D1384 /* Pods-HBCRecordTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBCRecordTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HBCRecordTests/Pods-HBCRecordTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 				C0F19E4E1F0661FC00E97041 /* RecordPickerController.swift */,
 				C0541EA51F1A944800FD50E2 /* TeamImageController.swift */,
 				C067E0091EFFE8EC00F830CB /* RecordController.swift */,
+				C0B451341F2232900073B9F5 /* GameTabBarController.swift */,
+				C0B451361F2234AF0073B9F5 /* GameStateController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -435,9 +441,11 @@
 				C0449AE11F1C047A0014F48E /* MemberCell.swift in Sources */,
 				C08DF5391F10F40600D658B8 /* AddMemberController.swift in Sources */,
 				C067E00A1EFFE8EC00F830CB /* RecordController.swift in Sources */,
+				C0B451371F2234AF0073B9F5 /* GameStateController.swift in Sources */,
 				C065352A1F0D079200BCC12F /* Team.swift in Sources */,
 				C067E02D1F002AB500F830CB /* RecordCell.swift in Sources */,
 				C0449AE31F1C144B0014F48E /* Member.swift in Sources */,
+				C0B451351F2232900073B9F5 /* GameTabBarController.swift in Sources */,
 				C0145DE51F02A2B8005651B3 /* Player.swift in Sources */,
 				C065352C1F0D08C600BCC12F /* MemberController.swift in Sources */,
 				C0541EA91F1ACD8300FD50E2 /* UIImageViewExtensions.swift in Sources */,
