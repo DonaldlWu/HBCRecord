@@ -18,7 +18,7 @@ class Member: NSObject {
     var lineup = false
     
     func memberToPlayer(member: Member) -> Player {
-        let player = Player(name: member.memberName, order: "", position: "", recordArray: [""], profileImage: member.mamberProfileImageURL)
+        let player = Player(name: member.memberName, order: "1", position: "1", recordArray: [], profileImage: member.mamberProfileImageURL)
         return player
     }
 }

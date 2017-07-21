@@ -29,6 +29,7 @@ class HomeController: UITableViewController {
         let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.leftBarButtonItem = logoutButton
         checkUserIsLogin()
+        
     }
     
     func fetchTeam() {

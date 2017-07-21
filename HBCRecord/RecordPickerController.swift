@@ -13,9 +13,20 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     let recordtypeArray = ["H", "BB", "E", "K", "SF"]
     let recordDetialArray = [["H", "2B", "3B", "HR"], ["BB", "HBP"], ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9"], ["K", "K"], ["SF", "SH"]]
     
+    var players = [Player]()
     var recordPickerView: UIPickerView!
     var tempRecord: String = "H"
     var rowInRecordArray = Int()
+    
+    let popView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.borderWidth = 3
+        view.backgroundColor = .cyan
+        view.layer.cornerRadius = 5
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     let addButton: UIButton = {
         let button = UIButton()
@@ -32,18 +43,26 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
+        view.backgroundColor = .clear
         
         recordPickerView = UIPickerView()
-        recordPickerView.frame = CGRect(x: 0, y: self.view.bounds.height / 3, width: self.view.bounds.width, height: 200)
+        recordPickerView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width - 12, height: 200)
         recordPickerView.showsSelectionIndicator = true
         recordPickerView.delegate = self
         recordPickerView.dataSource = self
+        recordPickerView.backgroundColor = .cyan
         
-        self.view.addSubview(recordPickerView)
-        self.view.addSubview(addButton)
+        view.addSubview(popView)
         
-        addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -12).isActive = true
+        popView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        popView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        popView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -12).isActive = true
+        popView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        
+        popView.addSubview(recordPickerView)
+        popView.addSubview(addButton)
+        
+        addButton.bottomAnchor.constraint(equalTo: recordPickerView.bottomAnchor, constant: 12).isActive = true
         addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         addButton.widthAnchor.constraint(equalToConstant: 64).isActive = true
         addButton.heightAnchor.constraint(equalToConstant: 36).isActive = true
@@ -51,30 +70,32 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     func sendRecordBack() {
+        let controller = RecordController(collectionViewLayout: UICollectionViewFlowLayout())
         switch rowInRecordArray {
         case 0:
-            recordArray0.append(tempRecord)
-            self.dismiss(animated: true, completion: nil)
+            self.players[0].recordArray.append(tempRecord)
         case 1:
-            recordArray1.append(tempRecord)
+            self.players[1].recordArray.append(tempRecord)
         case 2:
-            recordArray2.append(tempRecord)
+            self.players[2].recordArray.append(tempRecord)
         case 3:
-            recordArray3.append(tempRecord)
+            self.players[3].recordArray.append(tempRecord)
         case 4:
-            recordArray4.append(tempRecord)
+            self.players[4].recordArray.append(tempRecord)
         case 5:
-            recordArray5.append(tempRecord)
+            self.players[5].recordArray.append(tempRecord)
         case 6:
-            recordArray6.append(tempRecord)
+            self.players[6].recordArray.append(tempRecord)
         case 7:
-            recordArray7.append(tempRecord)
+            self.players[7].recordArray.append(tempRecord)
         case 8:
-            recordArray8.append(tempRecord)
+            self.players[8].recordArray.append(tempRecord)
         default:
             return
         }
-        
+        controller.players = self.players
+        controller.modalPresentationStyle = .overFullScreen
+        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

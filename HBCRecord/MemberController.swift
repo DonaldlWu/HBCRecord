@@ -44,8 +44,8 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        startButton.isEnabled = false
-        startButton.backgroundColor = .gray
+//        startButton.isEnabled = false
+//        startButton.backgroundColor = .gray
         
         let addButton = UIBarButtonItem(title: "ADD", style: .plain, target: self, action: #selector(toAddMemberController))
         navigationItem.title = self.team.teamName
@@ -141,6 +141,15 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    // fake data ---------------------------------
+                    for i in 0...8 {
+                        let member = Member()
+                        let player = member.memberToPlayer(member: self.members[i])
+                        self.players.append(player)
+                    }
+                    self.startButton.isEnabled = true
+                    self.startButton.backgroundColor = .cyan
+                    /// fake data ---------------------------------
                 }
             }
         }, withCancel: nil)
@@ -316,7 +325,7 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func toRecordController() {
         let controller = RecordController(collectionViewLayout: UICollectionViewFlowLayout())
         controller.players = self.players
-        show(controller, sender: self)
+        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     
     func recoderAssign(order: Int, addPlayer: Player) {

@@ -12,11 +12,11 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     
     let cellId = "CellId"
     var players = [Player]()
-
-    var refreshControl:UIRefreshControl!
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(didRotation), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
         collectionView?.backgroundColor = .white
@@ -31,11 +31,6 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     
     func didRotation() {
         collectionView?.reloadData()
-    }
-    
-    func backAction() -> Void {
-        let controller = HomeController()
-        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     
     func refresh(sender:AnyObject)
@@ -66,65 +61,57 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
         }
         cell?.nameLabel.text = player.name
         cell?.orderLabel.text = orderArray[Int((player.order!))!] + " - " + (player.position!)
-//        let recordString = player.recordArray.flatMap { $0.characters }
-//        cell?.recordText.text = String(recordString)
-        cell?.recordText.text = String(describing: player.recordArray)
+        let str = player.recordArray.flatMap {($0)! + "  " }.joined()
+        cell?.recordText.text = str
         return cell!
     }
     
     func sentRecord(sender: UIButton) {
         let controller = RecordPickerController()
         controller.rowInRecordArray = sender.tag
-        //present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-        show(controller, sender: self)
+        controller.players = self.players
+        controller.modalPresentationStyle = .overCurrentContext
+        present(controller, animated: true, completion: nil)
+        
     }
     
     func uudoRecord(sender: UIButton) {
         switch sender.tag {
         case 0:
-            if recordArray0.count != 0 {
-                players[0].recordArray.remove(at: recordArray0.count - 1)
-                recordArray0.remove(at: recordArray0.count - 1)
+            if self.players[0].recordArray.count != 0 {
+                self.players[0].recordArray.removeLast()
             }
         case 1:
-            if recordArray1.count != 0 {
-                players[1].recordArray.remove(at: recordArray1.count - 1)
-                recordArray1.remove(at: recordArray1.count - 1)
+            if self.players[1].recordArray.count != 0 {
+                self.players[1].recordArray.removeLast()
             }
         case 2:
-            if recordArray2.count != 0 {
-                players[2].recordArray.remove(at: recordArray2.count - 1)
-                recordArray2.remove(at: recordArray2.count - 1)
+            if self.players[2].recordArray.count != 0 {
+                self.players[2].recordArray.removeLast()
             }
         case 3:
-            if recordArray3.count != 0 {
-                players[3].recordArray.remove(at: recordArray3.count - 1)
-                recordArray3.remove(at: recordArray3.count - 1)
+            if self.players[3].recordArray.count != 0 {
+                self.players[3].recordArray.removeLast()
             }
         case 4:
-            if recordArray4.count != 0 {
-                players[4].recordArray.remove(at: recordArray4.count - 1)
-                recordArray4.remove(at: recordArray4.count - 1)
+            if self.players[4].recordArray.count != 0 {
+                self.players[4].recordArray.removeLast()
             }
         case 5:
-            if recordArray5.count != 0 {
-                players[5].recordArray.remove(at: recordArray5.count - 1)
-                recordArray5.remove(at: recordArray5.count - 1)
+            if self.players[5].recordArray.count != 0 {
+                self.players[5].recordArray.removeLast()
             }
         case 6:
-            if recordArray6.count != 0 {
-                players[6].recordArray.remove(at: recordArray6.count - 1)
-                recordArray6.remove(at: recordArray6.count - 1)
+            if self.players[6].recordArray.count != 0 {
+                self.players[6].recordArray.removeLast()
             }
         case 7:
-            if recordArray7.count != 0 {
-                players[7].recordArray.remove(at: recordArray7.count - 1)
-                recordArray7.remove(at: recordArray7.count - 1)
+            if self.players[7].recordArray.count != 0 {
+                self.players[7].recordArray.removeLast()
             }
         case 8:
-            if recordArray8.count != 0 {
-                players[8].recordArray.remove(at: recordArray8.count - 1)
-                recordArray8.remove(at: recordArray8.count - 1)
+            if self.players[8].recordArray.count != 0 {
+                self.players[8].recordArray.removeLast()
             }
         default:
             return
