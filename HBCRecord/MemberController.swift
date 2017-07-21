@@ -9,15 +9,17 @@
 import UIKit
 import Firebase
 
+let orderArray = ["一棒", "二棒", "三棒", "四棒", "五棒", "六棒", "七棒", "八棒", "九棒"]
+
 class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let orderArray = ["一棒", "二棒", "三棒", "四棒", "五棒", "六棒", "七棒", "八棒", "九棒"]
+    var orderNumberArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
     var players = [Player]()
     var members = [Member]()
     var teamTitle: String?
     var team = Team()
     let cellId = "cellId"
-    var refreshControl:UIRefreshControl!
+    var refreshControl: UIRefreshControl!
     private var tableView: UITableView!
     
     override var prefersStatusBarHidden: Bool {
@@ -87,23 +89,47 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let cell = tableView.cellForRow(at: indexPath) as? MemberCell
         
         let cancel = UITableViewRowAction(style: .normal, title: "Cancel") { action, index in
-            self.members[indexPath.row].lineup = false
-            self.members[indexPath.row].order = nil
-            DispatchQueue.main.async {
-                self.tableView.reloadRows(at: [indexPath], with: .automatic)
-            }
+            self.lineupCancel(indexPath: indexPath, name: (cell?.nameLabel.text)!)
             self.tableView?.isEditing = false
         }
         cancel.backgroundColor = .red
-        
+
         let checkLineup = UITableViewRowAction(style: .normal, title: "Line Up") { action, index in
             let tempPlayer = Player(name: cell?.nameLabel.text, order: "", position: cell?.lineupSelectButton.titleLabel?.text, recordArray: [], profileImage: cell?.detailTextLabel?.text)
-            self.lineupOrderSet(indexPath: indexPath, tempPlayer: tempPlayer)
+            if cell?.lineupLabel.isHidden == true {
+                self.lineupOrderSet(indexPath: indexPath, tempPlayer: tempPlayer)
+            } else {
+                self.lineupCancel(indexPath: indexPath, name: (cell?.nameLabel.text)!)
+                self.lineupOrderSet(indexPath: indexPath, tempPlayer: tempPlayer)
+            }
             self.tableView?.isEditing = false
         }
         checkLineup.backgroundColor = .cyan
         
         return [cancel, checkLineup]
+    }
+    
+    func lineupCancel(indexPath: IndexPath, name: String) {
+        if self.players.count != 0 {
+            var deleteNumber = 0
+            for i in 0...self.players.count - 1 {
+                if self.players[i].name == name {
+                    deleteNumber = i
+                }
+            }
+            if deleteNumber != 0 {
+                self.players.remove(at: deleteNumber)
+                if self.players.count != 9 {
+                    startButton.isEnabled = false
+                    startButton.backgroundColor = .gray
+                }
+            }
+        }
+        self.members[indexPath.row].lineup = false
+        self.members[indexPath.row].order = nil
+        DispatchQueue.main.async {
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
     }
     
     func fetchMember() {
@@ -195,12 +221,10 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func lineupOrderSet(indexPath: IndexPath, tempPlayer: Player) {
-        let orderNumberArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
         let alertController = UIAlertController(title: "Order", message: nil, preferredStyle: .actionSheet)
         for order in orderNumberArray {
             let order = UIAlertAction(title: orderArray[Int(order)!], style: .default, handler: {
                 alert -> Void in
-                
                 if self.players.count == 9 {
                     self.startButton.isEnabled = true
                     self.startButton.backgroundColor = .cyan
@@ -212,19 +236,18 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
                     self.recoderAssign(order: Int(order)!, addPlayer: addPlayer)
                     self.members[indexPath.row].lineup = true
                     self.members[indexPath.row].order = order
-                    
-                    DispatchQueue.main.async {
-                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                        if self.players.count == 9 {
-                            self.startButton.isEnabled = true
-                            self.startButton.backgroundColor = .cyan
-                        } else {
-                            self.startButton.isEnabled = false
-                            self.startButton.backgroundColor = .gray
-                        }
-                    }
                 }
                 
+                DispatchQueue.main.async {
+                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    if self.players.count == 9 {
+                        self.startButton.isEnabled = true
+                        self.startButton.backgroundColor = .cyan
+                    } else {
+                        self.startButton.isEnabled = false
+                        self.startButton.backgroundColor = .gray
+                    }
+                }
             })
             alertController.addAction(order)
         }
@@ -248,12 +271,14 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MemberCell
         cell.nameLabel.text = members[indexPath.row].memberName
+        
         if let memberProfileImageURL = members[indexPath.row].mamberProfileImageURL {
             cell.profileImageView.loadImageUsingCashWithUrlString(urlString: memberProfileImageURL)
             // For order select
             cell.detailTextLabel?.text = memberProfileImageURL
             cell.detailTextLabel?.isHidden = true
         }
+        
         cell.lineupSelectButton.setTitle(members[indexPath.row].position, for: .normal)
         cell.lineupSelectButton.tag = indexPath.row
         cell.lineupSelectButton.addTarget(self, action: #selector(linupPositionSet(sender:)), for: .touchUpInside)
@@ -320,10 +345,21 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
         default:
             return
         }
+//        if self.players.count != 0 {
+//            var deleteNumber = 0
+//            for i in 0...self.players.count - 1 {
+//                if self.players[i].name == addPlayer.name {
+//                    deleteNumber = i
+//                }
+//            }
+//            if deleteNumber != 0 {
+//                self.players.remove(at: deleteNumber)
+//            }
+//        }
         self.players.append(player)
     }
     
 }
 
-    
+
 

@@ -35,7 +35,7 @@ class HomeController: UITableViewController {
         FIRDatabase.database().reference().child("Team").observe(.childAdded, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let team = Team()
-                team.tid = snapshot.key
+                team.tid = String(snapshot.key)
                 team.uid = dictionary["uid"] as? String
                 team.teamName = dictionary["TeamName"] as? String
                 team.teamProfileImageURL = dictionary["teamProfileImageURL"] as? String

@@ -68,7 +68,7 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
             cell?.profileImage.loadImageUsingCashWithUrlString(urlString: playerProfileImage)
         }
         cell?.nameLabel.text = player.name
-        cell?.orderLabel.text = player.order! + " - " + player.position!
+        cell?.orderLabel.text = orderArray[Int(player.order!)!] + " - " + player.position!
 //        let recordString = player.recordArray.flatMap { $0.characters }
 //        cell?.recordText.text = String(recordString)
         cell?.recordText.text = String(describing: player.recordArray)
