@@ -138,14 +138,8 @@ class HomeController: UITableViewController {
             alert -> Void in
             
             let firstTextField = alertController.textFields![0] as UITextField
-            let controller = MemberController()
-            let imageSeloctorController = TeamImageController()
-            
             if firstTextField.text! != "" {
-                controller.team.teamName = firstTextField.text!
-                imageSeloctorController.user = self.user
-                imageSeloctorController.teamName = firstTextField.text!
-                self.present(UINavigationController(rootViewController: imageSeloctorController), animated: true, completion: nil)
+                self.showTeamImage(teamName: firstTextField.text!)
             } else {
                 return
             }
@@ -167,6 +161,13 @@ class HomeController: UITableViewController {
         
     }
     
+    func showTeamImage(teamName: String) {
+        let imageSeloctorController = TeamImageController()
+        imageSeloctorController.user = self.user
+        imageSeloctorController.teamName = teamName
+        show(imageSeloctorController, sender: self)
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return teams.count
     }
@@ -184,7 +185,7 @@ class HomeController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let controller = MemberController()
         controller.team = teams[indexPath.row]
-        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        show(controller, sender: self)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

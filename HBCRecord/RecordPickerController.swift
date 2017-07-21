@@ -30,19 +30,6 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
         return button
     }()
     
-    let cancelButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .purple
-        button.layer.cornerRadius = 5
-        button.layer.borderColor = UIColor.blue.cgColor
-        button.layer.borderWidth = 2
-        button.setTitle("CANCEL", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
-        button.addTarget(self, action: #selector(sendRecordCancel), for: .touchUpInside)
-        return button
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
@@ -55,17 +42,11 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         self.view.addSubview(recordPickerView)
         self.view.addSubview(addButton)
-        self.view.addSubview(cancelButton)
         
         addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -12).isActive = true
-        addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 64).isActive = true
+        addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         addButton.widthAnchor.constraint(equalToConstant: 64).isActive = true
         addButton.heightAnchor.constraint(equalToConstant: 36).isActive = true
-        
-        cancelButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -12).isActive = true
-        cancelButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -64).isActive = true
-        cancelButton.widthAnchor.constraint(equalToConstant: 64).isActive = true
-        cancelButton.heightAnchor.constraint(equalToConstant: 36).isActive = true
 
     }
     
@@ -73,6 +54,7 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
         switch rowInRecordArray {
         case 0:
             recordArray0.append(tempRecord)
+            self.dismiss(animated: true, completion: nil)
         case 1:
             recordArray1.append(tempRecord)
         case 2:
@@ -92,13 +74,7 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
         default:
             return
         }
-        let controller = RecordController(collectionViewLayout: UICollectionViewFlowLayout())
-        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
-    }
-    
-    func sendRecordCancel() {
-        let controller = RecordController(collectionViewLayout: UICollectionViewFlowLayout())
-        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

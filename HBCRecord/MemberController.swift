@@ -47,10 +47,8 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
         startButton.isEnabled = false
         startButton.backgroundColor = .gray
         
-        let backButton = UIBarButtonItem(title: "BACK", style: .done, target: self, action: #selector(backHome))
         let addButton = UIBarButtonItem(title: "ADD", style: .plain, target: self, action: #selector(toAddMemberController))
         navigationItem.title = self.team.teamName
-        navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = addButton
         
         tableView = UITableView()
@@ -318,7 +316,7 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func toRecordController() {
         let controller = RecordController(collectionViewLayout: UICollectionViewFlowLayout())
         controller.players = self.players
-        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        show(controller, sender: self)
     }
     
     func recoderAssign(order: Int, addPlayer: Player) {
@@ -345,17 +343,6 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
         default:
             return
         }
-//        if self.players.count != 0 {
-//            var deleteNumber = 0
-//            for i in 0...self.players.count - 1 {
-//                if self.players[i].name == addPlayer.name {
-//                    deleteNumber = i
-//                }
-//            }
-//            if deleteNumber != 0 {
-//                self.players.remove(at: deleteNumber)
-//            }
-//        }
         self.players.append(player)
     }
     

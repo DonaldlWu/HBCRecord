@@ -70,10 +70,7 @@ class AddMemberController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
-        let backButton = UIBarButtonItem(title: "BACK", style: .done, target: self, action: #selector(backHome))
-        navigationItem.leftBarButtonItem = backButton
-        
+               
         view.addSubview(profileImage)
         view.addSubview(numberText)
         view.addSubview(positionSegmentedControl)

@@ -27,8 +27,8 @@ class TeamImageController: AddMemberController {
         let ref = FIRDatabase.database().reference().child("Team")
         let teamRef = ref.childByAutoId()
         let tid = teamRef.key
-        let controller = MemberController()
-        controller.team.teamName = teamName
+//        let controller = MemberController()
+//        controller.team.teamName = teamName
         
         let imageName = NSUUID().uuidString
         let storageRef = FIRStorage.storage().reference().child("teamProfile_images").child("\(imageName).jpg")
@@ -44,11 +44,13 @@ class TeamImageController: AddMemberController {
                 }
             })
         }
+        let controller = HomeController()
         self.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(String(describing: self.teamName))
         profileImage.removeFromSuperview()
         profileImage.removeConstraints(profileImage.constraints)
         numberText.removeFromSuperview()

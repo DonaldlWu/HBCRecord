@@ -14,8 +14,8 @@ class Member: NSObject {
     var mamberProfileImageURL: String?
     var tid: String?
     var memberNumber: String?
-    var lineup = false
     var order: String?
+    var lineup = false
     
     func memberToPlayer(member: Member) -> Player {
         let player = Player(name: member.memberName, order: "", position: "", recordArray: [""], profileImage: member.mamberProfileImageURL)
