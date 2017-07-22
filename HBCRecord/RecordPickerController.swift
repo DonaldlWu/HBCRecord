@@ -95,7 +95,7 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
         controller.players = self.players
         controller.modalPresentationStyle = .overFullScreen
-        present(UINavigationController(rootViewController: controller), animated: false, completion: nil)
+        present(controller, animated: false, completion: nil)
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

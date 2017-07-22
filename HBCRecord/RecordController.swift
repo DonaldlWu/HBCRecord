@@ -17,6 +17,10 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.players.sort(by: { (first: Player , second: Player) -> Bool in
+            Int(first.order!)! < Int(second.order!)!
+        })
+        
         let button = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveData))
         navigationItem.rightBarButtonItem = button
         
@@ -79,7 +83,6 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
         controller.players = self.players
         controller.modalPresentationStyle = .overCurrentContext
         present(controller, animated: true, completion: nil)
-        
     }
     
     func uudoRecord(sender: UIButton) {

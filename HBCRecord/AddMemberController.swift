@@ -69,6 +69,9 @@ class AddMemberController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let backButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(backMemberController))
+        navigationItem.leftBarButtonItem = backButton
+        
         view.backgroundColor = .white
                
         view.addSubview(profileImage)
@@ -102,6 +105,10 @@ class AddMemberController: UIViewController {
         registerButton.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
         registerButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
+    }
+    
+    func backMemberController() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {

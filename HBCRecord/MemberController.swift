@@ -141,15 +141,15 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                    // fake data ---------------------------------
-                    for i in 0...8 {
-                        let member = Member()
-                        let player = member.memberToPlayer(member: self.members[i])
-                        self.players.append(player)
-                    }
-                    self.startButton.isEnabled = true
-                    self.startButton.backgroundColor = .cyan
-                    /// fake data ---------------------------------
+//                    // fake data ---------------------------------
+//                    for i in 0...8 {
+//                        let member = Member()
+//                        let player = member.memberToPlayer(member: self.members[i])
+//                        self.players.append(player)
+//                    }
+//                    self.startButton.isEnabled = true
+//                    self.startButton.backgroundColor = .cyan
+//                    /// fake data ---------------------------------
                 }
             }
         }, withCancel: nil)
@@ -314,13 +314,13 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func toAddMemberController() {
         let controller = AddMemberController()
         controller.team = self.team
+        //show(controller, sender: self)
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     
     func toRecordController() {
         let controller = GameTabBarController()
         controller.players = self.players
-        //present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         present(controller, animated: true, completion: nil)
     }
     
