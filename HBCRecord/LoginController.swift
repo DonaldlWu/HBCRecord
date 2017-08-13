@@ -138,7 +138,6 @@ class LoginController: AddMemberController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         profileImage.removeFromSuperview()
         profileImage.removeConstraints(profileImage.constraints)
         positionSegmentedControl.removeFromSuperview()

@@ -69,6 +69,7 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
         view.addSubview(startButton)
         setUpConstraint()
         fetchMember()
+
     }
     
     func setUpConstraint() {
