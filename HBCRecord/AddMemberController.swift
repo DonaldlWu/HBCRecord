@@ -30,8 +30,8 @@ class AddMemberController: UIViewController {
         return image
     }()
     
-    var positionSegmentedControl: UISegmentedControl = {
-        let sc = UISegmentedControl(items: ["P", "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF"])
+    lazy var positionSegmentedControl: UISegmentedControl = {
+        let sc = UISegmentedControl(items: self.positionArray)
         sc.selectedSegmentIndex = 0
         sc.translatesAutoresizingMaskIntoConstraints = false
         return sc

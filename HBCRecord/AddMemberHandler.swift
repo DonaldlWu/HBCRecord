@@ -31,6 +31,7 @@ extension AddMemberController: UIImagePickerControllerDelegate, UINavigationCont
         if let selectedImage = selectedImageFromPicker {
             profileImage.image = selectedImage
         }
+        
         dismiss(animated: true, completion: nil)
         
     }

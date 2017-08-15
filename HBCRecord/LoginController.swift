@@ -15,6 +15,13 @@ class LoginController: AddMemberController {
     var profileImageTopAnchor: NSLayoutConstraint?
     var emailTopAnchor: NSLayoutConstraint?
     
+    let myIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.color = .black
+        return indicator
+    }()
+    
     let loginSegmentedControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["Login", "Register"])
         sc.selectedSegmentIndex = 0
@@ -57,6 +64,12 @@ class LoginController: AddMemberController {
         }
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
+                // Indicator stop
+                self.myIndicator.stopAnimating()
+                print(error!)
+                if let errorMessage = error?.localizedDescription {
+                    self.loginFaild(message: errorMessage)
+                }
                 return
             }
             self.homeController?.fetchUserSetNavBarTitle()
@@ -64,11 +77,45 @@ class LoginController: AddMemberController {
         })
     }
     
+    func loginFaild(message: String) {
+        var popMessage = "登入失敗"
+        switch message {
+        case "The email address is badly formatted.":
+            popMessage = "email格式錯誤"
+        case "The password is invalid or the user does not have a password.":
+            popMessage = "密碼錯誤"
+        case "There is no user record corresponding to this identifier. The user may have been deleted.":
+            popMessage = "帳號不存在"
+        default:
+            return
+        }
+        let controller = UIAlertController(title: popMessage, message: nil, preferredStyle: .alert)
+        let understandButton = UIAlertAction(title: "知道了", style: .default, handler: nil)
+        controller.addAction(understandButton)
+        self.present(controller, animated: true, completion: nil)
+    }
+    
     func handleLoginRegister() {
+        // Login or Register
         if loginSegmentedControl.selectedSegmentIndex == 0 {
-            handleLogin()
+            if emailText.text!.isEmpty || passwordText.text!.isEmpty {
+                emailText.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSForegroundColorAttributeName: UIColor.red])
+                passwordText.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSForegroundColorAttributeName: UIColor.red])
+            } else {
+                // Indicator start
+                myIndicator.startAnimating()
+                handleLogin()
+            }
         } else {
-            handleRegister()
+            if emailText.text!.isEmpty || passwordText.text!.isEmpty || nameText.text!.isEmpty {
+                emailText.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSForegroundColorAttributeName: UIColor.red])
+                passwordText.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSForegroundColorAttributeName: UIColor.red])
+                nameText.attributedPlaceholder = NSAttributedString(string: "name", attributes: [NSForegroundColorAttributeName: UIColor.red])
+            } else {
+                // Indicator start
+                myIndicator.startAnimating()
+                handleRegister()
+            }
         }
     }
     
@@ -81,6 +128,11 @@ class LoginController: AddMemberController {
             
             if error != nil {
                 print(error!)
+                if let errorMessage = error?.localizedDescription {
+                    self.loginFaild(message: errorMessage)
+                }
+                // indicator stop
+                self.myIndicator.stopAnimating()
                 return
             }
             
@@ -151,6 +203,7 @@ class LoginController: AddMemberController {
         view.addSubview(emailText)
         view.addSubview(passwordText)
         view.addSubview(loginButton)
+        view.addSubview(myIndicator)
         nameText.isHidden = true
         
         profileImageTopAnchor = profileImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 64)
@@ -184,6 +237,11 @@ class LoginController: AddMemberController {
         loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 22).isActive = true
         loginButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -22).isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        myIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        myIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        myIndicator.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        myIndicator.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
     }
 
