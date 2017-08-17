@@ -19,6 +19,7 @@ var recordArray7:Array<String> = []
 var recordArray8:Array<String> = []
 
 struct Player {
+    var mid: String?
     var name: String?
     var order: String?
     var position: String?

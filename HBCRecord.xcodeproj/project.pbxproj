@@ -10,6 +10,7 @@
 		132FE70A297A0ECFC5781A90 /* Pods_HBCRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E85E358BDADAC9FCDBB47067 /* Pods_HBCRecord.framework */; };
 		3F0817A52039B51F42C9D0E6 /* Pods_HBCRecordTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A4346733731E769C020E27 /* Pods_HBCRecordTests.framework */; };
 		C0145DE51F02A2B8005651B3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0145DE41F02A2B8005651B3 /* Player.swift */; };
+		C04157561F4568DE00EE956E /* RecordConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04157551F4568DE00EE956E /* RecordConversion.swift */; };
 		C0449ADF1F1C03490014F48E /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0449ADE1F1C03490014F48E /* TeamCell.swift */; };
 		C0449AE11F1C047A0014F48E /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0449AE01F1C047A0014F48E /* MemberCell.swift */; };
 		C0449AE31F1C144B0014F48E /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0449AE21F1C144B0014F48E /* Member.swift */; };
@@ -51,6 +52,7 @@
 		4B1EF1B40D9FE7748F64AB0E /* Pods-HBCRecord.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBCRecord.release.xcconfig"; path = "Pods/Target Support Files/Pods-HBCRecord/Pods-HBCRecord.release.xcconfig"; sourceTree = "<group>"; };
 		655FD671920D82C37CB7B274 /* Pods-HBCRecord.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBCRecord.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HBCRecord/Pods-HBCRecord.debug.xcconfig"; sourceTree = "<group>"; };
 		C0145DE41F02A2B8005651B3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		C04157551F4568DE00EE956E /* RecordConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordConversion.swift; sourceTree = "<group>"; };
 		C0449ADE1F1C03490014F48E /* TeamCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
 		C0449AE01F1C047A0014F48E /* MemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		C0449AE21F1C144B0014F48E /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				C06535291F0D079200BCC12F /* Team.swift */,
 				C0541EA31F19C18500FD50E2 /* User.swift */,
 				C0449AE21F1C144B0014F48E /* Member.swift */,
+				C04157551F4568DE00EE956E /* RecordConversion.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -189,9 +192,9 @@
 				C0F19E501F098C6000E97041 /* HomeController.swift */,
 				C065352B1F0D08C600BCC12F /* MemberController.swift */,
 				C08DF5381F10F40600D658B8 /* AddMemberController.swift */,
-				C0F19E4E1F0661FC00E97041 /* RecordPickerController.swift */,
 				C0541EA51F1A944800FD50E2 /* TeamImageController.swift */,
 				C067E0091EFFE8EC00F830CB /* RecordController.swift */,
+				C0F19E4E1F0661FC00E97041 /* RecordPickerController.swift */,
 				C0B451341F2232900073B9F5 /* GameTabBarController.swift */,
 				C0B451361F2234AF0073B9F5 /* GameStateController.swift */,
 			);
@@ -430,6 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C04157561F4568DE00EE956E /* RecordConversion.swift in Sources */,
 				C0449ADF1F1C03490014F48E /* TeamCell.swift in Sources */,
 				C0541EA41F19C18500FD50E2 /* User.swift in Sources */,
 				C07FEE851F13CB1E00663B6C /* AddMemberHandler.swift in Sources */,

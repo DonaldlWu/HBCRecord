@@ -10,8 +10,8 @@ import UIKit
 
 class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    let recordtypeArray = ["H", "BB", "E", "K", "SF"]
-    let recordDetialArray = [["H", "2B", "3B", "HR"], ["BB", "HBP"], ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9"], ["K", "K"], ["SF", "SH"]]
+    let recordtypeArray = ["H", "BB", "E", "K", "SF", "RBI" ,"R", "OUT"]
+    let recordDetialArray = [["H", "2B", "3B", "HR"], ["BB", "HBP"], ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9"], ["K", "K"], ["SF", "SH"], ["1RBI", "2RBI", "3RBI", "4RBI"], ["(R)"], ["GO", "FO", "DP"]]
     
     var players = [Player]()
     var recordPickerView: UIPickerView!

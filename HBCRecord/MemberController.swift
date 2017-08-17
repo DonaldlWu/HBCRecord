@@ -44,8 +44,6 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.viewDidLoad()
         
         view.backgroundColor = .white
-//        startButton.isEnabled = false
-//        startButton.backgroundColor = .gray
         
         let addButton = UIBarButtonItem(title: "ADD", style: .plain, target: self, action: #selector(toAddMemberController))
         navigationItem.title = self.team.teamName
@@ -58,6 +56,7 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.allowsSelection = false
         view.addSubview(tableView)
         
         self.refreshControl = UIRefreshControl()
@@ -94,7 +93,7 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
         cancel.backgroundColor = .red
 
         let checkLineup = UITableViewRowAction(style: .normal, title: "Line Up") { action, index in
-            let tempPlayer = Player(name: cell?.nameLabel.text, order: "", position: cell?.lineupSelectButton.titleLabel?.text, recordArray: [], profileImage: cell?.detailTextLabel?.text)
+            let tempPlayer = Player(mid: nil, name: cell?.nameLabel.text, order: "", position: cell?.lineupSelectButton.titleLabel?.text, recordArray: [], profileImage: cell?.detailTextLabel?.text)
             if cell?.lineupLabel.isHidden == true {
                 self.lineupOrderSet(indexPath: indexPath, tempPlayer: tempPlayer)
             } else {
@@ -136,6 +135,7 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let member = Member()
                 member.setValuesForKeys(dictionary)
+                member.mid = snapshot.key
                 if member.tid == self.team.tid {
                     self.members.append(member)
                 }
@@ -233,6 +233,8 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
         for order in orderNumberArray {
             let order = UIAlertAction(title: orderArray[Int(order)!], style: .default, handler: {
                 alert -> Void in
+                
+                // Before user choice order
                 if self.players.count == 9 {
                     self.startButton.isEnabled = true
                     self.startButton.backgroundColor = .cyan
@@ -240,12 +242,14 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
                     self.startButton.isEnabled = false
                     self.startButton.backgroundColor = .gray
                     var addPlayer = tempPlayer
+                    addPlayer.mid = self.members[indexPath.row].mid
                     addPlayer.order = order
                     self.recoderAssign(order: Int(order)!, addPlayer: addPlayer)
                     self.members[indexPath.row].lineup = true
                     self.members[indexPath.row].order = order
                 }
                 
+                // After user choice order
                 DispatchQueue.main.async {
                     self.tableView.reloadRows(at: [indexPath], with: .automatic)
                     if self.players.count == 9 {

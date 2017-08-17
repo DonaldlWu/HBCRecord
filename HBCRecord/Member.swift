@@ -9,6 +9,7 @@
 import UIKit
 
 class Member: NSObject {
+    var mid: String?
     var memberName: String?
     var position: String?
     var mamberProfileImageURL: String?
@@ -18,7 +19,8 @@ class Member: NSObject {
     var lineup = false
     
     func memberToPlayer(member: Member) -> Player {
-        let player = Player(name: member.memberName, order: "1", position: "1", recordArray: [], profileImage: member.mamberProfileImageURL)
+        let player = Player(mid: nil, name: member.memberName, order: "1", position: "1", recordArray: [], profileImage: member.mamberProfileImageURL)
         return player
     }
 }
+    

@@ -36,10 +36,11 @@ class HomeController: UITableViewController {
         FIRDatabase.database().reference().child("Team").observe(.childAdded, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let team = Team()
-                team.tid = String(snapshot.key)
-                team.uid = dictionary["uid"] as? String
-                team.teamName = dictionary["TeamName"] as? String
-                team.teamProfileImageURL = dictionary["teamProfileImageURL"] as? String
+                team.tid = snapshot.key
+                team.setValuesForKeys(dictionary)
+//                team.uid = dictionary["uid"] as? String
+//                team.teamName = dictionary["TeamName"] as? String
+//                team.teamProfileImageURL = dictionary["teamProfileImageURL"] as? String
                 if team.uid == self.user.uid {
                     self.teams.append(team)
                 }
@@ -70,7 +71,7 @@ class HomeController: UITableViewController {
         }
         FIRDatabase.database().reference().child("User").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if let  dictionary = snapshot.value as? [String: Any] {
-                // because uid is not in dictionary, so we can't directly update user's data by setValesForKeys, it will crash
+                // To reconstruct User(), profileImageURL <--> userProfileImageURL
                 // self.user.setValuesForKeys(dictionary)
                 self.user.name = dictionary["name"] as? String
                 self.user.email = dictionary["email"] as? String

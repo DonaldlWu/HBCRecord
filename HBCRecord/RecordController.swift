@@ -37,7 +37,17 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     func saveData() {
-        print("SAVE")
+        var recordDict: Dictionary<String, Any> = [:]
+        for record in players {
+            print("--------------------------------------------------")
+            guard let mid = record.mid else {
+                return
+            }
+            let recordValue = recordConversion(player: record)
+            recordDict.updateValue(recordValue, forKey: mid)
+            print("--------------------------------------------------")
+        }
+        print(recordDict)
     }
     
     func didRotation() {
@@ -57,7 +67,7 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return players.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

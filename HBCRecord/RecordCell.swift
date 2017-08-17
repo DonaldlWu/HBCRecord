@@ -55,6 +55,7 @@ class RecordCell: UICollectionViewCell {
         text.layer.borderWidth = 3
         text.isScrollEnabled = false
         text.translatesAutoresizingMaskIntoConstraints = false
+        text.isEditable = false
         return text
     }()
     

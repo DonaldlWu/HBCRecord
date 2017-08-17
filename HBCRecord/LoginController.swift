@@ -81,7 +81,7 @@ class LoginController: AddMemberController {
         var popMessage = "登入失敗"
         switch message {
         case "The email address is badly formatted.":
-            popMessage = "email格式錯誤"
+            popMessage = "電子郵件格式錯誤"
         case "The password is invalid or the user does not have a password.":
             popMessage = "密碼錯誤"
         case "There is no user record corresponding to this identifier. The user may have been deleted.":
@@ -95,6 +95,7 @@ class LoginController: AddMemberController {
         self.present(controller, animated: true, completion: nil)
     }
     
+
     func handleLoginRegister() {
         // Login or Register
         if loginSegmentedControl.selectedSegmentIndex == 0 {
@@ -190,6 +191,8 @@ class LoginController: AddMemberController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Add subView & Layout
         profileImage.removeFromSuperview()
         profileImage.removeConstraints(profileImage.constraints)
         positionSegmentedControl.removeFromSuperview()
