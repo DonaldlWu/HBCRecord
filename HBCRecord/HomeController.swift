@@ -8,12 +8,14 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class HomeController: UITableViewController {
     
     let cellId = "cellId"
     var teams = [Team]()
     var user = User()
+    var players = [Player]()
     
     override var prefersStatusBarHidden: Bool {
         return false
@@ -29,7 +31,53 @@ class HomeController: UITableViewController {
         let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.leftBarButtonItem = logoutButton
         checkUserIsLogin()
+        checkIsGaming()
         
+    }
+    
+    func checkIsGaming() {
+        guard let gamingStatus = UserDefaults.standard.string(forKey: "gaming") else {
+            return
+        }
+        if gamingStatus == "true" {
+            getDataFromCoreData()
+        } else if gamingStatus == "false" {
+            return
+        }
+    }
+    
+    func getDataFromCoreData() {
+        let appDel = UIApplication.shared.delegate as? AppDelegate
+        guard let context = appDel?.persistentContainer.viewContext else { return }
+        do {
+            let result = try context.fetch(PlayingPlayer.fetchRequest())
+            for item in result {
+                let thisPlayer = item as? PlayingPlayer
+                // Reconstruct by using map
+                
+                if thisPlayer?.recordArray != nil {
+                    let unarchiveObject = NSKeyedUnarchiver.unarchiveObject(with: (thisPlayer?.recordArray as NSData?)! as Data)
+                    let arrayObject = unarchiveObject as AnyObject! as! Array<String>
+                    let array = arrayObject
+                    self.players.append(Player(mid: thisPlayer?.mid, name: thisPlayer?.name, order: thisPlayer?.order, position: thisPlayer?.position, recordArray: array, profileImage: thisPlayer?.profileImage))
+                } else {
+                    self.players.append(Player(mid: thisPlayer?.mid, name: thisPlayer?.name, order: thisPlayer?.order, position: thisPlayer?.position, recordArray: [], profileImage: thisPlayer?.profileImage))
+                }
+            }
+        } catch {
+            
+        }
+        if players.count >= 9 {
+            goToGameTabBarController()
+        } else {
+            return
+        }
+    }
+    
+    func goToGameTabBarController() {
+        let controller = GameTabBarController()
+        controller.players = self.players
+        present(controller, animated: true, completion: nil)
     }
     
     func fetchTeam() {
@@ -59,10 +107,6 @@ class HomeController: UITableViewController {
         } else {
             fetchUserSetNavBarTitle()
         }
-    }
-    
-    func checkIsGaming() {
-        
     }
     
     func fetchUserSetNavBarTitle() {

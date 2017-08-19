@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class GameStateController: UIViewController {
     
@@ -18,8 +19,26 @@ class GameStateController: UIViewController {
     }
     
     func backHome() {
+        // Delete all data from coreData
+        deleteAllRecords()
+        UserDefaults.standard.setValue("false", forKey: "gaming")
         let controller = HomeController()
         self.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+    }
+    
+    func deleteAllRecords() {
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let context = delegate.persistentContainer.viewContext
+        
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "PlayingPlayer")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch {
+            print ("There was an error")
+        }
     }
     
     

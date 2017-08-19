@@ -48,6 +48,7 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
             print("--------------------------------------------------")
         }
         print(recordDict)
+        
     }
     
     func didRotation() {
@@ -96,6 +97,7 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     func uudoRecord(sender: UIButton) {
+        
         switch sender.tag {
         case 0:
             if self.players[0].recordArray.count != 0 {

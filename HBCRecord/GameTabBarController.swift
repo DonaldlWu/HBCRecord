@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
     
@@ -17,10 +18,56 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
         delegate = self
     }
     
+    func saveToCoreData() {
+        let appDel = UIApplication.shared.delegate as? AppDelegate
+        guard let context = appDel?.persistentContainer.viewContext else { return }
+        do {
+            let results = try context.fetch(PlayingPlayer.fetchRequest())
+            
+            // If CoreData already have data
+            if results.count >= 9 {
+                for (i,item) in results.enumerated() {
+                    let editPlayer = item as? PlayingPlayer
+                    if editPlayer?.name == self.players[i].name {
+                        editPlayer?.mid = self.players[i].mid
+                        editPlayer?.name = self.players[i].name
+                        editPlayer?.position = self.players[i].position
+                        editPlayer?.profileImage = self.players[i].profileImage
+                        let array = self.players[i].recordArray
+                        let data = NSKeyedArchiver.archivedData(withRootObject: array)
+                        editPlayer?.recordArray = data as NSData
+                        appDel?.saveContext()
+                    }
+                }
+                
+            // No Data
+            } else {
+                for savedPlayer in self.players {
+                    let player = PlayingPlayer(context: context)
+                    player.mid = savedPlayer.mid
+                    player.name = savedPlayer.name
+                    player.position = savedPlayer.position
+                    player.order = savedPlayer.order
+                    player.profileImage = savedPlayer.profileImage
+                    let array = savedPlayer.recordArray
+                    let data = NSKeyedArchiver.archivedData(withRootObject: array)
+                    player.recordArray = data as NSData
+                    appDel?.saveContext()
+                }
+            }
+        } catch {
+            
+        }
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let recordController = RecordController(collectionViewLayout: UICollectionViewFlowLayout())
         recordController.players = self.players
+        saveToCoreData()
+        // Set game staus
+        UserDefaults.standard.setValue("true", forKey: "gaming")
         let itemOne = UINavigationController(rootViewController: recordController)
         let itemTwo = UINavigationController(rootViewController: GameStateController())
         let item1 = itemOne
