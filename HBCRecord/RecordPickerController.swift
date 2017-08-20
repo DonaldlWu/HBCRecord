@@ -71,28 +71,7 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     func sendRecordBack() {
         let controller = GameTabBarController()
-        switch rowInRecordArray {
-        case 0:
-            self.players[0].recordArray.append(tempRecord)
-        case 1:
-            self.players[1].recordArray.append(tempRecord)
-        case 2:
-            self.players[2].recordArray.append(tempRecord)
-        case 3:
-            self.players[3].recordArray.append(tempRecord)
-        case 4:
-            self.players[4].recordArray.append(tempRecord)
-        case 5:
-            self.players[5].recordArray.append(tempRecord)
-        case 6:
-            self.players[6].recordArray.append(tempRecord)
-        case 7:
-            self.players[7].recordArray.append(tempRecord)
-        case 8:
-            self.players[8].recordArray.append(tempRecord)
-        default:
-            return
-        }
+        self.players[rowInRecordArray].recordArray.append(tempRecord)
         controller.players = self.players
         controller.modalPresentationStyle = .overFullScreen
         present(controller, animated: false, completion: nil)

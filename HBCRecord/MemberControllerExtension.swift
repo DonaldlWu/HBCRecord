@@ -36,7 +36,6 @@ extension MemberController {
     func toAddMemberController() {
         let controller = AddMemberController()
         controller.team = self.team
-        //show(controller, sender: self)
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     
@@ -46,41 +45,14 @@ extension MemberController {
         present(controller, animated: true, completion: nil)
     }
     
-    func recoderAssign(order: Int, addPlayer: Player) {
-        var player = addPlayer
-        switch order {
-        case 0:
-            player.recordArray = recordArray0
-        case 1:
-            player.recordArray = recordArray1
-        case 2:
-            player.recordArray = recordArray2
-        case 3:
-            player.recordArray = recordArray3
-        case 4:
-            player.recordArray = recordArray4
-        case 5:
-            player.recordArray = recordArray5
-        case 6:
-            player.recordArray = recordArray6
-        case 7:
-            player.recordArray = recordArray7
-        case 8:
-            player.recordArray = recordArray8
-        default:
-            return
-        }
-        self.players.append(player)
-    }
-    
     func setUpConstraint() {
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -72).isActive = true
         startButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 12).isActive = true
         startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        startButton.widthAnchor.constraint(equalToConstant: 72).isActive = true
-        startButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        startButton.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        startButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     func lineupCancel(indexPath: IndexPath, name: String) {
@@ -211,24 +183,24 @@ extension MemberController {
                 alert -> Void in
                 
                 // Before user choice order
-                if self.players.count == 9 {
+                if self.players.count >= 9 {
                     self.startButton.isEnabled = true
                     self.startButton.backgroundColor = .cyan
                 } else {
                     self.startButton.isEnabled = false
                     self.startButton.backgroundColor = .gray
-                    var addPlayer = tempPlayer
-                    addPlayer.mid = self.members[indexPath.row].mid
-                    addPlayer.order = order
-                    self.recoderAssign(order: Int(order)!, addPlayer: addPlayer)
-                    self.members[indexPath.row].lineup = true
-                    self.members[indexPath.row].order = order
                 }
+                var addPlayer = tempPlayer
+                addPlayer.mid = self.members[indexPath.row].mid
+                addPlayer.order = order
+                self.players.append(addPlayer)
+                self.members[indexPath.row].lineup = true
+                self.members[indexPath.row].order = order
                 
                 // After user choice order
                 DispatchQueue.main.async {
                     self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                    if self.players.count == 9 {
+                    if self.players.count >= 9 {
                         self.startButton.isEnabled = true
                         self.startButton.backgroundColor = .cyan
                     } else {

@@ -9,11 +9,11 @@
 import UIKit
 import Firebase
 
-let orderArray = ["一棒", "二棒", "三棒", "四棒", "五棒", "六棒", "七棒", "八棒", "九棒"]
+let orderArray = ["一棒", "二棒", "三棒", "四棒", "五棒", "六棒", "七棒", "八棒", "九棒", "BN"]
 
 class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var orderNumberArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+    var orderNumberArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     var players = [Player]()
     var members = [Member]()
     var teamTitle: String?
@@ -29,10 +29,8 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
     lazy var startButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .purple
-        button.layer.cornerRadius = 5
-        button.layer.borderColor = UIColor.blue.cgColor
-        button.layer.borderWidth = 2
+        button.backgroundColor = .gray
+        button.isEnabled = false
         button.setTitle("START", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
         button.addTarget(self, action: #selector(toRecordController), for: .touchUpInside)
