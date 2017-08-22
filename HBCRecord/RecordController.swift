@@ -24,14 +24,12 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
         let button = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveData))
         navigationItem.rightBarButtonItem = button
         
-        NotificationCenter.default.addObserver(self, selector: #selector(didRotation), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
-        
         collectionView?.backgroundColor = .white
         collectionView?.register(RecordCell.self, forCellWithReuseIdentifier: cellId)
         self.setNeedsStatusBarAppearanceUpdate()
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Reloading")
+        self.refreshControl.attributedTitle = NSAttributedString(string: "RELOADING")
         self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         collectionView!.addSubview(refreshControl)
     }
@@ -51,10 +49,6 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
         
     }
     
-    func didRotation() {
-        collectionView?.reloadData()
-    }
-    
     func refresh(sender:AnyObject)
     {
         DispatchQueue.main.async {
@@ -65,6 +59,10 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     
     override var prefersStatusBarHidden : Bool {
         return false
+    }
+    
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -97,55 +95,16 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     func uudoRecord(sender: UIButton) {
-        
-        switch sender.tag {
-        case 0:
-            if self.players[0].recordArray.count != 0 {
-                self.players[0].recordArray.removeLast()
-            }
-        case 1:
-            if self.players[1].recordArray.count != 0 {
-                self.players[1].recordArray.removeLast()
-            }
-        case 2:
-            if self.players[2].recordArray.count != 0 {
-                self.players[2].recordArray.removeLast()
-            }
-        case 3:
-            if self.players[3].recordArray.count != 0 {
-                self.players[3].recordArray.removeLast()
-            }
-        case 4:
-            if self.players[4].recordArray.count != 0 {
-                self.players[4].recordArray.removeLast()
-            }
-        case 5:
-            if self.players[5].recordArray.count != 0 {
-                self.players[5].recordArray.removeLast()
-            }
-        case 6:
-            if self.players[6].recordArray.count != 0 {
-                self.players[6].recordArray.removeLast()
-            }
-        case 7:
-            if self.players[7].recordArray.count != 0 {
-                self.players[7].recordArray.removeLast()
-            }
-        case 8:
-            if self.players[8].recordArray.count != 0 {
-                self.players[8].recordArray.removeLast()
-            }
-        default:
-            return
+        if self.players[sender.tag].recordArray.count != 0 {
+            self.players[sender.tag].recordArray.removeLast()
+            let controller = GameTabBarController()
+            controller.players = self.players
+            present(controller, animated: false, completion: nil)
         }
-        DispatchQueue.main.async {
-            self.collectionView?.reloadData()
-        }
-
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width, height: 80)
+        return CGSize(width: self.view.frame.width, height: 125)
     }
     
     override func didReceiveMemoryWarning() {

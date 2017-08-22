@@ -69,6 +69,12 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
 
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let controller = GameTabBarController()
+        controller.players = self.players
+        present(controller, animated: false, completion: nil)
+    }
+    
     func sendRecordBack() {
         let controller = GameTabBarController()
         self.players[rowInRecordArray].recordArray.append(tempRecord)

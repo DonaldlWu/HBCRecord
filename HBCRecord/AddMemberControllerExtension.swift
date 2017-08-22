@@ -17,8 +17,8 @@ extension AddMemberController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        NotificationCenter.default.addObserver(self, selector: #selector(changekeyboardSizeValue), name: NSNotification.Name.UIKeyboardDidChangeFrame, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(changekeyboardSizeValue), name: NSNotification.Name.UIKeyboardDidChangeFrame, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
     
     func registerNewPlayer() {
@@ -52,17 +52,17 @@ extension AddMemberController {
         view.endEditing(true)
     }
     
-    func changekeyboardSizeValue(notification: NSNotification) {
-        if UIDevice.current.orientation != .portrait {
-            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                if self.view.frame.origin.y != 0 {
-                    self.view.frame.origin.y += keyboardSize.height
-                } else {
-                    self.view.frame.origin.y -= keyboardSize.height
-                }
-            }
-        }
-    }
+//    func changekeyboardSizeValue(notification: NSNotification) {
+//        if UIDevice.current.orientation != .portrait {
+//            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//                if self.view.frame.origin.y != 0 {
+//                    self.view.frame.origin.y += keyboardSize.height
+//                } else {
+//                    self.view.frame.origin.y -= keyboardSize.height
+//                }
+//            }
+//        }
+//    }
     
     func keyboardDidHide(notification: NSNotification) {
         if UIDevice.current.orientation != .portrait {

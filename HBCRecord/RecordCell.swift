@@ -37,12 +37,14 @@ class RecordCell: UICollectionViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.backgroundColor = .cyan
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.text = "Yohoho"
-        label.layer.borderColor = UIColor.cyan.cgColor
-        label.layer.borderWidth = 3
+        label.textColor = .white
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 16
         return label
     }()
     
@@ -62,10 +64,10 @@ class RecordCell: UICollectionViewCell {
     lazy var sentButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .purple
+        button.backgroundColor = .cyan
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 3
         button.layer.cornerRadius = 5
-        button.layer.borderColor = UIColor.blue.cgColor
-        button.layer.borderWidth = 2
         button.setTitle("UPDATE", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
         return button
@@ -74,10 +76,10 @@ class RecordCell: UICollectionViewCell {
     lazy var undoButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .orange
+        button.backgroundColor = .gray
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 3
         button.layer.cornerRadius = 5
-        button.layer.borderColor = UIColor.blue.cgColor
-        button.layer.borderWidth = 2
         button.setTitle("UNDO", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
         return button
@@ -96,29 +98,29 @@ class RecordCell: UICollectionViewCell {
         profileImage.heightAnchor.constraint(equalToConstant: 64).isActive = true
         profileImage.widthAnchor.constraint(equalToConstant: 64).isActive = true
         
-        sentButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -18).isActive = true
-        sentButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12).isActive = true
-        sentButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        sentButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        
-        undoButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 18).isActive = true
-        undoButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12).isActive = true
-        undoButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        undoButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        
-        recordText.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 12).isActive = true
-        recordText.rightAnchor.constraint(equalTo: sentButton.leftAnchor, constant: -12).isActive = true
-        recordText.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 12).isActive = true
-        recordText.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        
         orderLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor).isActive = true
-        orderLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        orderLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
         orderLabel.leftAnchor.constraint(equalTo: profileImage.leftAnchor).isActive = true
         orderLabel.rightAnchor.constraint(equalTo: profileImage.rightAnchor).isActive = true
         
-        nameLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        sentButton.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        sentButton.topAnchor.constraint(equalTo: orderLabel.bottomAnchor).isActive = true
+        sentButton.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        sentButton.widthAnchor.constraint(equalToConstant: self.frame.size.width / 2).isActive = true
+        
+        undoButton.leftAnchor.constraint(equalTo: sentButton.rightAnchor).isActive = true
+        undoButton.topAnchor.constraint(equalTo: sentButton.topAnchor).isActive = true
+        undoButton.bottomAnchor.constraint(equalTo: sentButton.bottomAnchor).isActive = true
+        undoButton.widthAnchor.constraint(equalToConstant: self.frame.size.width / 2).isActive = true
+        
+        recordText.leftAnchor.constraint(equalTo: profileImage.rightAnchor, constant: 12).isActive = true
+        recordText.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12).isActive = true
+        recordText.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 8).isActive = true
+        recordText.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        
+        nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 12).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: recordText.leftAnchor).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: recordText.topAnchor).isActive = true
+        nameLabel.heightAnchor.constraint(equalToConstant: 32).isActive = true
         nameLabel.widthAnchor.constraint(equalToConstant: 84).isActive = true
     }
     
