@@ -11,6 +11,7 @@ import UIKit
 class RecordController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "CellId"
+    let footerId = "footerId"
     var players = [Player]()
     var refreshControl: UIRefreshControl!
     
@@ -26,6 +27,7 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
         
         collectionView?.backgroundColor = .white
         collectionView?.register(RecordCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: footerId)
         self.setNeedsStatusBarAppearanceUpdate()
         
         self.refreshControl = UIRefreshControl()
@@ -62,16 +64,30 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return players.count
+        if section == 0 {
+            return 9
+        } else {
+            return players.count - 9
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? RecordCell
-        let player = players[indexPath.item]
+        let indexPath = indexPath
+        if indexPath.section == 0 {
+            return cellCreate(indexPath: indexPath, number: indexPath.item)
+        } else {
+            return cellCreate(indexPath: indexPath, number: indexPath.item + 9)
+        }
+        
+    }
+    
+    func cellCreate(indexPath: IndexPath, number: Int) -> RecordCell {
+        let cell = collectionView?.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? RecordCell
+        let player = players[number]
         cell?.sentButton.tag = indexPath.item
         cell?.undoButton.tag = indexPath.item
         cell?.sentButton.addTarget(self, action: #selector(sentRecord(sender:)), for: .touchUpInside)
@@ -105,6 +121,16 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.width, height: 125)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerId, for: indexPath)
+        footer.backgroundColor = .cyan
+        return footer
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 12)
     }
     
     override func didReceiveMemoryWarning() {

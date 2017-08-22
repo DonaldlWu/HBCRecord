@@ -9,6 +9,7 @@
 import UIKit
 
 class RecordCell: UICollectionViewCell {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
