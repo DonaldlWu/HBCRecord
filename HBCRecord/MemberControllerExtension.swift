@@ -39,6 +39,29 @@ extension MemberController {
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
     
+    func selectTopOrBottom() {
+        guard let name = self.team.teamName else {
+            return
+        }
+        UserDefaults.standard.setValue("\(name)", forKey: "TeamName")
+        let alertController = UIAlertController(title: nil, message: "攻守選擇", preferredStyle: .actionSheet)
+        let top = UIAlertAction(title: "先攻", style: .default, handler: {
+            alert -> Void in
+            UserDefaults.standard.setValue("先攻", forKey: "TopOrBottom")
+            self.toRecordController()
+        })
+        
+        let bottom = UIAlertAction(title: "先守", style: .default, handler: {
+            alert -> Void in
+            UserDefaults.standard.setValue("先守", forKey: "TopOrBottom")
+            self.toRecordController()
+        })
+        
+        alertController.addAction(top)
+        alertController.addAction(bottom)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     func toRecordController() {
         let controller = GameTabBarController()
         controller.players = self.players

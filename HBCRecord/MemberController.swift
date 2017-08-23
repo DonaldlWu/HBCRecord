@@ -33,7 +33,7 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
         button.isEnabled = false
         button.setTitle("START", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
-        button.addTarget(self, action: #selector(toRecordController), for: .touchUpInside)
+        button.addTarget(self, action: #selector(selectTopOrBottom), for: .touchUpInside)
         let controller = RecordController()
         return button
     }()

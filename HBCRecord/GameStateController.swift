@@ -32,9 +32,12 @@ class GameStateController: UIViewController {
         
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "PlayingPlayer")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        let deleteOppFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "OpponentPlayer")
+        let deleteOppRequest = NSBatchDeleteRequest(fetchRequest: deleteOppFetch)
         
         do {
             try context.execute(deleteRequest)
+            try context.execute(deleteOppRequest)
             try context.save()
         } catch {
             print ("There was an error")

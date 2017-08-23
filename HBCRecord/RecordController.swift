@@ -19,6 +19,11 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let topOrBottomStatus = UserDefaults.standard.string(forKey: "TopOrBottom"), let teamName = UserDefaults.standard.string(forKey: "TeamName") else {
+            return
+        }
+        navigationItem.title = "\(topOrBottomStatus): \(teamName)"
+        
         self.players.sort(by: { (first: Player , second: Player) -> Bool in
             Int(first.order!)! < Int(second.order!)!
         })
