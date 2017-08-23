@@ -11,6 +11,7 @@
 		3F0817A52039B51F42C9D0E6 /* Pods_HBCRecordTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A4346733731E769C020E27 /* Pods_HBCRecordTests.framework */; };
 		C0145DE51F02A2B8005651B3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0145DE41F02A2B8005651B3 /* Player.swift */; };
 		C03DFE3A1F4D4AF3009CB8E4 /* OpponentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03DFE391F4D4AF3009CB8E4 /* OpponentController.swift */; };
+		C03DFE3C1F4D602D009CB8E4 /* CoreDataFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03DFE3B1F4D602D009CB8E4 /* CoreDataFunction.swift */; };
 		C04157561F4568DE00EE956E /* RecordConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04157551F4568DE00EE956E /* RecordConversion.swift */; };
 		C0449ADF1F1C03490014F48E /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0449ADE1F1C03490014F48E /* TeamCell.swift */; };
 		C0449AE11F1C047A0014F48E /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0449AE01F1C047A0014F48E /* MemberCell.swift */; };
@@ -58,6 +59,7 @@
 		655FD671920D82C37CB7B274 /* Pods-HBCRecord.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBCRecord.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HBCRecord/Pods-HBCRecord.debug.xcconfig"; sourceTree = "<group>"; };
 		C0145DE41F02A2B8005651B3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		C03DFE391F4D4AF3009CB8E4 /* OpponentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpponentController.swift; sourceTree = "<group>"; };
+		C03DFE3B1F4D602D009CB8E4 /* CoreDataFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFunction.swift; sourceTree = "<group>"; };
 		C04157551F4568DE00EE956E /* RecordConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordConversion.swift; sourceTree = "<group>"; };
 		C0449ADE1F1C03490014F48E /* TeamCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
 		C0449AE01F1C047A0014F48E /* MemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				C0541EA31F19C18500FD50E2 /* User.swift */,
 				C0449AE21F1C144B0014F48E /* Member.swift */,
 				C04157551F4568DE00EE956E /* RecordConversion.swift */,
+				C03DFE3B1F4D602D009CB8E4 /* CoreDataFunction.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				C04157561F4568DE00EE956E /* RecordConversion.swift in Sources */,
 				C0449ADF1F1C03490014F48E /* TeamCell.swift in Sources */,
 				C0541EA41F19C18500FD50E2 /* User.swift in Sources */,
+				C03DFE3C1F4D602D009CB8E4 /* CoreDataFunction.swift in Sources */,
 				C07FEE851F13CB1E00663B6C /* AddMemberHandler.swift in Sources */,
 				C0541EA21F16175B00FD50E2 /* LoginController.swift in Sources */,
 				C0B9DA2C1F48DFD90057A631 /* LoginControllerExtension.swift in Sources */,

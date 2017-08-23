@@ -163,26 +163,10 @@ extension HomeController {
     }
     
     func getDataFromCoreData() {
-        let appDel = UIApplication.shared.delegate as? AppDelegate
-        guard let context = appDel?.persistentContainer.viewContext else { return }
-        do {
-            let result = try context.fetch(PlayingPlayer.fetchRequest())
-            for item in result {
-                let thisPlayer = item as? PlayingPlayer
-                // Reconstruct by using map
-                
-                if thisPlayer?.recordArray != nil {
-                    let unarchiveObject = NSKeyedUnarchiver.unarchiveObject(with: (thisPlayer?.recordArray as NSData?)! as Data)
-                    let arrayObject = unarchiveObject as AnyObject! as! Array<String>
-                    let array = arrayObject
-                    self.players.append(Player(mid: thisPlayer?.mid, name: thisPlayer?.name, order: thisPlayer?.order, position: thisPlayer?.position, recordArray: array, profileImage: thisPlayer?.profileImage))
-                } else {
-                    self.players.append(Player(mid: thisPlayer?.mid, name: thisPlayer?.name, order: thisPlayer?.order, position: thisPlayer?.position, recordArray: [], profileImage: thisPlayer?.profileImage))
-                }
-            }
-        } catch {
-            
-        }
+        self.players = fetchDataFromCoreData(dataType: "Record")
+        print(self.players)
+        self.opponent = fetchDataFromCoreData(dataType: "Opponent")
+        print(self.opponent)
         if players.count >= 9 {
             goToGameTabBarController()
         } else {
@@ -193,6 +177,7 @@ extension HomeController {
     func goToGameTabBarController() {
         let controller = GameTabBarController()
         controller.players = self.players
+        controller.opponent = self.opponent
         present(controller, animated: true, completion: nil)
     }
     

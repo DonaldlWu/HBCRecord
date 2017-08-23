@@ -17,55 +17,15 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if opponent.count == 0 {
+        guard let gamingStatus = UserDefaults.standard.string(forKey: "gaming") else {
+            return
+        }
+        if gamingStatus == "false" {
             for i in 0...17 {
                 self.opponent.append(Player(mid: "OPPONENT", name: "UNKNOW", order: "\(i)", position: "UNKNOW", recordArray: [], profileImage: nil))
             }
         }
         delegate = self
-    }
-    
-    func saveToCoreData() {
-        let appDel = UIApplication.shared.delegate as? AppDelegate
-        guard let context = appDel?.persistentContainer.viewContext else { return }
-        do {
-            let results = try context.fetch(PlayingPlayer.fetchRequest())
-            
-            // If CoreData already have data
-            if results.count >= 9 {
-                for (i,item) in results.enumerated() {
-                    let editPlayer = item as? PlayingPlayer
-                    if editPlayer?.name == self.players[i].name {
-                        editPlayer?.mid = self.players[i].mid
-                        editPlayer?.name = self.players[i].name
-                        editPlayer?.position = self.players[i].position
-                        editPlayer?.profileImage = self.players[i].profileImage
-                        let array = self.players[i].recordArray
-                        let data = NSKeyedArchiver.archivedData(withRootObject: array)
-                        editPlayer?.recordArray = data as NSData
-                        appDel?.saveContext()
-                    }
-                }
-                
-            // No Data
-            } else {
-                for savedPlayer in self.players {
-                    let player = PlayingPlayer(context: context)
-                    player.mid = savedPlayer.mid
-                    player.name = savedPlayer.name
-                    player.position = savedPlayer.position
-                    player.order = savedPlayer.order
-                    player.profileImage = savedPlayer.profileImage
-                    let array = savedPlayer.recordArray
-                    let data = NSKeyedArchiver.archivedData(withRootObject: array)
-                    player.recordArray = data as NSData
-                    appDel?.saveContext()
-                }
-            }
-        } catch {
-            
-        }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,7 +36,8 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
         let opponentController = OpponentController(collectionViewLayout: UICollectionViewFlowLayout())
         opponentController.players = self.players
         opponentController.opponent = self.opponent
-        saveToCoreData()
+        saveToCoreData(players: self.players, dataType: "Record")
+        saveToCoreData(players: self.opponent, dataType: "Opponent")
         // Set game staus
         UserDefaults.standard.setValue("true", forKey: "gaming")
         let itemOne = UINavigationController(rootViewController: recordController)

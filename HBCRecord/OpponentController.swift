@@ -57,7 +57,7 @@ class OpponentController: RecordController {
         if Int((player.order!))! <= 8 {
             cell?.orderLabel.text = orderArray[Int((player.order!))!] + " - " + (player.position!)
         } else {
-            cell?.orderLabel.text = "BN"
+            cell?.orderLabel.text = "BN" + " - " + (player.position!)
         }
         
         let str = player.recordArray.flatMap {($0)! + "  " }.joined()

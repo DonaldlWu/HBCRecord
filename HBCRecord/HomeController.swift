@@ -16,6 +16,7 @@ class HomeController: UITableViewController {
     var teams = [Team]()
     var user = User()
     var players = [Player]()
+    var opponent = [Player]()
     
     override var prefersStatusBarHidden: Bool {
         return false
