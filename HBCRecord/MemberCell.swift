@@ -35,37 +35,37 @@ class MemberCell: UITableViewCell {
         return label
     }()
     
-    let AVGLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textAlignment = .left
-        return label
-    }()
-    
-    let OBPLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textAlignment = .left
-        return label
-    }()
-    
-    let SLGLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textAlignment = .left
-        return label
-    }()
-    
-    let OPSLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textAlignment = .left
-        return label
-    }()
+//    let AVGLabel: UILabel = {
+//        let label = UILabel()
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.font = UIFont.boldSystemFont(ofSize: 14)
+//        label.textAlignment = .left
+//        return label
+//    }()
+//    
+//    let OBPLabel: UILabel = {
+//        let label = UILabel()
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.font = UIFont.boldSystemFont(ofSize: 14)
+//        label.textAlignment = .left
+//        return label
+//    }()
+//    
+//    let SLGLabel: UILabel = {
+//        let label = UILabel()
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.font = UIFont.boldSystemFont(ofSize: 14)
+//        label.textAlignment = .left
+//        return label
+//    }()
+//    
+//    let OPSLabel: UILabel = {
+//        let label = UILabel()
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.font = UIFont.boldSystemFont(ofSize: 14)
+//        label.textAlignment = .left
+//        return label
+//    }()
     
     lazy var lineupSelectButton: UIButton = {
         let button = UIButton()
@@ -97,10 +97,10 @@ class MemberCell: UITableViewCell {
         addSubview(profileImageView)
         addSubview(numberLabel)
         addSubview(nameLabel)
-        addSubview(AVGLabel)
-        addSubview(OBPLabel)
-        addSubview(SLGLabel)
-        addSubview(OPSLabel)
+//        addSubview(AVGLabel)
+//        addSubview(OBPLabel)
+//        addSubview(SLGLabel)
+//        addSubview(OPSLabel)
         addSubview(lineupSelectButton)
         addSubview(lineupLabel)
         lineupLabel.isHidden = true
@@ -120,25 +120,25 @@ class MemberCell: UITableViewCell {
         nameLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
         nameLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true
         
-        AVGLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
-        AVGLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12).isActive = true
-        AVGLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
-        AVGLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        
-        OBPLabel.topAnchor.constraint(equalTo: AVGLabel.bottomAnchor).isActive = true
-        OBPLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12).isActive = true
-        OBPLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
-        OBPLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        
-        SLGLabel.topAnchor.constraint(equalTo: OBPLabel.bottomAnchor).isActive = true
-        SLGLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12).isActive = true
-        SLGLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
-        SLGLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        
-        OPSLabel.topAnchor.constraint(equalTo: SLGLabel.bottomAnchor).isActive = true
-        OPSLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12).isActive = true
-        OPSLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
-        OPSLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true
+//        AVGLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
+//        AVGLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12).isActive = true
+//        AVGLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
+//        AVGLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true
+//        
+//        OBPLabel.topAnchor.constraint(equalTo: AVGLabel.bottomAnchor).isActive = true
+//        OBPLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12).isActive = true
+//        OBPLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
+//        OBPLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true
+//        
+//        SLGLabel.topAnchor.constraint(equalTo: OBPLabel.bottomAnchor).isActive = true
+//        SLGLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12).isActive = true
+//        SLGLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
+//        SLGLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true
+//        
+//        OPSLabel.topAnchor.constraint(equalTo: SLGLabel.bottomAnchor).isActive = true
+//        OPSLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12).isActive = true
+//        OPSLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
+//        OPSLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true
     
         lineupSelectButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12).isActive = true
         lineupSelectButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true

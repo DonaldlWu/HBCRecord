@@ -12,9 +12,16 @@ import CoreData
 class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     var players = [Player]()
+    var opponent = [Player]()
+    var sendBy: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if opponent.count == 0 {
+            for i in 0...17 {
+                self.opponent.append(Player(mid: "OPPONENT", name: "UNKNOW", order: "\(i)", position: "UNKNOW", recordArray: [], profileImage: nil))
+            }
+        }
         delegate = self
     }
     
@@ -65,20 +72,31 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
         super.viewWillAppear(animated)
         let recordController = RecordController(collectionViewLayout: UICollectionViewFlowLayout())
         recordController.players = self.players
+        recordController.opponent = self.opponent
+        let opponentController = OpponentController(collectionViewLayout: UICollectionViewFlowLayout())
+        opponentController.players = self.players
+        opponentController.opponent = self.opponent
         saveToCoreData()
         // Set game staus
         UserDefaults.standard.setValue("true", forKey: "gaming")
         let itemOne = UINavigationController(rootViewController: recordController)
-        let itemTwo = UINavigationController(rootViewController: GameStateController())
-        let item1 = itemOne
-        let item2 = itemTwo
+        let itemTwo = UINavigationController(rootViewController: opponentController)
+        let itemThree = UINavigationController(rootViewController: GameStateController())
         let icon1 = UITabBarItem(tabBarSystemItem:  UITabBarSystemItem.bookmarks, tag: 0)
         let icon2 = UITabBarItem(tabBarSystemItem:  UITabBarSystemItem.favorites, tag: 0)
-        item1.tabBarItem = icon1
-        item2.tabBarItem = icon2
+        let icon3 = UITabBarItem(tabBarSystemItem:  UITabBarSystemItem.downloads, tag: 0)
+        itemOne.tabBarItem = icon1
+        itemTwo.tabBarItem = icon2
+        itemThree.tabBarItem = icon3
         
-        let controllers = [item1, item2]
+        let controllers = [itemOne, itemTwo, itemThree]
         self.viewControllers = controllers
+        
+        if sendBy == "Opponent" {
+            self.selectedViewController = controllers[1]
+        } else {
+            self.selectedViewController = controllers[0]
+        }
     }
     
     

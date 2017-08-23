@@ -14,6 +14,8 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     let recordDetialArray = [["H", "2B", "3B", "HR"], ["BB", "HBP"], ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9"], ["K", "K"], ["SF", "SH"], ["1RBI", "2RBI", "3RBI", "4RBI"], ["(R)"], ["GO", "FO", "DP"]]
     
     var players = [Player]()
+    var opponent = [Player]()
+    var sendby: String?
     var recordPickerView: UIPickerView!
     var tempRecord: String = "H"
     var rowInRecordArray = Int()
@@ -72,13 +74,21 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let controller = GameTabBarController()
         controller.players = self.players
+        controller.opponent = self.opponent
+        controller.sendBy = self.sendby
         present(controller, animated: false, completion: nil)
     }
     
     func sendRecordBack() {
         let controller = GameTabBarController()
-        self.players[rowInRecordArray].recordArray.append(tempRecord)
+        if sendby == "Record" {
+            self.players[rowInRecordArray].recordArray.append(tempRecord)
+        } else {
+            self.opponent[rowInRecordArray].recordArray.append(tempRecord)
+        }
         controller.players = self.players
+        controller.opponent = self.opponent
+        controller.sendBy = self.sendby
         controller.modalPresentationStyle = .overFullScreen
         present(controller, animated: false, completion: nil)
     }

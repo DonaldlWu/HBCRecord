@@ -110,10 +110,10 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
         } else {
             cell.lineupLabel.isHidden = true
         }
-        cell.AVGLabel.text = "AVG: .350"
-        cell.OBPLabel.text = "OBP: .447"
-        cell.SLGLabel.text = "SLG: .458"
-        cell.OPSLabel.text = "OPS: .819"
+//        cell.AVGLabel.text = "AVG: .350"
+//        cell.OBPLabel.text = "OBP: .447"
+//        cell.SLGLabel.text = "SLG: .458"
+//        cell.OPSLabel.text = "OPS: .819"
         return cell
     }
     

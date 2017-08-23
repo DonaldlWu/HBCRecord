@@ -13,6 +13,7 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
     let cellId = "CellId"
     let footerId = "footerId"
     var players = [Player]()
+    var opponent = [Player]()
     var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
@@ -106,6 +107,8 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
         let controller = RecordPickerController()
         controller.rowInRecordArray = sender.tag
         controller.players = self.players
+        controller.opponent = self.opponent
+        controller.sendby = "Record"
         controller.modalPresentationStyle = .overCurrentContext
         present(controller, animated: true, completion: nil)
     }
@@ -115,6 +118,8 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
             self.players[sender.tag].recordArray.removeLast()
             let controller = GameTabBarController()
             controller.players = self.players
+            controller.opponent = self.opponent
+            controller.sendBy = "Record"
             present(controller, animated: false, completion: nil)
         }
     }
