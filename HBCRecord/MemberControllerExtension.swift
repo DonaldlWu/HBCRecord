@@ -48,12 +48,14 @@ extension MemberController {
         let top = UIAlertAction(title: "先攻", style: .default, handler: {
             alert -> Void in
             UserDefaults.standard.setValue("先攻", forKey: "TopOrBottom")
+            UserDefaults.standard.setValue("self", forKey: "Change")
             self.toRecordController()
         })
         
         let bottom = UIAlertAction(title: "先守", style: .default, handler: {
             alert -> Void in
             UserDefaults.standard.setValue("先守", forKey: "TopOrBottom")
+            UserDefaults.standard.setValue("opponent", forKey: "Change")
             self.toRecordController()
         })
         

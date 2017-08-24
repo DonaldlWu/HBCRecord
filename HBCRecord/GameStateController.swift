@@ -11,8 +11,8 @@ import CoreData
 
 class GameStateController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    var topScoreArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-    var bottomScoreArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+    var topScoreArray: Array<String>?
+    var bottomScoreArray: Array<String>?
     var teamName: String?
     var topOrBottomStatus: String?
     
@@ -107,11 +107,55 @@ class GameStateController: UIViewController, UICollectionViewDataSource, UIColle
         return label
     }()
     
+    let topHitLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .white
+        label.text = "0"
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
+        label.textColor = .black
+        return label
+    }()
+    
+    let bottomHitLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .white
+        label.text = "0"
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
+        label.textColor = .black
+        return label
+    }()
+    
     let errorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .white
         label.text = "E"
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
+        label.textColor = .black
+        return label
+    }()
+    
+    let topErrorLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .white
+        label.text = "0"
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
+        label.textColor = .black
+        return label
+    }()
+    
+    let bottomErrorLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .white
+        label.text = "0"
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
         label.textColor = .black
@@ -182,14 +226,14 @@ class GameStateController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return topScoreArray.count
+        return topScoreArray!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellId", for: indexPath) as? ScoreCell
         cell?.inningLabel.text = "\(indexPath.item + 1)"
-        cell?.topScoreLabel.text = topScoreArray[indexPath.item]
-        cell?.bottomScoreLabel.text = bottomScoreArray[indexPath.item]
+        cell?.topScoreLabel.text = topScoreArray?[indexPath.item]
+        cell?.bottomScoreLabel.text = bottomScoreArray?[indexPath.item]
         return cell!
     }
     

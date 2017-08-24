@@ -20,7 +20,7 @@ class RecordCell: UICollectionViewCell {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = #imageLiteral(resourceName: "HBC")
         image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 5
+        image.layer.cornerRadius = 32
         image.layer.masksToBounds = true
         return image
     }()

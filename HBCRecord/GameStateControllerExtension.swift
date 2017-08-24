@@ -31,7 +31,11 @@ extension GameStateController {
         containView.addSubview(topRunLabel)
         containView.addSubview(bottomRunLabel)
         containView.addSubview(hitLabel)
+        containView.addSubview(topHitLabel)
+        containView.addSubview(bottomHitLabel)
         containView.addSubview(errorLabel)
+        containView.addSubview(topErrorLabel)
+        containView.addSubview(bottomErrorLabel)
         
         if topOrBottomStatus == "先攻" {
             topTeamLabel.text = teamName
@@ -116,10 +120,30 @@ extension GameStateController {
         hitLabel.leftAnchor.constraint(equalTo: separateViewVerThree.rightAnchor).isActive = true
         hitLabel.bottomAnchor.constraint(equalTo: separateViewHorOne.topAnchor).isActive = true
         
+        topHitLabel.topAnchor.constraint(equalTo: separateViewHorOne.bottomAnchor).isActive = true
+        topHitLabel.rightAnchor.constraint(equalTo: separateViewVerFour.leftAnchor).isActive = true
+        topHitLabel.leftAnchor.constraint(equalTo: separateViewVerThree.rightAnchor).isActive = true
+        topHitLabel.bottomAnchor.constraint(equalTo: separateViewHorTwo.topAnchor).isActive = true
+        
+        bottomHitLabel.topAnchor.constraint(equalTo: separateViewHorTwo.bottomAnchor).isActive = true
+        bottomHitLabel.rightAnchor.constraint(equalTo: separateViewVerFour.leftAnchor).isActive = true
+        bottomHitLabel.leftAnchor.constraint(equalTo: separateViewVerThree.rightAnchor).isActive = true
+        bottomHitLabel.bottomAnchor.constraint(equalTo: containView.bottomAnchor).isActive = true
+        
         errorLabel.topAnchor.constraint(equalTo: containView.topAnchor).isActive = true
         errorLabel.rightAnchor.constraint(equalTo: containView.rightAnchor).isActive = true
         errorLabel.leftAnchor.constraint(equalTo: separateViewVerFour.rightAnchor).isActive = true
         errorLabel.bottomAnchor.constraint(equalTo: separateViewHorOne.topAnchor).isActive = true
+        
+        topErrorLabel.topAnchor.constraint(equalTo: separateViewHorOne.bottomAnchor).isActive = true
+        topErrorLabel.rightAnchor.constraint(equalTo: containView.rightAnchor).isActive = true
+        topErrorLabel.leftAnchor.constraint(equalTo: separateViewVerFour.rightAnchor).isActive = true
+        topErrorLabel.bottomAnchor.constraint(equalTo: separateViewHorTwo.topAnchor).isActive = true
+        
+        bottomErrorLabel.topAnchor.constraint(equalTo: separateViewHorTwo.bottomAnchor).isActive = true
+        bottomErrorLabel.rightAnchor.constraint(equalTo: containView.rightAnchor).isActive = true
+        bottomErrorLabel.leftAnchor.constraint(equalTo: separateViewVerFour.rightAnchor).isActive = true
+        bottomErrorLabel.bottomAnchor.constraint(equalTo: containView.bottomAnchor).isActive = true
     }
 
     

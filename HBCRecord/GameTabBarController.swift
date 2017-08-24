@@ -14,6 +14,8 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
     var players = [Player]()
     var opponent = [Player]()
     var sendBy: String?
+    var topScoreArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+    var bottomScoreArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +46,8 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
         opponentController.opponent = self.opponent
         
         let gameStateController = GameStateController()
+        gameStateController.topScoreArray = self.topScoreArray
+        gameStateController.bottomScoreArray = self.bottomScoreArray
         gameStateController.topOrBottomStatus = topOrBottomStatus
         gameStateController.teamName = teamName
         

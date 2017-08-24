@@ -27,8 +27,7 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
         self.players.sort(by: { (first: Player , second: Player) -> Bool in
             Int(first.order!)! < Int(second.order!)!
         })
-        
-        let button = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveData))
+        let button = UIBarButtonItem(title: "CHANGE", style: .done, target: self, action: #selector(inningChangeAlert))
         navigationItem.rightBarButtonItem = button
         
         collectionView?.backgroundColor = .white
@@ -42,19 +41,55 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
         collectionView!.addSubview(refreshControl)
     }
     
-    func saveData() {
-        var recordDict: Dictionary<String, Any> = [:]
-        for record in players {
-            print("--------------------------------------------------")
-            guard let mid = record.mid else {
-                return
-            }
-            let recordValue = recordConversion(player: record)
-            recordDict.updateValue(recordValue, forKey: mid)
-            print("--------------------------------------------------")
-        }
-        print(recordDict)
+//    func saveData() {
+//        var recordDict: Dictionary<String, Any> = [:]
+//        for record in players {
+//            print("--------------------------------------------------")
+//            guard let mid = record.mid else {
+//                return
+//            }
+//            let recordValue = recordConversion(player: record)
+//            recordDict.updateValue(recordValue, forKey: mid)
+//            print("--------------------------------------------------")
+//        }
+//        print(recordDict)
+//    }
+    
+    func inningChangeAlert() {
+        let alertController = UIAlertController(title: nil, message: "結束這半局", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "取消", style: .default, handler: {
+            alert -> Void in
+        })
+        let descide = UIAlertAction(title: "確定", style: .destructive, handler: {
+            alert -> Void in
+            self.inningChange()
+        })
         
+        alertController.addAction(cancel)
+        alertController.addAction(descide)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func inningChange() {
+        guard let change = UserDefaults.standard.string(forKey: "Change") else {
+            return
+        }
+        if change == "self" {
+            print("Do Some Thing")
+            UserDefaults.standard.setValue("opponent", forKey: "Change")
+            let controller = GameTabBarController()
+            controller.players = self.players
+            controller.opponent = self.opponent
+            controller.sendBy = "Opponent"
+            present(controller, animated: false, completion: nil)
+        } else if change == "opponent" {
+            let alertController = UIAlertController(title: nil, message: "請先結束另一方的半局", preferredStyle: .alert)
+            let top = UIAlertAction(title: "知道了", style: .default, handler: {
+                alert -> Void in
+            })
+            alertController.addAction(top)
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
     func refresh(sender:AnyObject)

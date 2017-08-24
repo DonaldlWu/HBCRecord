@@ -35,6 +35,28 @@ class OpponentController: RecordController {
         }
     }
     
+    override func inningChange() {
+        guard let change = UserDefaults.standard.string(forKey: "Change") else {
+            return
+        }
+        if change == "self" {
+            let alertController = UIAlertController(title: nil, message: "請先結束另一方的半局", preferredStyle: .alert)
+            let top = UIAlertAction(title: "知道了", style: .default, handler: {
+                alert -> Void in
+            })
+            alertController.addAction(top)
+            self.present(alertController, animated: true, completion: nil)
+        } else if change == "opponent" {
+            print("Do Some Thing")
+            UserDefaults.standard.setValue("self", forKey: "Change")
+            let controller = GameTabBarController()
+            controller.players = self.players
+            controller.opponent = self.opponent
+            controller.sendBy = "Record"
+            present(controller, animated: false, completion: nil)
+        }
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
             return 9
