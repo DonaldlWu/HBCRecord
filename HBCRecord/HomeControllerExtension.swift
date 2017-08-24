@@ -164,9 +164,7 @@ extension HomeController {
     
     func getDataFromCoreData() {
         self.players = fetchDataFromCoreData(dataType: "Record")
-        print(self.players)
         self.opponent = fetchDataFromCoreData(dataType: "Opponent")
-        print(self.opponent)
         if players.count >= 9 {
             goToGameTabBarController()
         } else {

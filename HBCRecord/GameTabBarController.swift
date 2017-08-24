@@ -30,19 +30,30 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        guard let topOrBottomStatus = UserDefaults.standard.string(forKey: "TopOrBottom"), let teamName = UserDefaults.standard.string(forKey: "TeamName")  else {
+            return
+        }
+        
         let recordController = RecordController(collectionViewLayout: UICollectionViewFlowLayout())
         recordController.players = self.players
         recordController.opponent = self.opponent
+        
         let opponentController = OpponentController(collectionViewLayout: UICollectionViewFlowLayout())
         opponentController.players = self.players
         opponentController.opponent = self.opponent
+        
+        let gameStateController = GameStateController()
+        gameStateController.topOrBottomStatus = topOrBottomStatus
+        gameStateController.teamName = teamName
+        
         saveToCoreData(players: self.players, dataType: "Record")
         saveToCoreData(players: self.opponent, dataType: "Opponent")
         // Set game staus
         UserDefaults.standard.setValue("true", forKey: "gaming")
         let itemOne = UINavigationController(rootViewController: recordController)
         let itemTwo = UINavigationController(rootViewController: opponentController)
-        let itemThree = UINavigationController(rootViewController: GameStateController())
+        let itemThree = UINavigationController(rootViewController: gameStateController)
         let icon1 = UITabBarItem(tabBarSystemItem:  UITabBarSystemItem.bookmarks, tag: 0)
         let icon2 = UITabBarItem(tabBarSystemItem:  UITabBarSystemItem.favorites, tag: 0)
         let icon3 = UITabBarItem(tabBarSystemItem:  UITabBarSystemItem.downloads, tag: 0)
@@ -60,9 +71,7 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
         }
     }
     
-    
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        print("Should select viewController: \(String(describing: viewController.title)) ?")
         return true
     }
 }

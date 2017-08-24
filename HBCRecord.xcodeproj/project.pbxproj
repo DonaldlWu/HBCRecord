@@ -16,6 +16,8 @@
 		C0449ADF1F1C03490014F48E /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0449ADE1F1C03490014F48E /* TeamCell.swift */; };
 		C0449AE11F1C047A0014F48E /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0449AE01F1C047A0014F48E /* MemberCell.swift */; };
 		C0449AE31F1C144B0014F48E /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0449AE21F1C144B0014F48E /* Member.swift */; };
+		C04A800D1F4DB3D5008679B5 /* ScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04A800C1F4DB3D5008679B5 /* ScoreCell.swift */; };
+		C04A800F1F4DDE57008679B5 /* GameStateControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04A800E1F4DDE57008679B5 /* GameStateControllerExtension.swift */; };
 		C0541EA21F16175B00FD50E2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA11F16175B00FD50E2 /* LoginController.swift */; };
 		C0541EA41F19C18500FD50E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA31F19C18500FD50E2 /* User.swift */; };
 		C0541EA61F1A944800FD50E2 /* TeamImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0541EA51F1A944800FD50E2 /* TeamImageController.swift */; };
@@ -64,6 +66,8 @@
 		C0449ADE1F1C03490014F48E /* TeamCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
 		C0449AE01F1C047A0014F48E /* MemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		C0449AE21F1C144B0014F48E /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		C04A800C1F4DB3D5008679B5 /* ScoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreCell.swift; sourceTree = "<group>"; };
+		C04A800E1F4DDE57008679B5 /* GameStateControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStateControllerExtension.swift; sourceTree = "<group>"; };
 		C0541EA11F16175B00FD50E2 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		C0541EA31F19C18500FD50E2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C0541EA51F1A944800FD50E2 /* TeamImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamImageController.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 				C0B9DA2D1F48E1DD0057A631 /* HomeControllerExtension.swift */,
 				C0B9DA2F1F48E2D20057A631 /* MemberControllerExtension.swift */,
 				C0B9DA311F48E6470057A631 /* AddMemberControllerExtension.swift */,
+				C04A800E1F4DDE57008679B5 /* GameStateControllerExtension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -225,6 +230,7 @@
 				C067E02C1F002AB500F830CB /* RecordCell.swift */,
 				C0449ADE1F1C03490014F48E /* TeamCell.swift */,
 				C0449AE01F1C047A0014F48E /* MemberCell.swift */,
+				C04A800C1F4DB3D5008679B5 /* ScoreCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -464,11 +470,13 @@
 				C067E0101EFFE8EC00F830CB /* HBCRecord.xcdatamodeld in Sources */,
 				C0F19E511F098C6000E97041 /* HomeController.swift in Sources */,
 				C0B9DA301F48E2D20057A631 /* MemberControllerExtension.swift in Sources */,
+				C04A800F1F4DDE57008679B5 /* GameStateControllerExtension.swift in Sources */,
 				C0B9DA321F48E6470057A631 /* AddMemberControllerExtension.swift in Sources */,
 				C0449AE11F1C047A0014F48E /* MemberCell.swift in Sources */,
 				C08DF5391F10F40600D658B8 /* AddMemberController.swift in Sources */,
 				C067E00A1EFFE8EC00F830CB /* RecordController.swift in Sources */,
 				C0B451371F2234AF0073B9F5 /* GameStateController.swift in Sources */,
+				C04A800D1F4DB3D5008679B5 /* ScoreCell.swift in Sources */,
 				C065352A1F0D079200BCC12F /* Team.swift in Sources */,
 				C067E02D1F002AB500F830CB /* RecordCell.swift in Sources */,
 				C0449AE31F1C144B0014F48E /* Member.swift in Sources */,

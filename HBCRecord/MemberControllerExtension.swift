@@ -80,13 +80,13 @@ extension MemberController {
     
     func lineupCancel(indexPath: IndexPath, name: String) {
         if self.players.count != 0 {
-            var deleteNumber = 0
+            var deleteNumber = -1
             for i in 0...self.players.count - 1 {
                 if self.players[i].name == name {
                     deleteNumber = i
                 }
             }
-            if deleteNumber != 0 {
+            if deleteNumber != -1 {
                 self.players.remove(at: deleteNumber)
                 if self.players.count != 9 {
                     startButton.isEnabled = false
