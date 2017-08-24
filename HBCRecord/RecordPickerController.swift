@@ -23,9 +23,9 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     let popView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.borderWidth = 3
-        view.backgroundColor = .cyan
-        view.layer.cornerRadius = 5
+        view.layer.borderWidth = 2
+        view.layer.borderColor = UIColor.gray.cgColor
+        view.layer.cornerRadius = 25
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -33,12 +33,12 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
     let addButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .purple
-        button.layer.cornerRadius = 5
-        button.layer.borderColor = UIColor.blue.cgColor
+        button.backgroundColor = .cyan
+        button.layer.cornerRadius = 25
+        button.layer.borderColor = UIColor.gray.cgColor
         button.layer.borderWidth = 2
         button.setTitle("UPDATE", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         button.addTarget(self, action: #selector(sendRecordBack), for: .touchUpInside)
         return button
     }()
@@ -48,11 +48,13 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
         view.backgroundColor = .clear
         
         recordPickerView = UIPickerView()
-        recordPickerView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width - 12, height: 200)
+        recordPickerView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 200)
         recordPickerView.showsSelectionIndicator = true
+        recordPickerView.layer.cornerRadius = 5
+        recordPickerView.layer.masksToBounds = true
         recordPickerView.delegate = self
         recordPickerView.dataSource = self
-        recordPickerView.backgroundColor = .cyan
+        recordPickerView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         
         view.addSubview(popView)
         
@@ -64,10 +66,10 @@ class RecordPickerController: UIViewController, UIPickerViewDelegate, UIPickerVi
         popView.addSubview(recordPickerView)
         popView.addSubview(addButton)
         
-        addButton.bottomAnchor.constraint(equalTo: recordPickerView.bottomAnchor, constant: 12).isActive = true
-        addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        addButton.widthAnchor.constraint(equalToConstant: 64).isActive = true
-        addButton.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        addButton.bottomAnchor.constraint(equalTo: popView.bottomAnchor).isActive = true
+        addButton.centerXAnchor.constraint(equalTo: popView.centerXAnchor).isActive = true
+        addButton.widthAnchor.constraint(equalTo: popView.widthAnchor).isActive = true
+        addButton.heightAnchor.constraint(equalToConstant: 42).isActive = true
 
     }
     
