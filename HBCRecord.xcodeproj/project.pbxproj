@@ -41,6 +41,7 @@
 		C0B9DA2E1F48E1DD0057A631 /* HomeControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B9DA2D1F48E1DD0057A631 /* HomeControllerExtension.swift */; };
 		C0B9DA301F48E2D20057A631 /* MemberControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B9DA2F1F48E2D20057A631 /* MemberControllerExtension.swift */; };
 		C0B9DA321F48E6470057A631 /* AddMemberControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B9DA311F48E6470057A631 /* AddMemberControllerExtension.swift */; };
+		C0E73E141F50399500D31F86 /* GlobalVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E73E131F50399500D31F86 /* GlobalVariable.swift */; };
 		C0F19E4F1F0661FC00E97041 /* RecordPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F19E4E1F0661FC00E97041 /* RecordPickerController.swift */; };
 		C0F19E511F098C6000E97041 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F19E501F098C6000E97041 /* HomeController.swift */; };
 /* End PBXBuildFile section */
@@ -95,6 +96,7 @@
 		C0B9DA2D1F48E1DD0057A631 /* HomeControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeControllerExtension.swift; sourceTree = "<group>"; };
 		C0B9DA2F1F48E2D20057A631 /* MemberControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberControllerExtension.swift; sourceTree = "<group>"; };
 		C0B9DA311F48E6470057A631 /* AddMemberControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberControllerExtension.swift; sourceTree = "<group>"; };
+		C0E73E131F50399500D31F86 /* GlobalVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariable.swift; sourceTree = "<group>"; };
 		C0F19E4E1F0661FC00E97041 /* RecordPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordPickerController.swift; sourceTree = "<group>"; };
 		C0F19E501F098C6000E97041 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		C3CFB2946E9C347DC98D1384 /* Pods-HBCRecordTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HBCRecordTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HBCRecordTests/Pods-HBCRecordTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				C0449AE21F1C144B0014F48E /* Member.swift */,
 				C04157551F4568DE00EE956E /* RecordConversion.swift */,
 				C03DFE3B1F4D602D009CB8E4 /* CoreDataFunction.swift */,
+				C0E73E131F50399500D31F86 /* GlobalVariable.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				C0B451351F2232900073B9F5 /* GameTabBarController.swift in Sources */,
 				C0145DE51F02A2B8005651B3 /* Player.swift in Sources */,
 				C03DFE3A1F4D4AF3009CB8E4 /* OpponentController.swift in Sources */,
+				C0E73E141F50399500D31F86 /* GlobalVariable.swift in Sources */,
 				C065352C1F0D08C600BCC12F /* MemberController.swift in Sources */,
 				C0541EA91F1ACD8300FD50E2 /* UIImageViewExtensions.swift in Sources */,
 				C067E0081EFFE8EC00F830CB /* AppDelegate.swift in Sources */,
@@ -633,6 +637,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.darren.HBCRecord;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -647,6 +652,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.darren.HBCRecord;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

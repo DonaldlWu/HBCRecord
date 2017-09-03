@@ -15,6 +15,7 @@ func recordConversion(player: Player) -> Dictionary<String, Any>{
     var R = 0
     var RBI = 0
     var H = 0.00
+    var E = 0
     player.recordArray.forEach { (result) in
         if let string = result {
             switch string {
@@ -30,16 +31,21 @@ func recordConversion(player: Player) -> Dictionary<String, Any>{
                 AB = AB - 1
             case "H", "2B", "3B", "HR":
                 H = H + 1
+            case "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9":
+                E = E + 1
             default:
                 print("")
             }
         }
     }
     let AVG = H / AB
+    let HforRecord = Int(H)
     recordDict.updateValue(AVG, forKey: "AVG")
     recordDict.updateValue(PA, forKey: "PA")
     recordDict.updateValue(AB, forKey: "AB")
+    recordDict.updateValue(HforRecord, forKey: "H")
     recordDict.updateValue(R, forKey: "R")
     recordDict.updateValue(RBI, forKey: "RBI")
+    recordDict.updateValue(E, forKey: "E")
     return recordDict
 }

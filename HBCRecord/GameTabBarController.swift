@@ -14,14 +14,21 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
     var players = [Player]()
     var opponent = [Player]()
     var sendBy: String?
-    var topScoreArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-    var bottomScoreArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+    var dataArray: Array<Int>?
+    var topScoreArray: Array<String>?
+    var bottomScoreArray: Array<String>?
+    var change: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        inning = UserDefaults.standard.integer(forKey: "inning")
         guard let gamingStatus = UserDefaults.standard.string(forKey: "gaming") else {
             return
         }
+        
+        self.topScoreArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+        self.bottomScoreArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+        
         if gamingStatus == "false" {
             for i in 0...17 {
                 self.opponent.append(Player(mid: "OPPONENT", name: "UNKNOW", order: "\(i)", position: "UNKNOW", recordArray: [], profileImage: nil))
@@ -32,6 +39,7 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        returnScoreState()
         
         guard let topOrBottomStatus = UserDefaults.standard.string(forKey: "TopOrBottom"), let teamName = UserDefaults.standard.string(forKey: "TeamName")  else {
             return
@@ -53,8 +61,10 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         saveToCoreData(players: self.players, dataType: "Record")
         saveToCoreData(players: self.opponent, dataType: "Opponent")
+        
         // Set game staus
         UserDefaults.standard.setValue("true", forKey: "gaming")
+        
         let itemOne = UINavigationController(rootViewController: recordController)
         let itemTwo = UINavigationController(rootViewController: opponentController)
         let itemThree = UINavigationController(rootViewController: gameStateController)
@@ -72,6 +82,23 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
             self.selectedViewController = controllers[1]
         } else {
             self.selectedViewController = controllers[0]
+        }
+    }
+    
+    func returnScoreState() {
+        if self.change == true {
+            let inn = (inning - 1) / 2
+            let topOrBottom = inning - 1
+            if let score = dataArray?[0] {
+               let string = String(score)
+                if topOrBottom % 2 == 0 {
+                    self.topScoreArray?[inn] = string
+                } else if topOrBottom % 2 == 1 {
+                    self.bottomScoreArray?[inn] = string
+                }
+            }
+            
+            self.change = false
         }
     }
     

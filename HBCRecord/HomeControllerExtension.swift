@@ -45,9 +45,6 @@ extension HomeController {
                 let team = Team()
                 team.tid = snapshot.key
                 team.setValuesForKeys(dictionary)
-                //                team.uid = dictionary["uid"] as? String
-                //                team.teamName = dictionary["TeamName"] as? String
-                //                team.teamProfileImageURL = dictionary["teamProfileImageURL"] as? String
                 if team.uid == self.user.uid {
                     self.teams.append(team)
                 }

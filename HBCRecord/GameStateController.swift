@@ -15,6 +15,7 @@ class GameStateController: UIViewController, UICollectionViewDataSource, UIColle
     var bottomScoreArray: Array<String>?
     var teamName: String?
     var topOrBottomStatus: String?
+    var dataArray: Array<Int>?
     
     lazy var myCollectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -216,7 +217,6 @@ class GameStateController: UIViewController, UICollectionViewDataSource, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConstrain()
-        
         let newTeamButton = UIBarButtonItem(title: "GAME SET", style: .plain, target: self, action: #selector(backHome))
         self.navigationItem.rightBarButtonItem = newTeamButton
     }
@@ -245,6 +245,8 @@ class GameStateController: UIViewController, UICollectionViewDataSource, UIColle
     func backHome() {
         // Delete all data from coreData
         deleteAllRecords()
+        inning = 0
+        UserDefaults.standard.setValue(inning, forKey: "inning")
         UserDefaults.standard.setValue("false", forKey: "gaming")
         let controller = HomeController()
         self.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)

@@ -41,19 +41,31 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
         collectionView!.addSubview(refreshControl)
     }
     
-//    func saveData() {
-//        var recordDict: Dictionary<String, Any> = [:]
-//        for record in players {
-//            print("--------------------------------------------------")
-//            guard let mid = record.mid else {
-//                return
-//            }
-//            let recordValue = recordConversion(player: record)
-//            recordDict.updateValue(recordValue, forKey: mid)
-//            print("--------------------------------------------------")
-//        }
-//        print(recordDict)
-//    }
+    func covertData(players: [Player]) -> Array<Int> {
+        var array = [0, 0, 0]
+        var run = 0
+        var hit = 0
+        var error = 0
+        for record in players {
+            
+            guard let mid = record.mid else {
+                return array
+            }
+            var recordValue = recordConversion(player: record)
+            recordValue.updateValue(recordValue, forKey: mid)
+            let R = recordValue["R"] as! Int
+            run = run + R
+            let H = recordValue["H"] as! Int
+            hit = hit + H
+            let E = recordValue["E"] as! Int
+            error = error + E
+            
+        }
+        array[0] = run
+        array[1] = hit
+        array[2] = error
+        return array
+    }
     
     func inningChangeAlert() {
         let alertController = UIAlertController(title: nil, message: "結束這半局", preferredStyle: .alert)
@@ -76,11 +88,16 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
         }
         if change == "self" {
             print("Do Some Thing")
+            let array = covertData(players: self.players)
             UserDefaults.standard.setValue("opponent", forKey: "Change")
             let controller = GameTabBarController()
+            controller.dataArray = array
+            controller.change = true
             controller.players = self.players
             controller.opponent = self.opponent
             controller.sendBy = "Opponent"
+            inning = inning + 1
+            UserDefaults.standard.setValue(inning, forKey: "inning")
             present(controller, animated: false, completion: nil)
         } else if change == "opponent" {
             let alertController = UIAlertController(title: nil, message: "請先結束另一方的半局", preferredStyle: .alert)

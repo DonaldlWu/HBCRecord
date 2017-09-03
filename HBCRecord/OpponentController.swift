@@ -48,11 +48,16 @@ class OpponentController: RecordController {
             self.present(alertController, animated: true, completion: nil)
         } else if change == "opponent" {
             print("Do Some Thing")
+            let array = covertData(players: self.opponent)
             UserDefaults.standard.setValue("self", forKey: "Change")
             let controller = GameTabBarController()
+            controller.dataArray = array
+            controller.change = true
             controller.players = self.players
             controller.opponent = self.opponent
             controller.sendBy = "Record"
+            inning = inning + 1
+            UserDefaults.standard.setValue(inning, forKey: "inning")
             present(controller, animated: false, completion: nil)
         }
     }
