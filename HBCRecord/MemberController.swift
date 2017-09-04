@@ -53,8 +53,6 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     }
     
-    
-    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let indexPath = IndexPath(item: indexPath.row, section: 0)
@@ -110,10 +108,6 @@ class MemberController: UIViewController, UITableViewDelegate, UITableViewDataSo
         } else {
             cell.lineupLabel.isHidden = true
         }
-//        cell.AVGLabel.text = "AVG: .350"
-//        cell.OBPLabel.text = "OBP: .447"
-//        cell.SLGLabel.text = "SLG: .458"
-//        cell.OPSLabel.text = "OPS: .819"
         return cell
     }
     

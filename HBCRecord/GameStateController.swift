@@ -11,8 +11,6 @@ import CoreData
 
 class GameStateController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    var topScoreArray: Array<String>?
-    var bottomScoreArray: Array<String>?
     var teamName: String?
     var topOrBottomStatus: String?
     var dataArray: Array<Int>?
@@ -46,7 +44,7 @@ class GameStateController: UIViewController, UICollectionViewDataSource, UIColle
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .white
-        label.text = "OPPONENT"
+        label.text = "AWAY"
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
         label.textColor = .black
@@ -57,7 +55,7 @@ class GameStateController: UIViewController, UICollectionViewDataSource, UIColle
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .white
-        label.text = "OPPONENT"
+        label.text = "HOME"
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
         label.textColor = .black
@@ -219,6 +217,39 @@ class GameStateController: UIViewController, UICollectionViewDataSource, UIColle
         setupConstrain()
         let newTeamButton = UIBarButtonItem(title: "GAME SET", style: .plain, target: self, action: #selector(backHome))
         self.navigationItem.rightBarButtonItem = newTeamButton
+//        changeGameStatusLabel()
+    }
+    
+    func changeGameStatusLabel() {
+        inning = UserDefaults.standard.integer(forKey: "inning")
+        let topOrBottom = inning - 1
+        if let run = dataArray?[0], let hit = dataArray?[1], let error = dataArray?[2] {
+            let runString = String(run)
+            let hitString = String(hit)
+            let errorString = String(error)
+            if topOrBottom % 2 == 0 {
+                topStatus[0] = runString
+                topStatus[1] = hitString
+                topStatus[2] = errorString
+            } else {
+                bottomStatus[0] = runString
+                bottomStatus[1] = hitString
+                bottomStatus[2] = errorString
+            }
+            let topStatusDefault = UserDefaults.standard
+            topStatusDefault.set(topStatus, forKey: "topStatus")
+            topStatusDefault.synchronize()
+            let bottomStatusDefault = UserDefaults.standard
+            bottomStatusDefault.set(bottomStatus, forKey: "bottomStatus")
+            bottomStatusDefault.synchronize()
+        }
+        
+        topRunLabel.text = topStatus[0]
+        topHitLabel.text = topStatus[1]
+        topErrorLabel.text = bottomStatus[2]
+        bottomRunLabel.text = bottomStatus[0]
+        bottomHitLabel.text = bottomStatus[1]
+        bottomErrorLabel.text = topStatus[2]
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -226,14 +257,14 @@ class GameStateController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return topScoreArray!.count
+        return topScoreArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellId", for: indexPath) as? ScoreCell
         cell?.inningLabel.text = "\(indexPath.item + 1)"
-        cell?.topScoreLabel.text = topScoreArray?[indexPath.item]
-        cell?.bottomScoreLabel.text = bottomScoreArray?[indexPath.item]
+        cell?.topScoreLabel.text = topScoreArray[indexPath.item]
+        cell?.bottomScoreLabel.text = bottomScoreArray[indexPath.item]
         return cell!
     }
     
@@ -246,8 +277,28 @@ class GameStateController: UIViewController, UICollectionViewDataSource, UIColle
         // Delete all data from coreData
         deleteAllRecords()
         inning = 0
+        topScoreArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+        bottomScoreArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+        topStatus = ["0", "0", "0"]
+        bottomStatus = ["0", "0", "0"]
+        
         UserDefaults.standard.setValue(inning, forKey: "inning")
         UserDefaults.standard.setValue("false", forKey: "gaming")
+        let topStatusDefault = UserDefaults.standard
+        topStatusDefault.set(topStatus, forKey: "topStatus")
+        topStatusDefault.synchronize()
+        let bottomStatusDefault = UserDefaults.standard
+        bottomStatusDefault.set(bottomStatus, forKey: "bottomStatus")
+        bottomStatusDefault.synchronize()
+        let topScoreArrayUserDefault = UserDefaults.standard
+        topScoreArrayUserDefault.set(topScoreArray, forKey: "topScoreArray")
+        topScoreArrayUserDefault.synchronize()    
+        let bottomScoreArrayUserDefault = UserDefaults.standard
+        bottomScoreArrayUserDefault.set(bottomScoreArray, forKey: "bottomScoreArray")
+        bottomScoreArrayUserDefault.synchronize()
+    
+    
+    
         let controller = HomeController()
         self.present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }

@@ -171,6 +171,14 @@ extension HomeController {
     
     func goToGameTabBarController() {
         let controller = GameTabBarController()
+        guard let top = UserDefaults.standard.array(forKey: "topStatus"), let bottom = UserDefaults.standard.array(forKey: "bottomStatus"), let topArray = UserDefaults.standard.array(forKey: "topScoreArray"), let bottomArray = UserDefaults.standard.array(forKey: "bottomScoreArray") else {
+            return
+        }
+        topStatus = top as! [String]
+        bottomStatus = bottom as! [String]
+        topScoreArray = topArray as! [String]
+        bottomScoreArray = bottomArray as! [String]
+        
         controller.players = self.players
         controller.opponent = self.opponent
         present(controller, animated: true, completion: nil)

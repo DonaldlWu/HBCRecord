@@ -15,8 +15,6 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
     var opponent = [Player]()
     var sendBy: String?
     var dataArray: Array<Int>?
-    var topScoreArray: Array<String>?
-    var bottomScoreArray: Array<String>?
     var change: Bool?
     
     override func viewDidLoad() {
@@ -25,9 +23,6 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
         guard let gamingStatus = UserDefaults.standard.string(forKey: "gaming") else {
             return
         }
-        
-        self.topScoreArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-        self.bottomScoreArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
         
         if gamingStatus == "false" {
             for i in 0...17 {
@@ -54,10 +49,10 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
         opponentController.opponent = self.opponent
         
         let gameStateController = GameStateController()
-        gameStateController.topScoreArray = self.topScoreArray
-        gameStateController.bottomScoreArray = self.bottomScoreArray
         gameStateController.topOrBottomStatus = topOrBottomStatus
+        gameStateController.dataArray = self.dataArray
         gameStateController.teamName = teamName
+        gameStateController.changeGameStatusLabel()
         
         saveToCoreData(players: self.players, dataType: "Record")
         saveToCoreData(players: self.opponent, dataType: "Opponent")
@@ -89,12 +84,21 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
         if self.change == true {
             let inn = (inning - 1) / 2
             let topOrBottom = inning - 1
-            if let score = dataArray?[0] {
-               let string = String(score)
+            if var score = dataArray?[0] {
                 if topOrBottom % 2 == 0 {
-                    self.topScoreArray?[inn] = string
+                    score = score - Int(topStatus[0])!
+                    let string = String(score)
+                    topScoreArray[inn] = string
+                    let topScoreArrayUserDefault = UserDefaults.standard
+                    topScoreArrayUserDefault.set(topScoreArray, forKey: "topScoreArray")
+                    topScoreArrayUserDefault.synchronize()
                 } else if topOrBottom % 2 == 1 {
-                    self.bottomScoreArray?[inn] = string
+                    score = score - Int(bottomStatus[0])!
+                    let string = String(score)
+                    bottomScoreArray[inn] = string
+                    let bottomScoreArrayUserDefault = UserDefaults.standard
+                    bottomScoreArrayUserDefault.set(bottomScoreArray, forKey: "bottomScoreArray")
+                    bottomScoreArrayUserDefault.synchronize()
                 }
             }
             

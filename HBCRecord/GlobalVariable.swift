@@ -10,3 +10,8 @@ import Foundation
 
 
 var inning = 0
+var topScoreArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+var bottomScoreArray = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+var topStatus = ["0", "0", "0"]
+var bottomStatus = ["0", "0", "0"]
+
