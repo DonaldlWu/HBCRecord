@@ -24,7 +24,7 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
             return
         }
         
-        if gamingStatus == "false" {
+        if gamingStatus == "false" || opponent.count < 9 {
             for i in 0...17 {
                 self.opponent.append(Player(mid: "OPPONENT", name: "UNKNOW", order: "\(i)", position: "UNKNOW", recordArray: [], profileImage: nil))
             }
