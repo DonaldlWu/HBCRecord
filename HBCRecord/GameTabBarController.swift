@@ -63,9 +63,14 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
         let itemOne = UINavigationController(rootViewController: recordController)
         let itemTwo = UINavigationController(rootViewController: opponentController)
         let itemThree = UINavigationController(rootViewController: gameStateController)
-        let icon1 = UITabBarItem(tabBarSystemItem:  UITabBarSystemItem.bookmarks, tag: 0)
-        let icon2 = UITabBarItem(tabBarSystemItem:  UITabBarSystemItem.favorites, tag: 0)
-        let icon3 = UITabBarItem(tabBarSystemItem:  UITabBarSystemItem.downloads, tag: 0)
+        
+        let image1 = UIImage(named:"HBCTAB1")?.withRenderingMode(.alwaysOriginal)
+        let image2 = UIImage(named:"HBCH2x")?.withRenderingMode(.alwaysOriginal)
+        let image3 = UIImage(named:"HBCA2x")?.withRenderingMode(.alwaysOriginal)
+        
+        let icon1 = UITabBarItem(title: "MY TEAM", image: image1, selectedImage: image1)
+        let icon2 = UITabBarItem(title: "OPPONENT TEAM", image: image2, selectedImage: image2)
+        let icon3 = UITabBarItem(title: "SCORE BOARD", image: image3, selectedImage: image3)
         itemOne.tabBarItem = icon1
         itemTwo.tabBarItem = icon2
         itemThree.tabBarItem = icon3
