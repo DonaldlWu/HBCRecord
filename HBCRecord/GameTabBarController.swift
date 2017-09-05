@@ -20,11 +20,7 @@ class GameTabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         inning = UserDefaults.standard.integer(forKey: "inning")
-        guard let gamingStatus = UserDefaults.standard.string(forKey: "gaming") else {
-            return
-        }
-        
-        if gamingStatus == "false" || opponent.count < 9 {
+        if opponent.count < 9 {
             for i in 0...17 {
                 self.opponent.append(Player(mid: "OPPONENT", name: "UNKNOW", order: "\(i)", position: "UNKNOW", recordArray: [], profileImage: nil))
             }
