@@ -115,7 +115,7 @@ class MemberCell: UITableViewCell {
         numberLabel.widthAnchor.constraint(equalToConstant: 72).isActive = true
         numberLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
-        nameLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        nameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12).isActive = true
         nameLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
         nameLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true

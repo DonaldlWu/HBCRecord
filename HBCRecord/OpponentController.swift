@@ -47,7 +47,6 @@ class OpponentController: RecordController {
             alertController.addAction(top)
             self.present(alertController, animated: true, completion: nil)
         } else if change == "opponent" {
-            print("Do Some Thing")
             let array = covertData(players: self.opponent)
             UserDefaults.standard.setValue("self", forKey: "Change")
             let controller = GameTabBarController()

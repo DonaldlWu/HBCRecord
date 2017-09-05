@@ -87,7 +87,6 @@ class RecordController: UICollectionViewController, UICollectionViewDelegateFlow
             return
         }
         if change == "self" {
-            print("Do Some Thing")
             let array = covertData(players: self.players)
             UserDefaults.standard.setValue("opponent", forKey: "Change")
             let controller = GameTabBarController()
