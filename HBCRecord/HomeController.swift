@@ -26,7 +26,8 @@ class HomeController: UITableViewController {
         super.viewDidLoad()
         
         tableView.register(TeamCell.self, forCellReuseIdentifier: cellId)
-        let newTeamButton = UIBarButtonItem(title: "New Team", style: .plain, target: self, action: #selector(toMemberController))
+//        let newTeamButton = UIBarButtonItem(title: "New Team", style: .plain, target: self, action: #selector(toMemberController))
+        let newTeamButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(toMemberController))
         navigationItem.rightBarButtonItem = newTeamButton
         
         let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))

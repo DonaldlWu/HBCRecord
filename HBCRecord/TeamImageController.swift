@@ -57,6 +57,8 @@ class TeamImageController: AddMemberController {
         positionSegmentedControl.removeFromSuperview()
         nameText.removeFromSuperview()
         registerButton.removeFromSuperview()
+        let back = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(popController))
+        navigationItem.leftBarButtonItem = back
         
         view.addSubview(profileImage)
         view.addSubview(addButton)
@@ -70,5 +72,9 @@ class TeamImageController: AddMemberController {
         addButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 22).isActive = true
         addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -22).isActive = true
         addButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    
+    func popController() {
+        self.navigationController?.popViewController(animated: true)
     }
 }

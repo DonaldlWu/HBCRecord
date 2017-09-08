@@ -62,6 +62,7 @@ extension HomeController {
         
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.backgroundColor = .red
         titleView.addSubview(containerView)
         
         
