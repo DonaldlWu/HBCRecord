@@ -311,8 +311,7 @@
 				TargetAttributes = {
 					C067E0031EFFE8EC00F830CB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = TN3V3KVJB9;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					C067E01A1EFFE8EC00F830CB = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -631,11 +630,14 @@
 			baseConfigurationReference = 655FD671920D82C37CB7B274 /* Pods-HBCRecord.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = TN3V3KVJB9;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = HBCRecord/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DeRenDeveloper.BSRecorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -646,11 +648,15 @@
 			baseConfigurationReference = 4B1EF1B40D9FE7748F64AB0E /* Pods-HBCRecord.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = TN3V3KVJB9;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: De-Ren Wu (TN3V3KVJB9)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = HBCRecord/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DeRenDeveloper.BSRecorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
